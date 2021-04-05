@@ -1,0 +1,11 @@
+<% if current_user.admin? %>
+  <div class="row">
+    <div class="col-md-4">
+      <section class="user_info">
+        <h1>
+          <%= @category.name%>
+        </h1>
+      </section>
+    </div>
+  </div>
+<% end %>

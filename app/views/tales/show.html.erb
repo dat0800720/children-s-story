@@ -1,0 +1,16 @@
+<% if current_user.admin? %>
+    <div class="row">
+        <div class="col-md-4">
+            <section class="user_info">
+                <h1>
+                    <h2>title: <%= @tale.title %></h2>
+                    <h2>content: <%= @tale.description %></h2>
+                    <h2>author: <%= @tale.author %></h2>
+                    <h2>category: <%= @tale.category.name %></h2>
+                </h1>
+                <button id="sendMessageButton" type="submit"><%= link_to "edit", edit_tale_path(@tale) %></button>
+                <button id="sendMessageButton" type="submit"><%= link_to "delete",tale_path(@tale), method: :delete %></button>
+            </section>
+        </div>
+    </div>
+<% end %>
