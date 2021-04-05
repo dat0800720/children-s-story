@@ -1,6 +1,10 @@
 class CategoriesController < ApplicationController
-  before_action :find_tale, only: [:show ,:edit, :update, :destroy]
+  before_action :find_category, only: [:show ,:edit, :update, :destroy]
   before_action :admin_user,only: [:edit, :update, :destroy]
+
+  def index
+    @categories = Category.all.paginate(page: params[:page])
+  end
 
   def new
     @category = Category.new
@@ -17,6 +21,24 @@ class CategoriesController < ApplicationController
     else
         render 'new'
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @category.update(category_params)
+      redirect_to category_path(@category)
+    else
+      flash[:success] = "not oke"
+      render "edit"
+    end
+  end
+
+  def destroy
+    @category.destroy
+    flash[:success] = "category deleted"
+    redirect_to category_url
   end
 
   private

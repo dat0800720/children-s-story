@@ -5,6 +5,8 @@
         <h1>
           <%= @category.name%>
         </h1>
+        <button id="sendMessageButton" type="submit"><%= link_to "edit", edit_category_path(@category) %></button>
+        <button id="sendMessageButton" type="submit"><%= link_to "delete",category_path(@category), method: :delete %></button>
       </section>
     </div>
   </div>
