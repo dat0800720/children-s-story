@@ -1,11 +1,13 @@
 <%= form_for(@tale) do |f| %>
-    <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Select a category") %>
-    <%= f.label :title %>
-    <%= f.text_field :title, class: 'form-control' %>
-    <%= f.label :description %>
-    <%= f.text_field :description, class: 'form-control' %>
-    <%= f.label :author %>
-    <%= f.text_field :author, class: 'form-control' %>
-
-    <%= f.submit "create tale", class: "btn btn-primary" %>
+  <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Select a category") %>
+  <span class="image">
+    <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
+  </span>
+  <%= f.label :title %>
+  <%= f.text_field :title, class: 'form-control' %>
+  <%= f.label :description %>
+  <%= f.text_field :description, class: 'form-control' %>
+  <%= f.label :author %>
+  <%= f.text_field :author, class: 'form-control' %>
+  <%= f.submit "create tale", class: "btn btn-primary" %>
 <% end %>
