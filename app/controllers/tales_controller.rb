@@ -17,6 +17,7 @@ class TalesController < ApplicationController
   def create
     @tale = Tale.new(tale_params)
     @tale.category_id = params[:category_id]
+    @tale.image.attach(params[:tale][:image])
 
     if @tale.save
       redirect_to @tale
@@ -45,7 +46,7 @@ class TalesController < ApplicationController
 
   private
     def tale_params
-      params.require(:tale).permit(:title, :description, :author, :category_id)
+      params.require(:tale).permit(:title, :description, :author, :category_id, :image)
     end
 
     def find_tale
