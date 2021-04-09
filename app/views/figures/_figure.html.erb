@@ -1,0 +1,7 @@
+<li>
+  <%= link_to figure.name, figure %>
+  <% if current_user.admin? %>
+    <%= link_to "delete", figure, method: :delete,
+      data: { confirm: "You sure?" } %>
+  <% end %>
+</li>

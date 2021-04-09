@@ -1,5 +1,6 @@
-<%= form_for(@tale) do |f| %>
-  <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Select a category") %>
+<%= form_for @tale do |f| %>
+  <%= select_tag(:category_id, options_from_collection_for_select(Category.all, :id, :name), include_blank: "Select Category")
+ %>
   <span class="image">
     <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
   </span>
@@ -9,5 +10,15 @@
   <%= f.text_field :description, class: 'form-control' %>
   <%= f.label :author %>
   <%= f.text_field :author, class: 'form-control' %>
+  
+  <div class="figures">
+    <%= f.fields_for :figures do |figure| %>
+      <%= render "figure_fields", f: figure%>
+    <%end%>
+    
+    <div class="links">
+      <%= link_to_add_association "+ Add Figures", f, :figures %>
+    </div>
+  </div>
   <%= f.submit "create tale", class: "btn btn-primary" %>
 <% end %>

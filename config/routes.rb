@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :users
   resources :tales
   resources :categories
+  resources :figures
 end
