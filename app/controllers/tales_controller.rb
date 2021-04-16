@@ -11,13 +11,14 @@ class TalesController < ApplicationController
   
   def new
     @tale = Tale.new
-    @categories = Category.all.map{ |c| [c.name, c.id]}
+    @categories = Category.all.map { |c| [c.name, c.id]}
   end
 
   def create
     @tale = Tale.new(tale_params)
     @tale.category_id = params[:category_id]
     @tale.image.attach(params[:tale][:image])
+    @tale.figure_id = params[:figure_id]
 
     if @tale.save
       redirect_to @tale
@@ -46,7 +47,8 @@ class TalesController < ApplicationController
 
   private
     def tale_params
-      params.require(:tale).permit(:title, :description, :author, :category_id, :image)
+      params.require(:tale).permit(:title, :description, :author, :category_id, :image,
+        figures_attributes: [:id, :name, :_destroy])
     end
 
     def find_tale
