@@ -10,8 +10,10 @@
           <h2>content: <%= @tale.description %></h2>
           <h2>author: <%= @tale.author %></h2>
           <h2>category: <%= @tale.category.name %></h2>
-          <h2>figure:<% @tale.figures.each do |figure| %>
-              <%= figure.name %>
+          <h2><% @tale.pictures.each do |picture| %>
+              <% if picture.image.attached? %>
+                <%= image_tag url_for(picture.image) %>
+              <% end %>
             <% end %>
           </h2>
         </h1>
