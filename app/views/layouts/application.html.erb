@@ -15,7 +15,60 @@
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
-      <%= yield %>
+      <% if logged_in? %>
+        <% if current_user.admin? %>
+          <div class="wrapper-admin">
+            <nav id="sidebar">
+              <div class="sidebar-header">
+                <h3>Children's Story</h3>
+                
+              </div>
+
+              <ul class="list-unstyled components">
+                <li class="active">
+                  <a href="#homeSubmenu" class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false">USER</a>
+                  <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li><%= link_to "NEW", "users/new", class: "nav-link" %></li>
+                    <li><%= link_to "ALL USERS", "users", class: "nav-link" %></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#Tale" class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false">TALE</a>
+                  <ul class="collapse list-unstyled" id="Tale">
+                    <li><%= link_to "NEW", "tales/new", class: "nav-link" %></li>
+                    <li><%= link_to "ALL TALES", "tales", class: "nav-link" %></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#category" class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false">CATEGGORY</a>
+                  <ul class="collapse list-unstyled" id="category">
+                    <li><%= link_to "NEW", "categories/new", class: "nav-link" %></li>
+                    <li><%= link_to "ALL CATEGORIES", "categories", class: "nav-link" %></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#request" class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false">REQUEST</a>
+                  <ul class="collapse list-unstyled" id="request">
+                    <li><a href="#">REQUEST ALL</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item"%>
+                </li>
+              </ul>
+            </nav>
+
+            <!-- Page Content Holder -->
+              <div id="content">
+                <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" style="background: #fed136;">
+                <span>Toggle Sidebar</span></button>
+                <%= yield %>
+              </div>
+          </div>
+          <% end %>
+      <% else %>
+          <%= yield %>
+      <% end %>    
     </div>
     <%= render 'layouts/footer' %>
   </body>

@@ -1,26 +1,10 @@
 <% provide(:title, "Home") %>
 <% if logged_in? %>
   <% if current_user.admin? %>
-    <div >
-      <h1 class="login">ADMIN</h1>
-    </div>
-    <div class="all_show">
-      <div class="show">
-        <%= link_to "Category manager", categories_path %> 
-      </div>
-      <div class="show">
-        <%= link_to "Tale manager", tales_path %>
-      </div>
-      <div class="show">
-        <a href="#"><p>User manager</p></a>
-      </div>
-      <div class="show">
-        <a href="#"><p>Request manager</p></a>
-      </div>
-    </div>
+      <h1>welcome admin</h1>
   <% else %>
-    <h1>giao dien nguoi dung</h1>
-  <%end%>
+    <h1>welcome user</h1>
+  <% end %>
 <% else %>
   <body id="page-top">
   <!-- Masthead-->
