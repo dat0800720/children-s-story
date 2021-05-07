@@ -1,9 +1,12 @@
 class TalesController < ApplicationController
-  before_action :find_tale, only: [:show ,:edit, :update, :destroy]
+  before_action :find_tale, only: [:show, :preview, :edit, :update, :destroy]
   before_action :admin_user,only: [:edit, :update, :destroy]
 
   def index
    @tales = Tale.all.paginate(page: params[:page])
+  end
+
+  def preview
   end
 
   def show

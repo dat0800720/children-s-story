@@ -10,22 +10,32 @@
               Trang chủ <span class="sr-only">(current)</span>
             <% end %>
           </li>
+          <li class="dropdown">
+            <a class="nav-link" href="#" id="navbarDropdown"
+                role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+              Thể loại
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= render @categories %>
+            </div>
+          </li>
           <li class="nav-item"><%= link_to "Yêu thích", about_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "Theo dõi", about_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "Yêu cầu", about_path, class: "nav-link" %></li>
-          <li class="dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                role="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-              Tài khoản
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to "Profile", current_user, class: "dropdown-item"  %>
-              <%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item" %>
-              <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item"%>
-            </div>
-          </li>
         </ul>
+      </div>
+    </div>
+    <div class="dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+          role="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+        Tài khoản
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <%= link_to "Profile", current_user, class: "dropdown-item"  %>
+        <%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item" %>
+        <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item"%>
       </div>
     </div>
   </nav>
