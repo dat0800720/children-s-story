@@ -1,25 +1,14 @@
-<% if current_user.admin? %>
-  <div class="row">
-    <div class="col-md-4">
-      <section class="user_info">
-        <div class="img-main">
-          <%= image_tag @tale.image if @tale.image.attached? %>
-        </div>
-        <h1>
-          <h2>title: <%= @tale.title %></h2>
-          <h2>content: <%= @tale.description %></h2>
-          <h2>author: <%= @tale.author %></h2>
-          <h2>category: <%= @tale.category.name %></h2>
-          <h2><% @tale.pictures.each do |picture| %>
-              <% if picture.image.attached? %>
-                <%= image_tag url_for(picture.image) %>
-              <% end %>
-            <% end %>
-          </h2>
-        </h1>
-        <button id="sendMessageButton" type="submit"><%= link_to "edit", edit_tale_path(@tale) %></button>
-        <button id="sendMessageButton" type="submit"><%= link_to "delete",tale_path(@tale), method: :delete %></button>
-      </section>
+<div class="row">
+  <section class="user_info">
+    <div class="img-picture"><% @tale.pictures.each do |picture| %>
+        <% if picture.image.attached? %>
+          <%= image_tag url_for(picture.image) %>
+        <% end %>
+      <% end %>
     </div>
-  </div>
-<% end %>
+    <% if current_user.admin? %>
+      <button id="sendMessageButton" type="submit"><%= link_to "edit", edit_tale_path(@tale) %></button>
+      <button id="sendMessageButton" type="submit"><%= link_to "delete",tale_path(@tale), method: :delete %></button>
+    <% end %>
+  </section>
+</div>

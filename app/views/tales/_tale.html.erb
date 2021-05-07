@@ -1,18 +1,19 @@
-<div class="col-lg-4 col-sm-6 mb-4">
-  <div class="portfolio-item">
-    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-      <div class="portfolio-hover">
-        <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+<div class="col-lg-3 col-md-4 col-sm-12">
+  <div class="card product_item">
+    <div class="body">
+      <div class="cp_img">
+        <div class="img-main">
+          <%= image_tag tale.image if tale.image.attached? %>
+        </div> 
       </div>
-      <div class="img-main">
-        <%= image_tag tale.image if tale.image.attached? %>
-      </div> 
-    </a>
-    <div class="portfolio-caption">
-      <div class="portfolio-caption-heading"><%= link_to tale.title, tale %></div>
-      <% if current_user.admin? %>
-        <%= link_to "delete", tale, method: :delete, data: { confirm: "You sure?" } %>
-      <% end %>
+      <div class="product_details">
+        <h5><%= link_to tale.title, review_path %></h5>
+        <ul class="product_price list-unstyled">
+          <% if current_user.admin? %>
+            <%= link_to "delete", tale, method: :delete, data: { confirm: "You sure?" } %>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

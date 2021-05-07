@@ -65,7 +65,9 @@
                 <%= yield %>
               </div>
           </div>
-          <% end %>
+        <%else%>
+          <%= yield %>
+        <% end %>
       <% else %>
           <%= yield %>
       <% end %>    
