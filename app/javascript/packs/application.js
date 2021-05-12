@@ -18,10 +18,11 @@ require("@nathanvda/cocoon")
 // const imagePath = (name) => images(name, true)
 import "bootstrap"
 import "./img_js"
+window.jQuery = window.$ = jQuery;
 
 $(document).on('turbolinks:load', function() {
   $("#sidebarCollapse").on("click", function() {
     $("#sidebar").toggleClass("active");
     $(this).toggleClass("active");
   });
-})    
+})

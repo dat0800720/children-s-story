@@ -935,15 +935,11 @@ input {
 }
 .user_info{
   text-align: center;
+  margin: auto;
 }
 .img-main img{
   height: 245px;
   width:245px;
-}
-.img-picture img{
-  height: auto;
-  width:1150px;
-  padding: 25px;
 }
 
 .form_all{
@@ -1574,4 +1570,28 @@ body{margin-top:20px;
   }
 .margin-top{
   margin-top: 50px;
+}
+
+//TALE CONTENT
+.tale-content{  
+  background: white;
+  border-radius: 10px;
+  margin-top: 20px;
+
+}
+.text-content{
+  width:1150px;
+  padding: 25px 25px 5px 25px;
+  font-size: 20px;
+  color: #000;
+}
+.audio-content audio{
+  height: 30px;
+  width: 120px;
+}
+.img-picture img{
+  height: auto;
+  width:1150px;
+  padding:25px 0 25px 0;
+  border-bottom:#d8dbdf solid 20px;
 }
