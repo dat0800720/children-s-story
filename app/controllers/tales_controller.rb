@@ -42,14 +42,13 @@ class TalesController < ApplicationController
 
   def destroy
     @tale.destroy
-    flash[:success] = "tale deleted"
     redirect_to tales_url
   end
 
   private
     def tale_params
       params.require(:tale).permit(:title, :description, :author, :category_id, :image,
-        pictures_attributes: [:id, :image, :_destroy])
+        tale_contents_attributes: [:id, :image, :audio, :text, :content_type, :_destroy])
     end
 
     def find_tale

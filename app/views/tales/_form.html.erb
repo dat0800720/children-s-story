@@ -1,5 +1,5 @@
 <%= form_for @tale do |f| %>
-  <%= f.select(:category_id, Category.all.collect {|p| [ p.name, p.id ] }, {include_blank: "Select Category"})
+  <%= f.select(:category_id, Category.all.collect {|p| [ p.name, p.id ] }, {include_blank: " Category"})
  %>
   <span class="image">
     <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
@@ -10,12 +10,12 @@
   <%= f.text_field :description, class: 'form-control' %>
   <%= f.label :author %>
   <%= f.text_field :author, class: 'form-control' %>
-  <div class="pictures">
-    <%= f.fields_for :pictures do |picture| %>
-      <%= render "picture_fields", f: picture%>
+  <div class="form-nested" id="tale-contents">
+    <%= f.fields_for :tale_contents do |tale_content| %>
+      <%= render "tale_content_fields", f: tale_content%>
     <%end%>
     <div class="links">
-      <%= link_to_add_association "+ Add picture", f, :pictures %>
+      <%= link_to_add_association "+ Add tale_content", f, :tale_contents %>
     </div>
   </div>
   <%= f.submit "create tale", class: "btn btn-primary" %>

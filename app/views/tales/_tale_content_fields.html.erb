@@ -1,0 +1,55 @@
+<div class="nested-fields">
+  <%= f.select :content_type, options_for_select(
+                                [["text", "text"], ["void", "void"], ["image", "image"]], f.object.content_type),
+               {}, class: "form-control form-children-select" %>
+  <div class="field">
+    <div class="image hidden">
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+    </div>
+    <div class="text">
+      <%= f.label :text %>
+      <%= f.text_field :text, class: 'form-control' %>
+    </div>
+    <div class="audio hidden">
+      <%= f.label :audio %>
+      <%= f.file_field :audio %>
+    </div>
+      <%= link_to_remove_association "Remove tale content", f %>
+  </div>
+</div>
+<script>
+  $(document).on('turbolinks:load', function() {
+    $('.form-children-select').map(function(){
+      if ($(this).val() == "text") {
+        $(this).parent().find('.image').addClass('hidden');
+        $(this).parent().find('.audio').addClass('hidden');
+        $(this).parent().find('.text').removeClass('hidden');
+      } else if($(this).val() == "void") {
+        $(this).parent().find('.image').addClass('hidden');
+        $(this).parent().find('.text').addClass('hidden');
+        $(this).parent().find('.audio').removeClass('hidden');
+      } else {
+        $(this).parent().find('.audio').addClass('hidden');
+        $(this).parent().find('.text').addClass('hidden');
+        $(this).parent().find('.image').removeClass('hidden');
+      }
+    })
+  })
+  
+  $('.form-children-select').on('change', function() {
+    if ($(this).val() == "text") {
+      $(this).parent().find('.image').addClass('hidden');
+      $(this).parent().find('.audio').addClass('hidden');
+      $(this).parent().find('.text').removeClass('hidden');
+    } else if($(this).val() == "void") {
+      $(this).parent().find('.image').addClass('hidden');
+      $(this).parent().find('.text').addClass('hidden');
+      $(this).parent().find('.audio').removeClass('hidden');
+    } else {
+      $(this).parent().find('.audio').addClass('hidden');
+      $(this).parent().find('.text').addClass('hidden');
+      $(this).parent().find('.image').removeClass('hidden');
+    }
+  })
+</script>

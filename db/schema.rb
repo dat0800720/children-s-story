@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_18_194559) do
+ActiveRecord::Schema.define(version: 2021_05_10_130006) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -54,13 +54,6 @@ ActiveRecord::Schema.define(version: 2021_04_18_194559) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "figures", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "tale_id"
-  end
-
   create_table "follows", force: :cascade do |t|
     t.integer "tale_id"
     t.integer "user_id"
@@ -73,19 +66,6 @@ ActiveRecord::Schema.define(version: 2021_04_18_194559) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "images", force: :cascade do |t|
-    t.string "image"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "pictures", force: :cascade do |t|
-    t.string "picture"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "tale_id"
   end
 
   create_table "requests", force: :cascade do |t|
@@ -112,6 +92,14 @@ ActiveRecord::Schema.define(version: 2021_04_18_194559) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "tale_contents", force: :cascade do |t|
+    t.string "text"
+    t.integer "content_type", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "tale_id"
+  end
+
   create_table "tales", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -119,8 +107,8 @@ ActiveRecord::Schema.define(version: 2021_04_18_194559) do
     t.integer "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "figure_id"
     t.integer "picture_id"
+    t.integer "tale_content_id"
   end
 
   create_table "users", force: :cascade do |t|

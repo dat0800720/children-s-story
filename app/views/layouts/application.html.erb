@@ -28,22 +28,22 @@
                 <li class="active">
                   <a href="#homeSubmenu" class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false">USER</a>
                   <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li><%= link_to "NEW", "users/new", class: "nav-link" %></li>
-                    <li><%= link_to "ALL USERS", "users", class: "nav-link" %></li>
+                    <li><%= link_to "NEW", new_user_path, class: "nav-link" %></li>
+                    <li><%= link_to "ALL USERS", users_path, class: "nav-link" %></li>
                   </ul>
                 </li>
                 <li>
                   <a href="#Tale" class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false">TALE</a>
                   <ul class="collapse list-unstyled" id="Tale">
-                    <li><%= link_to "NEW", "tales/new", class: "nav-link" %></li>
-                    <li><%= link_to "ALL TALES", "tales", class: "nav-link" %></li>
+                    <li><%= link_to "NEW", new_tale_path, class: "nav-link" %></li>
+                    <li><%= link_to "ALL TALES", tales_path, class: "nav-link" %></li>
                   </ul>
                 </li>
                 <li>
                   <a href="#category" class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false">CATEGGORY</a>
                   <ul class="collapse list-unstyled" id="category">
-                    <li><%= link_to "NEW", "categories/new", class: "nav-link" %></li>
-                    <li><%= link_to "ALL CATEGORIES", "categories", class: "nav-link" %></li>
+                    <li><%= link_to "NEW", new_category_path , class: "nav-link" %></li>
+                    <li><%= link_to "ALL CATEGORIES", categories_path, class: "nav-link" %></li>
                   </ul>
                 </li>
                 <li>
