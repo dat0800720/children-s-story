@@ -1,5 +1,4 @@
 <% provide(:title, @user.name) %>
-<% if current_user.admin? %>
   <div class="row">
     <div class="col-md-4">
       <section class="user_info">
@@ -7,9 +6,6 @@
           <%= gravatar_for @user %>
           <%= @user.name %>
         </h1>
-        <button id="sendMessageButton" type="submit"><%= link_to "edit", edit_user_path(@user) %></button>
-        <button id="sendMessageButton" type="submit"><%= link_to "delete",user_path(@user), method: :delete %></button>
       </section>
     </div>
   </div>
-<% end %>
