@@ -6,11 +6,17 @@ Rails.application.routes.draw do
 	get "/about", to:"static_pages#about"
   post "login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
-  resources :users
   resources :tales do
     member do
       get 'preview', to: 'tales#preview'
+      get :followers
+    end
+  end
+  resources :users do
+    collection do
+      get :following
     end
   end
   resources :categories
+  resources :relationships, only: [:create, :destroy]
 end

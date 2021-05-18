@@ -1,5 +1,5 @@
 class TalesController < ApplicationController
-  before_action :find_tale, only: [:show, :preview, :edit, :update, :destroy]
+  before_action :find_tale, only: [:show, :preview, :edit, :update, :followers, :destroy]
   before_action :admin_user,only: [:edit, :update, :destroy]
 
   def index
@@ -45,6 +45,13 @@ class TalesController < ApplicationController
     redirect_to tales_url
   end
 
+  def followers
+    @title = "Followers"
+    @tale = Tale.find(params[:id])
+    @tales = @tale.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
   private
     def tale_params
       params.require(:tale).permit(:title, :description, :author, :category_id, :image,
@@ -57,7 +64,7 @@ class TalesController < ApplicationController
         redirect_to root_path
       end
     end
-
+    
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end

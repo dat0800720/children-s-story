@@ -1,0 +1,7 @@
+<% @user ||= current_user %>
+<div class="stats">
+  <span class="posted_in">
+    <strong>Followers:</strong> 
+    <strong id="followers" class="stat"><%= @tale.followers.count %></strong>
+  </span>
+</div>
