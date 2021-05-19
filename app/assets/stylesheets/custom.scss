@@ -911,15 +911,17 @@ input {
   margin-bottom: 0 !important;
 }
 .login{
+  margin-top: 0px;
   text-align:center;
   padding-top: 30px;
 }
 .nav-item{
   text-align: center !important;
 }
-.wrapper{
+.wrapper-logout{
   min-height: calc(100vh - 150px);
   width: 100%;
+  background: white;
 }
 
 .all_show{
@@ -1069,8 +1071,8 @@ a.article:hover {
 }
 
 //USER INTERFACE
-.wrapper-user{
-  min-height: calc(100vh - 150px);
+.wrapper{
+  min-height: calc(102vh - 150px);
   width: 100%;
   background-image: url(https://indainam.com/wp-content/uploads/2017/10/mau-background-don-gian-03-768x614.jpg);
 }
@@ -1087,7 +1089,6 @@ a.article:hover {
 
 }
 body{
-  margin-top:20px;
   background-color: #f4f7f6;
 }
 .c_review {
@@ -1425,7 +1426,7 @@ body{
   font-weight: 400;
 }
 // review
-body{margin-top:20px;
+body{
   background:#eee;
   }
   
@@ -1594,4 +1595,9 @@ body{margin-top:20px;
   width:1150px;
   padding:25px 0 25px 0;
   border-bottom:#d8dbdf solid 20px;
+}
+
+.stats {
+  display: flex;
+  margin-bottom: 10px;
 }

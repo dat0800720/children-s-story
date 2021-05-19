@@ -3,23 +3,27 @@
     <section class="panel">
       <div class="panel-body">
         <div class="col-md-6">
-            <div class="pro-img-details">
-              <%= image_tag @tale.image if @tale.image.attached? %>
-            </div>
+          <div class="pro-img-details">
+            <%= image_tag @tale.image if @tale.image.attached? %>
+          </div>
+          <%= render 'users/follow_form' if logged_in? %>
         </div>
         <div class="col-md-6">
           <h4 class="pro-d-title">
-              <h2>title: <%= @tale.title %></h2>
+            <h2>Tên: <%= @tale.title %></h2>
           </h4>
           <p>
-              <h2>content: <%= @tale.description %></h2>
+            <h2>Tóm Tắt: <%= @tale.description %></h2>
           </p>
           <div class="product_meta">
-            <span class="posted_in"> <strong>Categories:</strong> <%= @tale.category.name %></span>
-            <span class="tagged_as"><strong>Author:</strong><%= @tale.author %>.</span>
+            <span class="posted_in"> <strong>Thể Loại: </strong> <%= @tale.category.name %></span>
+            <span class="tagged_as"><strong>Tác Giả: </strong><%= @tale.author %>.</span>
           </div>
+          <section class="stats">
+            <%= render 'shared/stats' %>
+          </section>
           <p>
-            <button class="btn btn-round btn-danger" type="button" style="background: #fed136;"><h5><%= link_to "READ BOOKS", tale_path(@tale.id) %></h5></button>
+            <button class="btn btn-round btn-danger" type="button" style="background: #fed136;"><h5><%= link_to "Đọc Truyện", tale_path(@tale.id) %></h5></button>
           </p>
         </div>
       </div>
