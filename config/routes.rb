@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   resources :tales do
+   
     member do
+      resources :reviewtales
       get 'preview', to: 'tales#preview'
       get :followers
     end

@@ -1,7 +1,7 @@
 <div class="nested-fields">
   <%= f.select :content_type, options_for_select(
-                                [["text", "text"], ["void", "void"], ["image", "image"]], f.object.content_type),
-               {}, class: "form-control form-children-select" %>
+    [["text", "text"], ["void", "void"], ["image", "image"]], f.object.content_type),
+    {}, class: "form-children-select" %>
   <div class="field">
     <div class="image hidden">
       <%= f.label :image %>

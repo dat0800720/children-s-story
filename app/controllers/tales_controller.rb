@@ -7,9 +7,15 @@ class TalesController < ApplicationController
   end
 
   def preview
+    if @tale.reviewtales.blank?
+      @average_reviewtale = 0
+    else
+      @average_reviewtale = @tale.reviewtales.average(:rating).round(2)
+    end
   end
 
   def show
+   
   end
   
   def new

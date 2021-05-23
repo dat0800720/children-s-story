@@ -2,6 +2,10 @@ class User < ApplicationRecord
   has_many :active_relationships, class_name: "Relationship",
     foreign_key: "follower_id", dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
+  
+  has_many :reviewtales, class_name: "Reviewtale",
+    foreign_key: "user_id", dependent: :destroy
+  has_many :tales, through: :reviewtales, source: :user_id
 
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
