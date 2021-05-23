@@ -22,11 +22,39 @@
           <section class="stats">
             <%= render 'shared/stats' %>
           </section>
+            <div class="average-review-rating" data-score=<%= @average_reviewtale %>></div>
+            <span><strong><%= @tale.reviewtales.count %> lượt đánh giá</strong></span>
+          </div>
           <p>
-            <button class="btn btn-round btn-danger" type="button" style="background: #fed136;"><h5><%= link_to "Đọc Truyện", tale_path(@tale.id) %></h5></button>
+            <button class="btn btn-primary" type="button" ><h5><%= link_to "Đọc Truyện", tale_path(@tale.id) %></h5></button>
           </p>
         </div>
       </div>
     </section>
   </div>
+  <div class="container review">
+    <h1 class="login">ĐÁNH GIÁ TRUYỆN</h1>
+    <button class="btn btn-primary" type="button" ><h5><%= link_to "Đánh giá", new_reviewtale_path(@tale)%></h5></button>
+    <%= render @tale.reviewtales %>
+  </div>
 </div>
+
+<script>
+   $('.review-rating').raty({
+   readOnly: true,
+   score: function(){
+     return $(this).attr('data-score');
+   },
+   path: '/assets/'
+   });
+</script>
+
+<script>
+  $(".average-review-rating").raty({
+    readOnly: true,
+    path: "/assets",
+    score: function(){
+      return $(this).attr("data-score")
+    }
+  }); 
+</script>

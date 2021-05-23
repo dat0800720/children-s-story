@@ -1,0 +1,10 @@
+<h2><%= reviewtale.user.name %></h2>
+<div class="review-rating" data-score=<%= reviewtale.rating %>></div>
+<p><%= reviewtale.comment%></p>
+
+<% if logged_in? %>
+  <% if reviewtale.user_id == current_user.id%>
+    <button id="sendMessageButton" type="submit"><%= link_to "edit",  edit_reviewtale_path(reviewtale.tale, reviewtale) %></button>
+    <button id="sendMessageButton" type="submit"><%= link_to "delete",reviewtale_path(reviewtale.tale, reviewtale), method: :delete %></button>
+  <% end %>
+<% end %>

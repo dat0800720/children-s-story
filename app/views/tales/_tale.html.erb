@@ -7,7 +7,7 @@
         </div> 
       </div>
       <div class="product_details">
-        <h5><%= link_to tale.title, tale %></h5>
+        <h5><%= link_to tale.title, preview_tale_path(tale.id)%></h5>
         <ul class="product_price list-unstyled">
           <% if current_user.admin? %>
             <%= link_to "delete", tale, method: :delete, data: { confirm: "You sure?" } %>

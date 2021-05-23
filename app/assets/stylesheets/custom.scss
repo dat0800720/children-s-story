@@ -83,8 +83,8 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #e6b301;
-  text-decoration: underline;
+  color: #000;
+  text-decoration: none;
 }
 
 img {
@@ -330,6 +330,9 @@ h6, .h6 {
   border-color: #fec503;
 }
 
+.btn btn-primary h5 a{
+  color: black
+}
 
 .btn-success {
   color: #fff;
@@ -430,9 +433,7 @@ h6, .h6 {
   padding: 0.5rem 1rem;
   color:#fed136;
 }
-a:hover, a:focus{
-  color: #fed136;
-}
+
 .nav-link:hover, .nav-link:focus {
   text-decoration: none;
 }
@@ -1600,4 +1601,12 @@ body{
 .stats {
   display: flex;
   margin-bottom: 10px;
+}
+//revew tale
+.review{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 50px;
+  background: white;
+  border-radius: 10px;
 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_15_122622) do
+ActiveRecord::Schema.define(version: 2021_05_21_163422) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -79,18 +79,11 @@ ActiveRecord::Schema.define(version: 2021_05_15_122622) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "reviews", force: :cascade do |t|
+  create_table "reviewtales", force: :cascade do |t|
     t.integer "tale_id"
     t.integer "user_id"
-    t.integer "vote_id"
-    t.integer "follow_id"
-    t.integer "author"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "speaks", force: :cascade do |t|
-    t.string "speak"
+    t.integer "rating"
+    t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -112,6 +105,7 @@ ActiveRecord::Schema.define(version: 2021_05_15_122622) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "picture_id"
     t.integer "tale_content_id"
+    t.integer "reviewtale_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -124,13 +118,6 @@ ActiveRecord::Schema.define(version: 2021_05_15_122622) do
     t.string "remember_digest"
     t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
-  end
-
-  create_table "votes", force: :cascade do |t|
-    t.integer "tale_id"
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
