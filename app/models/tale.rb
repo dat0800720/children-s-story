@@ -22,4 +22,12 @@ class Tale < ApplicationRecord
   validates :title, presence: true, length: { maximum:50 }
   validates :description, presence: true, length: { maximum:500 }
   validates :author, presence: true, length: { maximum:30 }
+
+  def self.search(term)
+    if term
+      where('title LIKE ?', "%#{term}%")
+    else
+      all
+    end
+  end
 end

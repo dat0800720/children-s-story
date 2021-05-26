@@ -3,7 +3,7 @@ class TalesController < ApplicationController
   before_action :admin_user,only: [:new, :edit, :update, :destroy]
 
   def index
-   @tales = Tale.all.paginate(page: params[:page])
+   @tales = Tale.search(params[:term])
   end
 
   def preview

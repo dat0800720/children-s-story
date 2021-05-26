@@ -23,6 +23,14 @@
           <li class="nav-item"><%= link_to "Yêu thích", favouriting_users_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "Theo dõi", following_users_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "Yêu cầu", contact_path, class: "nav-link" %></li>
+          <li class="nav-item">
+            <%= form_tag(tales_path, method: :get) do %>
+              <div class="search">
+                <%= text_field_tag :term, params[:term] %>
+                <%= submit_tag 'Search' %>
+              </div>
+            <% end %>
+          </li>
         </ul>
       </div>
     </div>
