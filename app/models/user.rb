@@ -7,6 +7,10 @@ class User < ApplicationRecord
     foreign_key: "user_id", dependent: :destroy
   has_many :tales, through: :reviewtales, source: :user_id
 
+  has_many :active_favourites, class_name: "Favourite",
+    foreign_key: "favouriter_id", dependent: :destroy
+  has_many :favouriting, through: :active_favourites, source: :favourited
+
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   validates :name, presence: true, length: { maximum: 50 }
@@ -53,5 +57,18 @@ class User < ApplicationRecord
   # Returns true if the current user is following the other user.
   def following?(tale)
     following.include?(tale)
+  end
+
+  def favourite(tale)
+    Favourite.find_or_create_by! favouriter_id: self.id, favourited_id: tale.id
+  end
+
+  def unfavourite(tale)
+    Favourite.find_by(favouriter_id: self.id, favourited_id: tale.id).destroy
+  end
+
+  # Returns true if the current user is following the other user.
+  def favouriting?(tale)
+    favouriting.include?(tale)
   end
 end

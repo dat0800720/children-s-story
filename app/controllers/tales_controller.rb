@@ -1,6 +1,6 @@
 class TalesController < ApplicationController
-  before_action :find_tale, only: [:show, :preview, :edit, :update, :followers, :destroy]
-  before_action :admin_user,only: [:edit, :update, :destroy]
+  before_action :find_tale, only: [:show, :preview, :edit, :update, :followers, :favouriters, :destroy]
+  before_action :admin_user,only: [:new, :edit, :update, :destroy]
 
   def index
    @tales = Tale.all.paginate(page: params[:page])
@@ -56,6 +56,13 @@ class TalesController < ApplicationController
     @tale = Tale.find_by(id: params[:id])
     @tales = @tale.followers.paginate(page: params[:page])
     render "show_follow"
+  end
+
+  def favouriters
+    @title = "Favouriters"
+    @tale = Tale.find_by(id: params[:id])
+    @tales = @tale.favouriters.paginate(page: params[:page])
+    render "show_favourite"
   end
 
   private

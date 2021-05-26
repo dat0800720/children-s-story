@@ -1,6 +1,6 @@
 <%= form_for @tale do |f| %>
-  <%= f.select(:category_id, Category.all.collect {|p| [ p.name, p.id ] }, {include_blank: " Category"})
- %>
+  <%= f.select(:category_id, Category.all.collect {|p| [ p.name, p.id ] }, 
+    {include_blank: " Category"})%>
   <span class="image">
     <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
   </span>
@@ -18,4 +18,5 @@
       <%= link_to_add_association "+ Add tale_content", f, :tale_contents %>
     </div>
   </div>
+  <%= f.submit "Tạo truyện tranh", class: "btn btn-primary" %>
 <% end %>

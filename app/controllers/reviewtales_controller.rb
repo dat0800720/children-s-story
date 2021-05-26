@@ -18,7 +18,6 @@ class ReviewtalesController < ApplicationController
   end
 
   def edit
-    @reviewtale = Reviewtale.find_by(id: params[:id])
   end
 
   def update
@@ -41,7 +40,7 @@ class ReviewtalesController < ApplicationController
     end
 
     def find_tale
-      @tale = Tale.find_by(id: params[:id])
+      @tale = Tale.find_by(id: params[:tale_id])
       unless @tale
         redirect_to root_path
       end

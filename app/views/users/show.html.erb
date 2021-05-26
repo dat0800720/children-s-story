@@ -6,6 +6,9 @@
           <%= gravatar_for @user %>
           <%= @user.name %>
         </h1>
+       <% if current_user.admin? %>
+        <button id="sendMessageButton" type="submit"><%= link_to "edit", edit_user_path(@user) %></button>
+      <% end %>
       </section>
     </div>
   </div>

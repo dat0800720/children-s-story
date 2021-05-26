@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :following, :destroy]
+  before_action :logged_in_user, only: [:index, :edit, :update, :following, :favouriting, :destroy]
   before_action :admin_user,only: :destroy
   before_action :find_user, only: [:show ,:edit, :update, :destroy]
   before_action :correct_user,only: [:edit, :update]
@@ -46,6 +46,11 @@ class UsersController < ApplicationController
   def following
     @title = "Following"
     @tales = current_user.following.paginate(page: params[:page])
+  end
+
+  def favouriting
+    @title = "Favouriting"
+    @tales = current_user.favouriting.paginate(page: params[:page])
   end
 
   private

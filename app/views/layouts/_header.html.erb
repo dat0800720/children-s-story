@@ -20,22 +20,22 @@
               <%= render @categories %>
             </div>
           </li>
-          <li class="nav-item"><%= link_to "Yêu thích", about_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Yêu thích", favouriting_users_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "Theo dõi", following_users_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "Yêu cầu", about_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Yêu cầu", contact_path, class: "nav-link" %></li>
         </ul>
       </div>
     </div>
     <div class="dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
           role="button" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">
+          aria-expanded="false" style="color: #fed136;">
         Tài khoản
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <%= link_to "Profile", current_user, class: "dropdown-item"  %>
-        <%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item" %>
-        <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item"%>
+        <%= link_to "Trang cá nhân", current_user, class: "dropdown-item"  %>
+        <%= link_to "Cài đặt", edit_user_path(current_user), class: "dropdown-item" %>
+        <%= link_to "Đăng xuất", logout_path, method: :delete, class: "dropdown-item"%>
       </div>
     </div>
   </nav>
@@ -47,12 +47,12 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <%= link_to root_path, class: "nav-link" do %>
-            HOME <span class="sr-only">(current)</span>
+            TRANG CHỦ <span class="sr-only">(current)</span>
           <% end %>
         </li>
-        <li class="nav-item"><%= link_to "ABOUT", about_path, class: "nav-link" %></li>
-        <li class="nav-item"><%= link_to "CONTACT", contact_path, class: "nav-link" %></li>
-        <li class="nav-item"><%= link_to "LOG IN", login_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "CHÚNG TÔI", about_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "LIÊN HỆ", contact_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "ĐĂNG NHẬP", login_path, class: "nav-link" %></li>
       </ul>
     </div>
   </div>

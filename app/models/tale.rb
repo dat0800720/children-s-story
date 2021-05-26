@@ -10,9 +10,16 @@ class Tale < ApplicationRecord
   has_many :reviewtales , class_name: "Reviewtale",
     foreign_key: "tale_id", dependent: :destroy
   has_many :users, through: :reviewtales, source: :tale_id
+
+  has_many :passive_favourites, class_name: "Favourite",
+    foreign_key: "favourited_id", dependent: :destroy
+  has_many :favouriters, through: :passive_favourites, source: :favouriter
   
+  validates :image, presence: true
   validates :image,content_type: { in: %w[image/jpeg image/gif image/png],
     message: "must be a valid image format" },
     size:{ less_than: 5.megabytes,message: "should be less than 5MB" }
-  
+  validates :title, presence: true, length: { maximum:50 }
+  validates :description, presence: true, length: { maximum:500 }
+  validates :author, presence: true, length: { maximum:30 }
 end
