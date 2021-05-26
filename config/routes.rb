@@ -7,18 +7,20 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   resources :tales do
-   
+    resources :reviewtales
     member do
-      resources :reviewtales
       get 'preview', to: 'tales#preview'
       get :followers
+      get :favouriters
     end
   end
   resources :users do
     collection do
       get :following
+      get :favouriting
     end
   end
   resources :categories
   resources :relationships, only: [:create, :destroy]
+  resources :favourites, only: [:create, :destroy]
 end

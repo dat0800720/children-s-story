@@ -1,0 +1,7 @@
+<div id="favourite_form">
+  <% if current_user.favouriting?(@tale) %>
+    <%= render "users/unfavourite" %>
+  <% else %>
+    <%= render "users/favourite" %>
+  <% end %>
+</div>

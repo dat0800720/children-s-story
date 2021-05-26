@@ -233,7 +233,7 @@ h6, .h6 {
 }
 @media (min-width: 1200px) {
   .container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 1140px;
+    max-width: 1160px;
     border-bottom: 2px solid white;
   }
 }
@@ -915,6 +915,7 @@ input {
   margin-top: 0px;
   text-align:center;
   padding-top: 30px;
+  padding-bottom: 20px;
 }
 .nav-item{
   text-align: center !important;
@@ -1073,6 +1074,7 @@ a.article:hover {
 
 //USER INTERFACE
 .wrapper{
+  padding-bottom: 20px;
   min-height: calc(102vh - 150px);
   width: 100%;
   background-image: url(https://indainam.com/wp-content/uploads/2017/10/mau-background-don-gian-03-768x614.jpg);
@@ -1599,14 +1601,28 @@ body{
 }
 
 .stats {
-  display: flex;
   margin-bottom: 10px;
 }
 //revew tale
 .review{
   margin-top: 20px;
-  margin-bottom: 20px;
   padding: 50px;
   background: white;
   border-radius: 10px;
+}
+
+//thap cam
+.interactive{
+  display: flex;
+}
+label{
+  font-size: 16Fpx;
+  padding: 10px;
+}
+#follow_form{
+  width: 49%;
+  margin-right: 5px;
+}
+#favourite_form{
+  width: 49%;
 }

@@ -6,7 +6,10 @@
           <div class="pro-img-details">
             <%= image_tag @tale.image if @tale.image.attached? %>
           </div>
-          <%= render 'users/follow_form' if logged_in? %>
+          <div class="interactive">
+            <%= render "users/follow_form" if logged_in? %>
+            <%= render "users/favourite_form" if logged_in? %>
+          </div>
         </div>
         <div class="col-md-6">
           <h4 class="pro-d-title">
@@ -20,7 +23,7 @@
             <span class="tagged_as"><strong>Tác Giả: </strong><%= @tale.author %>.</span>
           </div>
           <section class="stats">
-            <%= render 'shared/stats' %>
+            <%= render "shared/stats" %>
           </section>
             <div class="average-review-rating" data-score=<%= @average_reviewtale %>></div>
             <span><strong><%= @tale.reviewtales.count %> lượt đánh giá</strong></span>
@@ -34,7 +37,7 @@
   </div>
   <div class="container review">
     <h1 class="login">ĐÁNH GIÁ TRUYỆN</h1>
-    <button class="btn btn-primary" type="button" ><h5><%= link_to "Đánh giá", new_reviewtale_path(@tale)%></h5></button>
+    <button class="btn btn-primary" type="button" ><h5><%= link_to "Đánh giá", new_tale_reviewtale_path(@tale)%></h5></button>
     <%= render @tale.reviewtales %>
   </div>
 </div>
