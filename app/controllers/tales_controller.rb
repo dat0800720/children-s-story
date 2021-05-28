@@ -15,7 +15,7 @@ class TalesController < ApplicationController
   end
 
   def show
-   
+    @tale.update_attribute :view, @tale.view.to_i + 1
   end
   
   def new
