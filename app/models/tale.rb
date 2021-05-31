@@ -1,6 +1,9 @@
 class Tale < ApplicationRecord
   belongs_to :category
   has_one_attached :image
+  scope :order_by_id, -> { order(id: :desc) }
+  scope :sort_by_follow, -> { sort_by{ |tale| tale.followers.size }.reverse }
+  scope :sort_by_favourite, -> { sort_by{ |tale| tale.favouriters.size }.reverse }
   has_many :tale_contents, dependent: :destroy
   accepts_nested_attributes_for :tale_contents, allow_destroy: true
   has_many :passive_relationships, class_name: "Relationship",

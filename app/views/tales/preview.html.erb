@@ -19,7 +19,7 @@
             <h2>Tóm Tắt: <%= @tale.description %></h2>
           </p>
           <div class="product_meta">
-            <span class="posted_in"> <strong>Thể Loại: </strong> <%= @tale.category.name %></span>
+            <span class="posted_in"> <strong>Thể Loại: </strong> <%= link_to @tale.category.name, category_path(@tale.category.id) %></span>
             <span class="tagged_as"><strong>Tác Giả: </strong><%= @tale.author %>.</span>
           </div>
           <section class="stats">

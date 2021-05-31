@@ -20,36 +20,38 @@
           <div class="wrapper-admin">
             <nav id="sidebar">
               <div class="sidebar-header">
-                <h3>Children's Story</h3>
+                <h3>Truyện thiếu nhi</h3>
                 
               </div>
 
               <ul class="list-unstyled components">
                 <li class="active">
-                  <a href="#homeSubmenu" class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false">USER</a>
+                  <a href="#homeSubmenu" class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false">Người dùng</a>
                   <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li><%= link_to "NEW", new_user_path, class: "nav-link" %></li>
-                    <li><%= link_to "ALL USERS", users_path, class: "nav-link" %></li>
+                    <li><%= link_to "Đăng ký", new_user_path, class: "nav-link" %></li>
+                    <li><%= link_to "Tât cả người dùng", users_path, class: "nav-link" %></li>
                   </ul>
                 </li>
                 <li>
-                  <a href="#Tale" class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false">TALE</a>
+                  <a href="#Tale" class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false">Truyện</a>
                   <ul class="collapse list-unstyled" id="Tale">
-                    <li><%= link_to "NEW", new_tale_path, class: "nav-link" %></li>
-                    <li><%= link_to "ALL TALES", tales_path, class: "nav-link" %></li>
+                    <li><%= link_to "Tạo truyện", new_tale_path, class: "nav-link" %></li>
+                    <li><%= link_to "Tất cả truyện", tales_path, class: "nav-link" %></li>
                   </ul>
                 </li>
                 <li>
-                  <a href="#category" class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false">CATEGGORY</a>
+                  <a href="#category" class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false">Thể loại</a>
                   <ul class="collapse list-unstyled" id="category">
-                    <li><%= link_to "NEW", new_category_path , class: "nav-link" %></li>
-                    <li><%= link_to "ALL CATEGORIES", categories_path, class: "nav-link" %></li>
+                    <li><%= link_to "Tạo thể loại", new_category_path , class: "nav-link" %></li>
+                    <li><%= link_to "Tất cả thể loại", categories_path, class: "nav-link" %></li>
                   </ul>
                 </li>
                 <li>
-                  <a href="#request" class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false">REQUEST</a>
+                  <a href="#request" class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false">Phản hồi</a>
                   <ul class="collapse list-unstyled" id="request">
-                    <li><a href="#">REQUEST ALL</a></li>
+                    <li><a href="#">Tất cả phản hồi</a></li>
+                    <li><a href="#">Phản hồi đã đọc</a></li>
+                    <li><a href="#">Phản hồi đã gửi</a></li>
                   </ul>
                 </li>
                 <li>
@@ -61,7 +63,16 @@
             <!-- Page Content Holder -->
               <div id="content">
                 <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" style="background: #fed136;">
-                <span>Toggle Sidebar</span></button>
+                <span>Thanh điều hướng</span></button>
+                <div class="btn btn-info navbar-btn">
+                <span>
+                <div>
+                  <%= form_tag tales_path, method: :get, class: "form-inline my-2 my-lg-0" do %>
+                    <%= text_field_tag :term, params[:term], class: "form-control mr-sm-0", placeholder: "Tìm kiếm truyện..."  %>
+                    <%= submit_tag "Tìm kiếm", style: "color: #6c757d;" %>
+                  <% end %>
+                </div></span></div>
+                
                 <%= yield %>
               </div>
           </div>
