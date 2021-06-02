@@ -1,21 +1,27 @@
 <%= form_for @tale do |f| %>
   <%= f.select(:category_id, Category.all.collect {|p| [ p.name, p.id ] }, 
-    {include_blank: " Category"})%>
+    {include_blank: " Chọn thể loại truyện"})%>
+  <label>Ảnh bìa:</label>
   <span class="image">
     <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
   </span>
-  <%= f.label :title %>
+  <label>Tiêu đề:</label>
   <%= f.text_field :title, class: 'form-control' %>
-  <%= f.label :description %>
+  <label>Tóm tắt:</label>
   <%= f.text_field :description, class: 'form-control' %>
-  <%= f.label :author %>
+  <label>Tác giả:</label>
   <%= f.text_field :author, class: 'form-control' %>
+  <h2 class="login">Nội dung truyện</h2>
+  <h4>Ví dụ:</h4>
+  <div class="vidu">
+    <%= image_tag("vidu.jpg", :alt => "Ví dụ") %>
+  </div>
   <div class="form-nested" id="tale-contents">
     <%= f.fields_for :tale_contents do |tale_content| %>
       <%= render "tale_content_fields", f: tale_content%>
     <%end%>
     <div class="links">
-      <%= link_to_add_association "+ Add tale_content", f, :tale_contents %>
+      <%= link_to_add_association "+ Thêm nội dung truyện", f, :tale_contents %>
     </div>
   </div>
   <%= f.submit "Tạo truyện tranh", class: "btn btn-primary" %>

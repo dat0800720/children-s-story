@@ -6,6 +6,18 @@ class TalesController < ApplicationController
    @tales = Tale.search(params[:term])
   end
 
+  def newest
+    @newests = Tale.all.paginate(page: params[:page]).order_by_id
+  end
+
+  def many_follow
+    @many_followers = Tale.all.paginate(page: params[:page]).sort_by_follow
+  end
+
+  def many_favourite
+    @many_favourites = Tale.all.paginate(page: params[:page]).sort_by_favourite
+  end
+
   def preview
     if @tale.reviewtales.blank?
       @average_reviewtale = 0

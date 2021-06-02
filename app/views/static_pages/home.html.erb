@@ -7,23 +7,25 @@
     <div class="container">
       <h1 class="list-title">Truyện mới nhất</h1>
       <div class="row clearfix">
-        <%= render @tales.sort { |a, b| b <=> a }.first 8 %>
+        <%= render @newest_tales.first 8 %>
+        <h3 class="newest"><%= link_to "xem thêm...", newest_tale_path(@tales.ids)%></h3>
       </div>
     </div>|
     <div class="container">
       <h1 class="list-title">Quan tâm nhiều nhất</h1>
       <div class="row clearfix">
-        <%= render @tales.first 8 %>
+        <%= render @many_followers.first 8 %>
+        <h3 class="newest"><%= link_to "xem thêm...", many_follow_tale_path(@tales.ids)%></h3>
       </div>
     </div>
     <div class="container">
       <h1 class="list-title">Yêu thích nhiều nhất</h1>
       <div class="row clearfix">
-        <h1 class="login">vvv....</h1>
+        <%= render @many_favourites.first 8 %>
+        <h3 class="newest"><%= link_to "xem thêm...", many_favourite_tale_path(@tales.ids)%></h3>
       </div>
     </div>
   </div>
-  
   <% end %>
 <% else %>
   <div class="wrapper-logout">
