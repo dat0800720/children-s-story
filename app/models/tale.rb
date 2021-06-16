@@ -18,6 +18,9 @@ class Tale < ApplicationRecord
     foreign_key: "favourited_id", dependent: :destroy
   has_many :favouriters, through: :passive_favourites, source: :favouriter
   
+  enum status: [:active, :archived]
+  
+
   validates :image, presence: true
   validates :image,content_type: { in: %w[image/jpeg image/gif image/png],
     message: "must be a valid image format" },
@@ -30,7 +33,7 @@ class Tale < ApplicationRecord
     if term
       where('title LIKE ?', "%#{term}%")
     else
-      all
+      active
     end
   end
 end
