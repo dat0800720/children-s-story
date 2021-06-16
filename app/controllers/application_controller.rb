@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :load_categories
 
   def load_categories
-    @categories = Category.all.paginate(page: params[:page])
+    @categories = Category.all
   end
 
   def admin_user

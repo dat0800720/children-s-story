@@ -7,10 +7,15 @@
         </div> 
       </div>
       <div class="product_details">
-        <h5><%= link_to tale.title, preview_tale_path(tale.id)%></h5>
+        <h5><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
         <ul class="product_price list-unstyled">
           <% if current_user.admin? %>
-            <%= link_to "delete", tale, method: :delete, data: { confirm: "You sure?" } %>
+            <% if tale.archived? %>
+              <button id="sendMessageButton" type="submit"><%= link_to "Duyệt",   update_status_tale_path(tale), method: :put %></button>
+              <button id="sendMessageButton" type="submit"><%= link_to "Xóa", tale, method: :delete, data: { confirm: "Bạn chắc chứ?" } %></button>
+            <% else %>
+              <button id="sendMessageButton" type="submit"><%= link_to "Xóa", tale, method: :delete, data: { confirm: "Bạn chắc chứ?" } %></button>
+            <% end %>
           <% end %>
         </ul>
       </div>

@@ -1,21 +1,26 @@
 class TalesController < ApplicationController
-  before_action :find_tale, only: [:show, :preview, :edit, :update, :followers, :favouriters, :destroy]
-  before_action :admin_user,only: [:new, :edit, :update, :destroy]
+  before_action :find_tale, only: [:show, :preview, :edit, :update, :followers, :favouriters, :update_status, :destroy]
+  before_action :admin_user,only: [:edit, :update, :destroy]
 
   def index
-   @tales = Tale.search(params[:term])
+    @tales = Tale.search(params[:term])
+  end
+
+  def show_archived
+    @tales = Tale.archived.paginate(page: params[:page])
+    @show_archiveds = Tale.archived.paginate(page: params[:page])
   end
 
   def newest
-    @newests = Tale.all.paginate(page: params[:page]).order_by_id
+    @newests = Tale.active.paginate(page: params[:page]).order_by_id
   end
 
   def many_follow
-    @many_followers = Tale.all.paginate(page: params[:page]).sort_by_follow
+    @many_followers = Tale.active.paginate(page: params[:page]).sort_by_follow
   end
 
   def many_favourite
-    @many_favourites = Tale.all.paginate(page: params[:page]).sort_by_favourite
+    @many_favourites = Tale.active.paginate(page: params[:page]).sort_by_favourite
   end
 
   def preview
@@ -32,21 +37,31 @@ class TalesController < ApplicationController
   
   def new
     @tale = Tale.new
-    @categories = Category.all.map { |c| [c.name, c.id]}
   end
 
   def create
     @tale = Tale.new(tale_params)
     @tale.image.attach(params[:tale][:image])
+    @tale.status = current_user.admin? ? "active" : "archived"
 
     if @tale.save
       redirect_to @tale
     else
-      render 'new'
+      render "new"
     end
   end
 
   def edit
+
+  end
+
+  def update_status
+    if @tale.active!
+      flash[:success] = "update oke"
+    else
+      flash[:danger] = "false" 
+    end 
+    redirect_to show_archived_tales_path
   end
 
   def update
@@ -54,7 +69,7 @@ class TalesController < ApplicationController
       redirect_to tale_path(@tale)
     else
       flash[:success] = "not ok"
-      render 'edit'
+      render "edit"
     end
   end
 
@@ -84,6 +99,7 @@ class TalesController < ApplicationController
     end
 
     def find_tale
+      @tales = Tale.all
       @tale = Tale.find_by(id:params[:id])
       unless @tale
         redirect_to root_path
