@@ -3,7 +3,26 @@
   <% if current_user.admin? %>
       <h1>welcome admin</h1>
   <% else %>
-  <div class="wrapper">
+    <div class="container carousel-product">
+      <div class="owl-carousel owl-theme">
+        <% @tales.each do |tale| %>
+          <div class="col-py-2">
+            <div class="card product_item">
+              <div class="body">
+                <div class="cp_img">
+                  <div class="img-main">
+                    <%= image_tag tale.image if tale.image.attached? %>
+                  </div> 
+                </div>
+                <div class="product_details">
+                  <h5><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
     <div class="container">
       <h1 class="list-title">Truyện mới nhất</h1>
       <div class="row clearfix">
@@ -25,140 +44,75 @@
         <h3 class="newest"><%= link_to "xem thêm...", many_favourite_tale_path(@tales.ids)%></h3>
       </div>
     </div>
-  </div>
   <% end %>
 <% else %>
-
   <div class="wrapper-logout">
-    <body id="page-top">
-    <!-- Masthead-->
-    <header class="masthead">
+    <div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
+
+      <!-- Indicators -->
+      <ol class="carousel-indicators" style="bottom: -15px;">
+        <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#bs-carousel" data-slide-to="1"></li>
+        <li data-target="#bs-carousel" data-slide-to="2"></li>
+      </ol>
       
-    </header>
-      <!-- Portfolio Grid-->
-      <section class="page-section bg-light" id="portfolio">
-        <div class="container">
-          <div class="text-center">
-            <h2 class="section-heading text-uppercase">Truyện cổ tích</h2>
-            <h3 class="section-subheading text-muted">Mang cả thế giới vào trong những quyển truyện cho bé</h3>
-          </div>
-          <div class="row">
-            <div class="col-lg-4 col-sm-6 mb-4">
-              <div class="portfolio-item">
-                <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-                  <div class="portfolio-hover">
-                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                  </div>
-                  <img class="img-fluid" src="https://cf.shopee.vn/file/9847d412c9e4531e9de5d9d71bf5790d" alt="" />
-                </a>
-                <div class="portfolio-caption">
-                  <div class="portfolio-caption-heading">Cò và Cáo</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 mb-4">
-              <div class="portfolio-item">
-                <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
-                  <div class="portfolio-hover">
-                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                  </div>
-                  <img class="img-fluid" src="https://cf.shopee.vn/file/5de30a5499c0523437235a683b37ef6f" alt="" />
-                </a>
-                <div class="portfolio-caption">
-                  <div class="portfolio-caption-heading">Chú bé chăn cừu</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 mb-4">
-              <div class="portfolio-item">
-                <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
-                  <div class="portfolio-hover">
-                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                  </div>
-                  <img class="img-fluid" src="https://cf.shopee.vn/file/82ebb2661ed3989aef755aa4bbf91d41" alt="" />
-                </a>
-                <div class="portfolio-caption">
-                  <div class="portfolio-caption-heading">Lừa đội lốt sư tử</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-              <div class="portfolio-item">
-                <a class="portfolio-link" data-toggle="modal" href="#portfolioModal4">
-                  <div class="portfolio-hover">
-                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                  </div>
-                  <img class="img-fluid" src="https://cf.shopee.vn/file/baa820fb16c4c4054dffdbf9048cef09" alt="" />
-                </a>
-                <div class="portfolio-caption">
-                  <div class="portfolio-caption-heading">Sư  Tử và Chuột Nhắt</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-              <div class="portfolio-item">
-                <a class="portfolio-link" data-toggle="modal" href="#portfolioModal5">
-                  <div class="portfolio-hover">
-                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                  </div>
-                  <img class="img-fluid" src="https://cf.shopee.vn/file/d7900dda0904242b5e4e1016a73bbb6b" alt="" />
-                </a>
-                <div class="portfolio-caption">
-                  <div class="portfolio-caption-heading">Chuột Nhà và Chuột Đồng</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <div class="portfolio-item">
-                <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
-                  <div class="portfolio-hover">
-                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                  </div>
-                  <img class="img-fluid" src="https://cf.shopee.vn/file/86246674a218305f2b2561fa32be5b98" alt="" />
-                </a>
-                <div class="portfolio-caption">
-                  <div class="portfolio-caption-heading">Bộ lông mượt</div>
-                </div>
-              </div>
-            </div>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item slides active">
+          <div class="slide-1"></div>
+          <div class="hero">
+            <hgroup>
+                <h1>ĐƯA BÉ CHẠM GIẤC MƠ</h1>        
+                <h3>Để bé có được nhưng giấc mơ đẹp</h3>
+            </hgroup>
+            <button class="btn btn-hero btn-lg" role="button">Đọc Truyện</button>
           </div>
         </div>
-      </section>
-      <!-- Services-->
-      <section class="page-section" id="services">
-        <div class="container">
-          <div class="text-center">
-            <h2 class="section-heading text-uppercase">DỊCH VỤ</h2>
-            <h3 class="section-subheading text-muted">Luôn cung cấp những dịch vụ tốt nhất cho khách hàng.</h3>
-          </div>
-          <div class="row text-center">
-            <div class="col-md-4">
-              <span class="fa-stack fa-4x">
-                <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-              </span>
-              <h4 class="my-3">Thương mại điện tử</h4>
-              <p class="text-muted">mang những câu truyệ hay ý nghĩa truyền tới tay trẻ em và đưa những câu truyện đậm bản chất Việt Nam vươn tầm thế giới.</p>
-            </div>
-            <div class="col-md-4">
-              <span class="fa-stack fa-4x">
-                <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-              </span>
-              <h4 class="my-3">Thiết kế đáp ứng</h4>
-              <p class="text-muted">Luôn bên bạn và mang lại những trải nghiệm thú vị nhất đến tay người dùng. Để gắng kết tình thương giữa bậc phụ huynh tới vòng tay các con.</p>
-            </div>
-            <div class="col-md-4">
-              <span class="fa-stack fa-4x">
-                <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
-              </span>
-              <h4 class="my-3">Bảo mật</h4>
-              <p class="text-muted">Luôn ưu tiên bảo mật quyền riêng tư của khác hàng lên hàng đầu để khách hàng có được sự an tâm tuyệt đối khi sử dụng</p>
-            </div>
+        <div class="item slides">
+          <div class="slide-2"></div>
+          <div class="hero">        
+            <hgroup>
+                <h1>ĐƯA BÉ CHẠM GIẤC MƠ</h1>        
+                <h3>Để bé có được nhưng giấc mơ đẹp</h3>
+            </hgroup>       
+            <button class="btn btn-hero btn-lg" role="button">Đọc Truyện</button>
           </div>
         </div>
-      </section>
-    </body>
+        <div class="item slides">
+          <div class="slide-3"></div>
+          <div class="hero">        
+            <hgroup>
+                <h1>ĐƯA BÉ CHẠM GIẤC MƠ</h1>        
+                <h3>Để bé có được nhưng giấc mơ đẹp</h3>
+            </hgroup>
+            <button class="btn btn-hero btn-lg" role="button">Đọc Truyện</button>
+          </div>
+        </div>
+        <div class="carousel-product">
+          <div class="carousel-form">
+            <div class="owl-carousel carousel-home owl-carousel-four owl-theme">
+              <% @tales.each do |tale| %>
+                <div class="col-py-2">
+                  <div class="card-2 product_item">
+                    <div class="body">
+                      <div class="cp_img">
+                        <div class="img-carousel">
+                          <%= image_tag tale.image if tale.image.attached? %>
+                        </div> 
+                      </div>
+                      <div class="product_details-2">
+                        <h5 class="text-overflow"><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div> 
+      </div>
+    </div>
   </div>
+
+
 <% end %>

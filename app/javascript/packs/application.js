@@ -27,3 +27,44 @@ $(document).on('turbolinks:load', function() {
     $(this).toggleClass("active");
   });
 })
+
+$(document).on('turbolinks:load', function() {
+  $('.carousel-home').owlCarousel({
+    loop:true,
+    nav:true,
+    margin:10,
+    navText:["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+    responsive:{
+        0:{
+            items:1
+        },
+        500:{
+            items:3
+        },
+        1000:{
+            items:7
+        }
+    }
+  })
+})
+$(document).on('turbolinks:load', function() {
+  $('.owl-carousel').owlCarousel({
+    loop:true,
+    nav:true,
+    margin:10,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    navText:["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+    responsive:{
+        0:{
+            items:1
+        },
+        750:{
+            items:3
+        },
+        1000:{
+            items:4
+        }
+    }
+  })
+})
