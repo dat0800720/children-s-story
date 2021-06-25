@@ -1,0 +1,59 @@
+<div class="wrapper-admin">
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <h3>Truyện thiếu nhi</h3>                
+    </div>
+    <ul class="list-unstyled components">
+      <li class="active">
+        <a href="#homeSubmenu" class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false"><i class='fa fa-user'> Người dùng </i> </a>
+        <ul class="collapse list-unstyled" id="homeSubmenu">
+          <li><%= link_to "Đăng ký", new_user_path, class: "nav-link" %></li>
+          <li><%= link_to "Tât cả người dùng", users_path, class: "nav-link" %></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#Tale" class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false"><i class='fa fa-book'>  Truyện </i> </a>
+        <ul class="collapse list-unstyled" id="Tale">
+          <li><%= link_to "Tạo truyện", new_tale_path, class: "nav-link" %></li>
+          <li><%= link_to "Tất cả truyện", tales_path, class: "nav-link" %></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#category" class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false">Thể loại</a>
+        <ul class="collapse list-unstyled" id="category">
+          <li><%= link_to "Tạo thể loại", new_category_path , class: "nav-link" %></li>
+          <li><%= link_to "Tất cả thể loại", categories_path, class: "nav-link" %></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#request" class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false">Phản hồi</a>
+        <ul class="collapse list-unstyled" id="request">
+          <li><%= link_to "Yêu cầu thêm truyện", show_archived_tales_path , class: "nav-link" %></li>
+          <li><a href="#">Tất cả phản hồi</a></li>
+          <li><a href="#">Phản hồi đã đọc</a></li>
+          <li><a href="#">Phản hồi đã gửi</a></li>
+        </ul>
+      </li>
+      <li>
+        <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item"%>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Page Content Holder -->
+  <div id="content">
+    <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" style="background: #fed136;">
+    <span><i class='fa fa-align-justify'></i></span></button>
+    <div class="btn btn-info navbar-btn">
+      <span>
+        <div>
+          <%= form_tag tales_path, method: :get, class: "form-inline my-2 my-lg-0" do %>
+            <%= text_field_tag :term, params[:term], class: "form-control mr-sm-0", placeholder: "Tìm kiếm truyện..."  %>
+            <%= submit_tag "Tìm kiếm", style: "color: #6c757d;" %>
+          <% end %>
+        </div>
+      </span>
+    </div>
+    <%= yield %>
+  </div>
+</div>
