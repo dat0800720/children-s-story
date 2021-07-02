@@ -107,7 +107,6 @@ h6, .h6 {
 @media (min-width: 1200px) {
   .container-xl, .container-lg, .container-md, .container-sm, .container {
     max-width: 1160px;
-    border-bottom: 2px solid white;
   }
 }
 .row {
@@ -319,7 +318,6 @@ h6, .h6 {
 }
 
 .navbar-nav {
-  display: flex;
   flex-direction: column;
   padding-left: 0;
   margin-bottom: 0;
@@ -573,10 +571,12 @@ h6, .h6 {
 
 
 .user-new-tale {
+  margin: auto;
   float: none;
 }
 
 .footer {
+  background: white;
   padding: 15px;
   text-align: center;
   font-size: 1.7rem;
@@ -652,9 +652,9 @@ input {
   padding-top: 40px;
   margin: auto;
 }
-.img-main img{
-  height: 245px;
-  width:245px;
+.cp_img img{
+  height: 100%;
+  width:100%;
 }
 
 .form_all{
@@ -777,7 +777,6 @@ a.article:hover {
 
 //USER INTERFACE
 .wrapper{
-  padding-bottom: 20px;
   min-height: calc(102vh - 150px);
   width: 100%;
   background-image: url(https://indainam.com/wp-content/uploads/2017/10/mau-background-don-gian-03-768x614.jpg);
@@ -814,6 +813,7 @@ body{
   position: absolute;
   top: 0px;
   left: 50%;
+  height: 80%;
   transform: translate(-50%);
   -webkit-transform: translate(-50%);
   -ms-transform: translate(-50%);
@@ -821,7 +821,7 @@ body{
   -o-transform: translate(-50%);
   -khtml-transform: translate(-50%);
   width: 100%;
-  padding: 10px 5px 10px 5px;
+  padding: 10px 5px 0px 5px;
   transition: all 0.2s ease-in-out
 }
 
@@ -837,7 +837,7 @@ body{
 }
 
 .product_item .product_details {
-  padding-top: 110%;
+  padding-top: 100%;
   text-align: center
 }
 
@@ -1081,20 +1081,20 @@ body{
 }
 
 .card {
-  background: #fff;
-  margin-bottom: 30px;
   transition: .5s;
   border: 0;
-  border-radius: .55rem;
+  height: 100%;
   position: relative;
   width: 100%;
   box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
 }
 
 .card .body {
+  border-radius: .55rem;
+  background: white;
   font-size: 14px;
   color: #424242;
-  padding: 0px 15px 15px 15px;
+  padding: 0px 15px 5px 15px;
   font-weight: 400;
 }
 // review
@@ -1251,7 +1251,7 @@ body{
   border-radius: 10px;
 }
 .text-content{
-  width:1150px;
+  width:100%;
   padding: 25px 25px 5px 30px;
   font-size: 24px;
   color: #000;
@@ -1267,7 +1267,7 @@ body{
 }
 .img-picture img{
   height: auto;
-  width:1150px;
+  width:100%;
   padding:0px 0 25px 0;
   border-bottom:#d8dbdf solid 30px;
   border-top:#d8dbdf solid 2px;
@@ -1328,34 +1328,40 @@ label{
   height: 430px;
 }
 .vidu img{
-  height: 430px;
-  width: 580px;
+  height: 100%;
+  width: 100%;
 }
 
 .product_meta .posted_in a{
   color: #000;
   font-size: 15px;
 }
-
+.show-all{
+  float:right;
+}
 .newest{
   border-radius: 10px;
   font-size: 1.75rem;
-  margin-left: 1020px;
   margin-bottom: 15px;
   background: white;
   padding: 10px;
   margin-top: 0px;
+  float: right;
 }
 
-
+.form-product{
+  padding-left: 8px !important;
+  padding-right: 7px !important;
+  margin-bottom: 20px;
+}
 //text-overflow
 .text-overflow {
   padding-right: 20px;
   text-align: center;
   white-space: nowrap; 
-  width: 230px; 
   overflow: hidden;
   text-overflow: ellipsis; 
+  padding-left: 20px;
 }
 
 //carousel
@@ -1422,15 +1428,15 @@ label{
   background: #fddd6a;
   margin-bottom: 20px;
 }
-
+.crs{
+  width: 86%;
+  margin: auto;
+}
 .img-carousel img{
   height: 210px;
   width:210px;
 }
 
-.owl-theme .owl-nav{
-  margin-top: -15px !important
-}
 .owl-theme .owl-nav button {
   background:#fff none repeat scroll 0 0 !important;
   border-radius: 30px;
@@ -1662,4 +1668,121 @@ background-image: url(https://png.pngtree.com/illustration/20190226/ourlarge/png
     }
 }
 
+//time rating form
+/* Style the tab */
+.tab {
+  overflow: hidden;
+}
 
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  margin: 5px;
+  border-radius: 35px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  font-weight:bold;
+  font-family: optima;
+  background-color: #ffea9d;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  -webkit-animation: fadeEffect 1s;
+  animation: fadeEffect 1s;
+}
+.tabcontenttale {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+}
+
+.ratings_home{
+  border-radius: 10px;
+  padding-top: 20px;
+  padding-bottom: 50px;
+}
+
+.rating-item{
+  background: white;
+  margin-bottom: 5px;
+  display: flex;
+}
+.rating-item-img{
+  width: 30%;
+  height: 30%;
+}
+.rating-item-title{
+  padding-left: 10px;
+  width: 70%;
+}
+.rating-item-title h5 a {
+  font-family: optima;
+  font-size: 17px;
+  color: #444;
+}
+
+/* Fade in tabs */
+@-webkit-keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+//contact
+.contact{
+  background:white;
+  padding:50px 50px 100px 50px ;
+  border: 1px solid #DDDDDD;
+  border-radius: 15px;
+}
+.content_request{
+  float: left;
+  height: 200px !important;
+}
+
+
+//show all request
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+.alert{
+  margin-bottom: 0px !important;
+}
+.title_request{
+  font-size: 18px;
+  font-family:optima;
+  padding: 5px 30px 5px 30px;
+}
+.time{
+  float:right;
+  padding: 5px 30px 5px 30px;
+}

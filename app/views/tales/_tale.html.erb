@@ -1,14 +1,12 @@
-<div class="col-lg-3 col-md-4 col-sm-12">
+<div class="col-lg-3 col-md-4 col-sm-3 form-product">
   <div class="card product_item">
     <div class="body">
       <div class="cp_img">
-        <div class="img-main">
-          <%= image_tag tale.image if tale.image.attached? %>
-        </div> 
+        <%= image_tag tale.image if tale.image.attached? %>
       </div>
       <div class="product_details">
-        <h5 class="text-overflow"><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
         <ul class="product_price list-unstyled">
+          <h5 class="text-overflow"><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
           <% if current_user.admin? %>
             <% if tale.archived? %>
               <button id="sendMessageButton" type="submit"><%= link_to "Duyệt",   update_status_tale_path(tale), method: :put %></button>

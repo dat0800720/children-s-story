@@ -3,19 +3,18 @@
   <% if current_user.admin? %>
       <h1>welcome admin</h1>
   <% else %>
-    <div class="container carousel-product">
+  <div class="crs">
+    <div class=" carousel-product">
       <div class="owl-carousel owl-theme">
         <% @tales.each do |tale| %>
           <div class="col-py-2">
             <div class="card product_item">
               <div class="body">
                 <div class="cp_img">
-                  <div class="img-main">
-                    <%= image_tag tale.image if tale.image.attached? %>
-                  </div> 
+                  <%= image_tag tale.image if tale.image.attached? %> 
                 </div>
                 <div class="product_details">
-                  <h5><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
+                  <h5 class="text-overflow"><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
                 </div>
               </div>
             </div>
@@ -23,27 +22,108 @@
         <% end %>
       </div>
     </div>
+  </div>
+
     <div class="container">
-      <h1 class="list-title">Truyện mới nhất</h1>
-      <div class="row clearfix">
-        <%= render @newest_tales.first 8 %>
-        <h3 class="newest"><%= link_to "xem thêm...", newest_tale_path(@tales.ids)%></h3>
+      <div class="col-md-9 form-product">
+        <div class="tab">
+          <button class="tablinktales" onclick="openTale(event, 'newest')" id="Open">Mới nhất</button>
+          <button class="tablinktales" onclick="openTale(event, 'many_followers')">Yêu thích nhất</button>
+          <button class="tablinktales" onclick="openTale(event, 'many_favourites')">Quan tâm nhất</button>
+        </div>
+
+        <div id="newest" class="tabcontenttale">
+          <div class="row clearfix">
+            <%= render @newest_tales %>
+          </div>
+          <h3 class="newest"><%= link_to "xem thêm...", newest_tale_path(@tales.ids)%></h3>
+        </div>
+
+        <div id="many_followers" class="tabcontenttale">
+          <div class="row clearfix">
+            <%= render @many_followers %>
+          </div>
+          <h3 class="newest"><%= link_to "xem thêm...", many_follow_tale_path(@tales.ids)%></h3>
+        </div>
+
+        <div id="many_favourites" class="tabcontenttale">
+          <div class="row clearfix">
+            <%= render @many_favourites %>
+          </div>
+          <h3 class="newest"><%= link_to "xem thêm...", many_favourite_tale_path(@tales.ids)%></h3>
+        </div>
+        <script>
+          function openTale(evt, taleName) {
+            var i, tabcontenttale, tablinktales;
+            tabcontenttale = document.getElementsByClassName("tabcontenttale");
+            for (i = 0; i < tabcontenttale.length; i++) {
+              tabcontenttale[i].style.display = "none";
+            }
+            tablinktales = document.getElementsByClassName("tablinktales");
+            for (i = 0; i < tablinktales.length; i++) {
+              tablinktales[i].className = tablinktales[i].className.replace(" active", "");
+            }
+            document.getElementById(taleName).style.display = "block";
+            evt.currentTarget.className += " active";
+          }
+
+          // Get the element with id="defaultOpen" and click on it
+          document.getElementById("Open").click();
+        </script>
       </div>
-    </div>|
-    <div class="container">
-      <h1 class="list-title">Quan tâm nhiều nhất</h1>
-      <div class="row clearfix">
-        <%= render @many_followers.first 8 %>
-        <h3 class="newest"><%= link_to "xem thêm...", many_follow_tale_path(@tales.ids)%></h3>
+      <div class="col-md-3 ratings_home">
+        <div class="tab">
+          <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Ngày</button>
+          <button class="tablinks" onclick="openCity(event, 'Paris')">Tháng</button>
+          <button class="tablinks" onclick="openCity(event, 'Tokyo')">Năm</button>
+        </div>
+
+        <div id="London" class="tabcontent">
+          <% @views.each do |tale| %>
+            <div class="rating-item">
+              <div class="rating-item-img">
+                <div class="card">
+                  <div class="cp_img">
+                    <%= image_tag tale.image if tale.image.attached? %>
+                  </div>
+                </div>
+              </div>
+              <div class=rating-item-title>
+                <h5><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div id="Paris" class="tabcontent">
+          <h3>Paris</h3>
+          <p>Paris is the capital of France.</p> 
+        </div>
+
+        <div id="Tokyo" class="tabcontent">
+          <h3>Tokyo</h3>
+          <p>Tokyo is the capital of Japan.</p>
+        </div>
       </div>
     </div>
-    <div class="container">
-      <h1 class="list-title">Yêu thích nhiều nhất</h1>
-      <div class="row clearfix">
-        <%= render @many_favourites.first 8 %>
-        <h3 class="newest"><%= link_to "xem thêm...", many_favourite_tale_path(@tales.ids)%></h3>
-      </div>
-    </div>
+    <script>
+      function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+
+      // Get the element with id="defaultOpen" and click on it
+      document.getElementById("defaultOpen").click();
+    </script>
   <% end %>
 <% else %>
   <div class="wrapper-logout">
@@ -113,6 +193,4 @@
       </div>
     </div>
   </div>
-
-
 <% end %>

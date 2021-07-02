@@ -57,9 +57,9 @@ class TalesController < ApplicationController
 
   def update_status
     if @tale.active!
-      flash[:success] = "update oke"
+      flash[:success] = "Thêm truyện thành công"
     else
-      flash[:danger] = "false" 
+      flash[:danger] = "Thêm truyện không thành công" 
     end 
     redirect_to show_archived_tales_path
   end
@@ -68,7 +68,7 @@ class TalesController < ApplicationController
     if @tale.update(tale_params)
       redirect_to tale_path(@tale)
     else
-      flash[:success] = "not ok"
+      flash[:success] = "cập nhật không thành công"
       render "edit"
     end
   end

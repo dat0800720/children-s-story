@@ -27,6 +27,15 @@ Rails.application.routes.draw do
       get :favouriting
     end
   end
+  resources :requests do
+    collection do
+      get "show_seen", to: "requests#show_seen"
+      get "show_not_seen", to: "show_not_seen"
+    end
+    member do
+      put "update_status", to: "requests#update_status"
+    end
+  end
   resources :categories
   resources :relationships, only: [:create, :destroy]
   resources :favourites, only: [:create, :destroy]
