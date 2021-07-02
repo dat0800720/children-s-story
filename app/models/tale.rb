@@ -1,6 +1,7 @@
 class Tale < ApplicationRecord
   belongs_to :category
   has_one_attached :image
+  scope :views_rating_by_day, -> { order(view: :desc )}
   scope :order_by_id, -> { order(id: :desc) }
   scope :sort_by_follow, -> { sort_by{ |tale| tale.followers.size }.reverse }
   scope :sort_by_favourite, -> { sort_by{ |tale| tale.favouriters.size }.reverse }

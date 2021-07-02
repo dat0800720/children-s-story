@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="contact">
+    <div class="title_request">
+      <h2>Người gửi: <%= @request.user.name %></h2>
+    </div>
+    <div class="title_request">
+      <p><strong>tiêu đề: <%= @request.title%></strong></p>
+    </div>
+    <div class="title_request">
+      <p>Nội dung: <%= @request.content %></p>
+    </div>
+    <div class="time">
+      <%= @request.created_at%>
+    </div>
+  </div>
+</div>

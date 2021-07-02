@@ -1,0 +1,14 @@
+<%= form_for(@request) do |f| %>
+  <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 " style="
+    padding-top: 50px;">
+    <div class="contact">
+      <h1 class="login">Phản hồi ý kiến</h1>
+        <label>Tiêu đề:</label>
+        <%= f.text_field :title, class: 'form-control' %>
+        <label>Nội dung:</label>
+        <%= f.text_area :content, cols: 20, rows: 40 , class: 'form-control content_request'%>
+
+        <%= f.submit "Phản hồi ", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

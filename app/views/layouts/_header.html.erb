@@ -30,15 +30,17 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to "Thêm truyện của tôi", new_tale_path, class: "dropdown-item"  %>
-              <%= link_to "Phản hồi ý kiến", contact_path, class: "dropdown-item"  %>
+              <%= link_to "Phản hồi ý kiến", new_request_path, class: "dropdown-item"  %>
             </div>
           </li>
-          <div>
-            <%= form_tag tales_path, method: :get, class: "form-inline my-2 my-lg-0" do %>
-              <%= text_field_tag :term, params[:term], class: "form-control mr-sm-0", placeholder: "Tìm kiếm truyện...",style: "font-family: optima;"  %>
-              <%= submit_tag 'Tìm', style: "color: #6c757d;font-family: optima;" %>
-            <% end %>
-          </div>
+          <li>
+            <div>
+              <%= form_tag tales_path, method: :get, class: "form-inline my-2 my-lg-0" do %>
+                <%= text_field_tag :term, params[:term], class: "form-control mr-sm-0", placeholder: "Tìm kiếm truyện...",style: "font-family: optima;"  %>
+                <%= submit_tag 'Tìm', style: "color: #6c757d;font-family: optima;" %>
+              <% end %>
+            </div>
+          </li>
         </ul>
       </div>
     </div>

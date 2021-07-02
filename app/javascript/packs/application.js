@@ -60,10 +60,10 @@ $(document).on('turbolinks:load', function() {
             items:1
         },
         750:{
-            items:3
+            items:4
         },
         1000:{
-            items:4
+            items:6
         }
     }
   })

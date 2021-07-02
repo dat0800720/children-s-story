@@ -1,8 +1,8 @@
 <div class="container bootdey">
-  <div class="col-md-12">
+  <div class="col-md-12 col-sm-12">
     <section class="panel">
       <div class="panel-body">
-        <div class="col-md-6">
+        <div class="col-md-6 col-sm-6">
           <div class="pro-img-details">
             <%= image_tag @tale.image if @tale.image.attached? %>
           </div>
@@ -11,7 +11,7 @@
             <%= render "users/favourite_form" if logged_in? %>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 col-sm-6">
           <h4 class="pro-d-title">
             <h2>Tên: <%= @tale.title %></h2>
           </h4>
@@ -27,10 +27,10 @@
           </section>
             <div class="average-review-rating" data-score=<%= @average_reviewtale %>></div>
             <span><strong><%= @tale.reviewtales.count %> lượt đánh giá</strong></span>
-          </div>
           <p>
             <button class="btn btn-primary" type="button" ><h5><%= link_to "Đọc Truyện", tale_path(@tale.id) %></h5></button>
           </p>
+          </div>
         </div>
       </div>
     </section>
