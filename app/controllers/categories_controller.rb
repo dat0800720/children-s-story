@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
   before_action :admin_user,only: [:new, :edit, :update, :destroy]
 
   def index
+    @categories = Category.search(params[:term])
   end
 
   def new
