@@ -1362,6 +1362,7 @@ label{
   overflow: hidden;
   text-overflow: ellipsis; 
   padding-left: 20px;
+  padding-top: 10px;
 }
 
 //carousel
@@ -1764,6 +1765,7 @@ background-image: url(https://png.pngtree.com/illustration/20190226/ourlarge/png
 
 //show all request
 table {
+  background: white;
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
@@ -1785,4 +1787,73 @@ td, th {
 .time{
   float:right;
   padding: 5px 30px 5px 30px;
+}
+//admin
+.tale_admin1{
+  background: linear-gradient(45deg,#321fdb 0%,#1f1498 100%);
+  border-color: #1f1498;
+  height: 150px;
+  padding: 20px;
+}
+.tale_admin2{
+  background: linear-gradient(45deg,#39f 0%,#2982cc 100%);
+  border-color: #2982cc;
+  height: 150px;
+  padding: 20px;
+}
+.tale_admin3{
+  background: linear-gradient(45deg,#f9b115 0%,#f6960b 100%)!important;
+  border-color: #f6960b!important;
+  height: 150px;
+  padding: 20px;
+}
+.tale_admin4{
+  background: linear-gradient(45deg,#e55353 0%,#d93737 100%)!important;
+  border-color: #d93737!important;
+  height: 150px;
+  padding: 20px;
+}
+.text-value-lg{
+  font-size: 20px;
+  color: white;
+  font-family: serif;
+}
+.count_user{
+  font-size: 25px;
+  color: white;
+  font-weight: bold;
+}
+.show-favourite-admin{
+  background: white;
+  margin: 50px 15px 20px 15px;
+}
+.title-show-admin{
+  font-size: 25px;
+  font-weight: bold;
+  font-family: serif;
+  padding: 30px;
+}
+.img_facebook{
+  background-image: url(https://unica.vn/media/imagesck/1613537579_cach-chan-quang-cao-tren-facebook-1.jpg?v=1613537579);
+  border-color: #1f1498;
+  height: 135px;
+}
+.center{
+  margin: auto;
+  height: 135px;
+  width: 240px;
+}
+.center img{
+  width: 100%;
+  height: 100%;
+}
+.img_youtube{
+  background-image: url(https://math2it.com/wp-content/uploads/2019/03/youtube-panne.jpg);
+  border-color: #1f1498;
+  height: 135px;
+}
+.img_ig{
+  background-image: url(https://9to5mac.com/wp-content/uploads/sites/6/2019/09/Twitter.jpg?quality=82&strip=all&w=1600);
+  border-color: #1f1498;
+  height: 135px;
 }

@@ -1,7 +1,131 @@
 <% provide(:title, "Home") %>
 <% if logged_in? %>
   <% if current_user.admin? %>
-      <h1>welcome admin</h1>
+    <div class="body">
+      <div> 
+        <div class="row">
+          <div class="col-sm-6 col-lg-3 form-children-select ">
+            <div class="card tale_admin1">
+              <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start">
+                <div class="count_user"><%= @new_user_month_now.count %>   <i class='fa fa-user'></i></div>
+                <div class="text-value-lg">người dùng mới tháng này</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3 form-children-select">
+            <div class="card tale_admin2">
+              <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start">
+                <div class="count_user"><%= @new_user_last_month.count %>   <i class='fa fa-user'></i></div>
+                <div class="text-value-lg">người dùng mới tháng trước</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3 form-children-select">
+            <div class="card tale_admin3">
+              <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start">
+                <div class="count_user"><%= @new_user_two_month_ago.count %>   <i class='fa fa-user'></i></div>
+                <div class="text-value-lg">người dùng mới 2 tháng trước</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3 form-children-select">
+            <div class="card tale_admin4">
+              <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start">
+                <div class="count_user"><%= @new_user_three_month_ago.count %>   <i class='fa fa-user'></i></div>
+                <div class="text-value-lg">người dùng mới 2 tháng trước</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-lg-12 show-favourite-admin">
+            <div class="title-show-admin" ><i class='fa fa-star'></i>  Top 6 cuốn truyện xem nhiều nhất</div>
+              <% @views_admin.each do |tale| %>
+                <div class="col-lg-2 col-md-2 col-sm-3 form-product">
+                  <div class="card product_item">
+                    <div class="body">
+                      <div class="cp_img">
+                        <%= image_tag tale.image if tale.image.attached? %>
+                      </div>
+                      <div class="product_details">
+                        <ul class="product_price list-unstyled">
+                          <h5 class="text-overflow"><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-lg-12 show-favourite-admin">
+            <div class="title-show-admin" ><i class='fa fa-star'></i>  Top 6 cuốn truyện xem nhiều nhất</div>
+              <% @views_admin.each do |tale| %>
+                <div class="col-lg-2 col-md-2 col-sm-3 form-product">
+                  <div class="card product_item">
+                    <div class="body">
+                      <div class="cp_img">
+                        <%= image_tag tale.image if tale.image.attached? %>
+                      </div>
+                      <div class="product_details">
+                        <ul class="product_price list-unstyled">
+                          <h5 class="text-overflow"><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-lg-12 show-favourite-admin">
+            <div class="title-show-admin" ><i class='fa fa-star'></i>  Top 6 cuốn truyện xem nhiều nhất</div>
+              <% @views_admin.each do |tale| %>
+                <div class="col-lg-2 col-md-2 col-sm-3 form-product">
+                  <div class="card product_item">
+                    <div class="body">
+                      <div class="cp_img">
+                        <%= image_tag tale.image if tale.image.attached? %>
+                      </div>
+                      <div class="product_details">
+                        <ul class="product_price list-unstyled">
+                          <h5 class="text-overflow"><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 form-children-select">
+            <div class="card img_facebook">
+              <div class="center">
+                <%= image_tag("FB.jpg", :alt => "facebook") %>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 form-children-select">
+            <div class="card img_youtube">
+              <div class="center">
+                <%= image_tag("youtube.jpg", :alt => "youtube") %>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 form-children-select">
+            <div class="card img_ig">
+              <div class="center">
+                <%= image_tag("Twitter.jpg", :alt => "facebook") %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   <% else %>
   <div class="crs">
     <div class=" carousel-product">
@@ -96,13 +220,37 @@
         </div>
 
         <div id="Paris" class="tabcontent">
-          <h3>Paris</h3>
-          <p>Paris is the capital of France.</p> 
+          <% @views.each do |tale| %>
+            <div class="rating-item">
+              <div class="rating-item-img">
+                <div class="card">
+                  <div class="cp_img">
+                    <%= image_tag tale.image if tale.image.attached? %>
+                  </div>
+                </div>
+              </div>
+              <div class=rating-item-title>
+                <h5><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
+              </div>
+            </div>
+          <% end %>
         </div>
 
         <div id="Tokyo" class="tabcontent">
-          <h3>Tokyo</h3>
-          <p>Tokyo is the capital of Japan.</p>
+          <% @views.each do |tale| %>
+            <div class="rating-item">
+              <div class="rating-item-img">
+                <div class="card">
+                  <div class="cp_img">
+                    <%= image_tag tale.image if tale.image.attached? %>
+                  </div>
+                </div>
+              </div>
+              <div class=rating-item-title>
+                <h5><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
