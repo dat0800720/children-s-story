@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  scope :new_user_month_now, -> { where("created_at >= ?", Time.now.beginning_of_month)}
+  scope :new_user_last_month, -> { where("created_at >= ?", Time.now.beginning_of_month - 1.month)}
+  scope :new_user_two_month_ago, -> { where("created_at >= ?", Time.now.beginning_of_month - 2.month)}
+  scope :new_user_three_month_ago, -> { where("created_at >= ?", Time.now.beginning_of_month - 3.month)}
   has_one :request
   has_many :active_relationships, class_name: "Relationship",
     foreign_key: "follower_id", dependent: :destroy
@@ -21,10 +25,18 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
+  def self.search(term)
+    if term
+      where("name LIKE ?", "%#{term}%")
+    else
+      all
+    end
+  end
+  
   class << self
     def digest(string)
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                    BCrypt::Engine.cost
+        BCrypt::Engine.cost
       BCrypt::Password.create(string, cost: cost)
     end
 

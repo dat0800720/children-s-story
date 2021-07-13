@@ -20,10 +20,10 @@
           </p>
           <div class="product_meta">
             <span class="posted_in"> <strong>Thể Loại: </strong> <%= link_to @tale.category.name, category_path(@tale.category.id) %></span>
-            <% if current_user.admin? %>
+            <% if @tale.author %>
               <span class="posted_in"><strong>Tác Giả: </strong><%= link_to @tale.author.name, author_path(@tale.author.id) %></span>
             <% else %>
-              <span class="posted_in"><strong>Tác Giả: </strong><%= @tale.author%></span>
+              <span class="posted_in"><strong>Tác Giả: </strong><%= @tale.author_user%></span>
             <% end %>
           </div>
           <section class="stats">
