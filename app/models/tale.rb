@@ -1,6 +1,6 @@
 class Tale < ApplicationRecord
   belongs_to :category
-  belongs_to :author
+  belongs_to :author, optional: true
   has_one_attached :image
   scope :views_rating_by_day, -> { order(view: :desc )}
   scope :order_by_id, -> { order(id: :desc) }
@@ -29,7 +29,7 @@ class Tale < ApplicationRecord
     size:{ less_than: 5.megabytes,message: "should be less than 5MB" }
   validates :title, presence: true, length: { maximum:50 }
   validates :description, presence: true, length: { maximum:500 }
-  validates :author, presence: true, length: { maximum:30 }
+  validates :author_user, length: { maximum:30 }
 
   def self.search(term)
     if term
