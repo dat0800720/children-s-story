@@ -1,11 +1,11 @@
 <div class="wrapper-admin">
   <nav id="sidebar">
     <div class="sidebar-header">
-      <h3>Truyện thiếu nhi</h3>                
+      <h3> Truyện thiếu nhi</h3>                
     </div>
     <ul class="list-unstyled components">
       <li>
-       <%= link_to '<i class="fa fa-home"></i> Trang chủ'.html_safe, root_path %>
+       <%= link_to "<i class="fa fa-home"></i> Trang chủ".html_safe, root_path %>
       </li>
       <li class="active">
         <a href="#homeSubmenu" class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false"><i class='fa fa-user'> Người dùng </i> </a>
@@ -44,14 +44,14 @@
           <li><%= link_to "Phản hồi chưa xem", show_not_seen_requests_path , class: "nav-link" %></li>
         </ul>
       </li>
-      <li><%= link_to '<i class="fa fa-sign-out"></i> Đăng xuất'.html_safe, logout_path, method: :delete %></li>
+      <li><%= link_to "<i class="fa fa-sign-out"></i> Đăng xuất".html_safe, logout_path, method: :delete %></li>
     </ul>
   </nav>
 
   <!-- Page Content Holder -->
   <div id="content">
     <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" style="background: #fed136;">
-    <span><i class='fa fa-align-justify'></i></span></button>
+    <i class='fa fa-align-justify'></i></button>
     <%= yield %>
   </div>
 </div>

@@ -1,6 +1,5 @@
 class TalesController < ApplicationController
   before_action :find_tale, only: [:show, :preview, :edit, :update, :followers, :favouriters, :update_status, :destroy]
-  before_action :admin_user,only: [:edit, :update, :destroy]
 
   def index
     @tales = Tale.search(params[:term])
@@ -43,10 +42,13 @@ class TalesController < ApplicationController
     @tale = Tale.new(tale_params)
     @tale.image.attach(params[:tale][:image])
     @tale.status = current_user.admin? ? "active" : "archived"
-
+    @tale.user_id = current_user.id
+    
     if @tale.save
+      flash[:success] = "Thêm truyện thành công"
       redirect_to @tale
     else
+      flash[:danger] = "Thêm truyện không thành công" 
       render "new"
     end
   end
@@ -94,7 +96,7 @@ class TalesController < ApplicationController
 
   private
     def tale_params
-      params.require(:tale).permit(:title, :description, :author_user, :category_id, :image, :author_id,
+      params.require(:tale).permit(:title, :description, :author_user, :category_id, :image, :author_id, :user_id,
         tale_contents_attributes: [:id, :image, :audio, :text, :content_type, :_destroy])
     end
 

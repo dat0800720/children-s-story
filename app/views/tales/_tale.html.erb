@@ -2,17 +2,19 @@
   <div class="card product_item">
     <div class="body">
       <div class="cp_img">
-        <%= image_tag tale.image if tale.image.attached? %>
+        <%= link_to preview_tale_path(tale.id) do %>
+          <%= image_tag tale.image if tale.image.attached? %>
+        <% end %>
       </div>
       <div class="product_details">
         <ul class="product_price list-unstyled">
-          <h5 class="text-overflow"><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
+          <h5 class="text-overflow"><%= link_to tale.title, preview_tale_path(tale.id) %>
           <% if current_user.admin? %>
             <% if tale.archived? %>
               <button id="sendMessageButton" type="submit"><%= link_to "Duyệt",   update_status_tale_path(tale), method: :put %></button>
-              <button id="sendMessageButton" type="submit"><%= link_to "Xóa", tale, method: :delete, data: { confirm: "Bạn chắc chứ?" } %></button>
+              <button id="sendMessageButton" type="submit"><%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, tale, method: :delete, data: { confirm: "Bạn chắc chứ?" } %></button>
             <% else %>
-              <button id="sendMessageButton" type="submit"><%= link_to "Xóa", tale, method: :delete, data: { confirm: "Bạn chắc chứ?" } %></button>
+              <button id="sendMessageButton" type="submit"><%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, tale, method: :delete, data: { confirm: "Bạn chắc chứ?" } %></button>
             <% end %>
           <% end %>
         </ul>

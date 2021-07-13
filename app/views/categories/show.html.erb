@@ -1,11 +1,13 @@
 <div class="container">
   <div class="margin-top">
     <% @category.tales.active.each do |tale|%>
-      <div class="col-lg-3 col-md-4 col-sm-3">
+      <div class="col-lg-3 col-md-4 col-sm-3 form-product">
         <div class="card product_item">
           <div class="body">
               <div class="cp_img">
-                <%= image_tag tale.image if tale.image.attached? %>
+                <%= link_to preview_tale_path(tale.id) do %>
+                  <%= image_tag tale.image if tale.image.attached? %>
+                <% end %>
               </div>
               <div class="product_details">
                 <h5 class="text-overflow"><%= link_to tale.title, preview_tale_path(tale.id) %></h5>

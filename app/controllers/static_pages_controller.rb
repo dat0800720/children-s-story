@@ -11,6 +11,7 @@ class StaticPagesController < ApplicationController
     @new_user_three_month_ago = User.new_user_three_month_ago
     @views_admin = Tale.active.views_rating_by_day.limit(6)
     @many_favourites_admin = Tale.active.sort_by_favourite[0..5]
+    @many_followers_admin = Tale.active.sort_by_follow[0..5]
   end
 
   def about
