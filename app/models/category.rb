@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-  has_many :tales
+  has_many :tales, dependent: :destroy
   validates :name, presence: true, length: { maximum:100 }
   def self.search(term)
     if term

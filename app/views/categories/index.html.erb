@@ -9,11 +9,18 @@
     </div>
   </span>
 </div>
-<h1>Tất cả thể loại</h1>
-<table>
-  <tr>
-    <th>Tên thể loại truyện</th>
-    <th>thao tác</th>
-  </tr>
-  <%= render @categories%>
-</table>
+<% if current_user.admin? %>
+  <h1 class ="login">Tất cả thể loại</h1>
+  <table>
+    <tr>
+      <th>Tên thể loại truyện</th>
+      <th>thao tác</th>
+    </tr>
+    <%= render @categories%>
+  </table>
+<% else %>
+  <h1 class ="login">Tất cả thể loại</h1>
+  <table>
+    <%= render @categories%>
+  </table>
+<% end %>

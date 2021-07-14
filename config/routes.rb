@@ -26,6 +26,9 @@ Rails.application.routes.draw do
       get :following
       get :favouriting
     end
+    member do
+      get "show_archived_user", to: "users#show_archived_user"
+    end
   end
   resources :requests do
     collection do

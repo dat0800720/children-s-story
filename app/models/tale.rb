@@ -1,5 +1,6 @@
 class Tale < ApplicationRecord
   belongs_to :category
+  belongs_to :user
   belongs_to :author, optional: true
   has_one_attached :image
   scope :views_rating_by_day, -> { order(view: :desc )}
@@ -33,7 +34,7 @@ class Tale < ApplicationRecord
 
   def self.search(term)
     if term
-      where('title LIKE ?', "%#{term}%")
+      where("title LIKE ?", "%#{term}%")
     else
       active
     end

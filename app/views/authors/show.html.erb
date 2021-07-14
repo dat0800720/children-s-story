@@ -21,16 +21,19 @@
 </div>
 <div class="container">
   <div class="margin-top">
+  <h1 class="login">Những quyển truyện của tác giả</h1>
     <% @author.tales.each do |tale|%>
-      <div class="col-lg-3 col-md-4 col-sm-3">
+      <div class="col-lg-3 col-md-4 col-sm-3 form-product">
         <div class="card product_item">
           <div class="body">
-              <div class="cp_img">
+            <div class="cp_img">
+              <%= link_to preview_tale_path(tale.id) do %>
                 <%= image_tag tale.image if tale.image.attached? %>
-              </div>
-              <div class="product_details">
-                <h5 class="text-overflow"><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
-              </div>
+              <% end %>
+            </div>
+            <div class="product_details">
+              <h5 class="text-overflow"><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
+            </div>
           </div>
         </div>
       </div>

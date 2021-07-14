@@ -3,7 +3,7 @@
   <% else %>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark " >
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <div class="form-inline my-2 my-lg-0">
+      <nav class="nav_pc">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <%= link_to root_path, class: "nav-link" do %>
@@ -40,26 +40,69 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to "Thêm truyện của tôi", new_tale_path, class: "dropdown-item"  %>
-              <%= link_to "Yêu cầu thêm truyện", show_archived_tales_path , class: "dropdown-item" %>
+              <%= link_to "Yêu cầu thêm truyện", show_archived_user_user_path(@current_user) , class: "dropdown-item" %>
               <%= link_to "Phản hồi ý kiến", new_request_path, class: "dropdown-item"  %>
             </div>
           </li>
           <li>
-            <div>
+            <div class="form_search_ipad"> 
               <%= form_tag tales_path, method: :get, class: "form-inline my-2 my-lg-0" do %>
                 <%= text_field_tag :term, params[:term], class: "form-control mr-sm-0", placeholder: "Tìm kiếm truyện...",style: "font-family: optima;"  %>
-                <%= submit_tag 'Tìm', style: "color: #6c757d;font-family: optima;" %>
+                <%= button_tag :submit, class:"search" do %>
+                  <i class='fa fa-search'></i>
+                <% end %>
               <% end %>
             </div>
           </li>
         </ul>
+      </nav>
+    </div>
+
+      <input type="checkbox" hidden name="" class="nav_input" id="nav_mobile_input">
+    <div class="nav_header">
+      <label for="nav_mobile_input" class="nav_bars-btn">
+        <i class="fa fa-list-ul"></i>
+      </label>
+      <div class="form_search_mobile">
+        <%= form_tag tales_path, method: :get, class: "form-inline my-2 my-lg-0" do %>
+          <%= text_field_tag :term, params[:term], class: "form-control mr-sm-0", placeholder: "Tìm kiếm truyện...",style: "font-family: optima;"  %>
+          <%= button_tag :submit, class:"search" do %>
+            <i class='fa fa-search'></i>
+          <% end %>
+        <% end %>
       </div>
     </div>
+    <label for="nav_mobile_input" class="nav_overlay"></label>
+    <nav class="nav_mobile">
+      <label for="nav_mobile_input" class="nav_mobile_close">
+        <i class='fa fa-times'></i>
+      </label>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <%= link_to root_path, class: "dropdown-item" do %>
+            <i class='fa fa-home'></i> Trang chủ <span class="sr-only">(current)</span>
+          <% end %>
+        </li>
+        <li class="nav-item"><%= link_to '<i class="fa fa-list-alt"></i> Thể Loại'.html_safe, categories_path, class: "dropdown-item" %></li>
+        <li class="nav-item"><%= link_to '<i class="fa fa-heart"></i> Yêu Thích'.html_safe, favouriting_users_path, class: "dropdown-item" %></li>
+        <li class="nav-item"><%= link_to '<i class="fa fa-rss"></i> Theo Dõi'.html_safe, following_users_path, class: "dropdown-item" %></li>
+        <li class="nav-item"><%= link_to '<i class="fa fa-user-md"></i> Tác Giả'.html_safe, authors_path, class: "dropdown-item"   %></li>
+        <li class="nav-item">
+          <a href="#request_mobile" class="dropdown-item dropdown-toggle" data-toggle="collapse" aria-expanded="false"><i class='fa fa-envelope-o'>  Phản hồi </i></a>
+          <ul class="collapse list-unstyled" id="request_mobile">
+            <li><%= link_to "Thêm truyện của tôi", new_tale_path, class: "dropdown-item"  %></li>
+            <li><%= link_to "Yêu cầu thêm truyện", show_archived_tales_path , class: "dropdown-item" %></li>
+            <li><%= link_to "Phản hồi ý kiến", new_request_path, class: "dropdown-item"  %></li>
+          </ul>
+        </li>
+        <li class="nav-item"><%= link_to '<i class="fa fa-sign-out"></i> Đăng xuất'.html_safe, logout_path, method: :delete, class: "dropdown-item" %></li>
+      </ul>
+    </nav>
     <div class="dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
           role="button" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false" style="color: #fed136;">
-        Tài khoản
+        Tài khoản 
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <%= link_to "Trang cá nhân", current_user, class: "dropdown-item"  %>

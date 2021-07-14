@@ -45,7 +45,9 @@
                   <div class="card product_item">
                     <div class="body">
                       <div class="cp_img">
-                        <%= image_tag tale.image if tale.image.attached? %>
+                        <%= link_to preview_tale_path(tale.id) do %>
+                          <%= image_tag tale.image if tale.image.attached? %>
+                        <% end %>
                       </div>
                       <div class="product_details">
                         <ul class="product_price list-unstyled">
@@ -61,13 +63,16 @@
         </div>
         <div class="row">
           <div class="col-sm-12 col-lg-12 show-favourite-admin">
-            <div class="title-show-admin" ><i class='fa fa-star'></i>  Top 6 cuốn truyện xem nhiều nhất</div>
-              <% @views_admin.each do |tale| %>
+            <div class="title-show-admin" ><i class='fa fa-star'></i>  Top 6 cuốn truyện theo dõi nhiều nhất</div>
+              <% @many_followers_admin.each do |tale| %>
+
                 <div class="col-lg-2 col-md-2 col-sm-3 form-product">
                   <div class="card product_item">
                     <div class="body">
                       <div class="cp_img">
-                        <%= image_tag tale.image if tale.image.attached? %>
+                        <%= link_to preview_tale_path(tale.id) do %>
+                          <%= image_tag tale.image if tale.image.attached? %>
+                        <% end %>
                       </div>
                       <div class="product_details">
                         <ul class="product_price list-unstyled">
@@ -83,13 +88,15 @@
         </div>
         <div class="row">
           <div class="col-sm-12 col-lg-12 show-favourite-admin">
-            <div class="title-show-admin" ><i class='fa fa-star'></i>  Top 6 cuốn truyện xem nhiều nhất</div>
-              <% @views_admin.each do |tale| %>
+            <div class="title-show-admin" ><i class='fa fa-star'></i>  Top 6 cuốn truyện yêu thích nhất</div>
+              <% @many_favourites_admin.each do |tale| %>
                 <div class="col-lg-2 col-md-2 col-sm-3 form-product">
                   <div class="card product_item">
                     <div class="body">
                       <div class="cp_img">
-                        <%= image_tag tale.image if tale.image.attached? %>
+                        <%= link_to preview_tale_path(tale.id) do %>
+                          <%= image_tag tale.image if tale.image.attached? %>
+                        <% end %>
                       </div>
                       <div class="product_details">
                         <ul class="product_price list-unstyled">
@@ -102,24 +109,26 @@
               <% end %>
             </div>
           </div>
-          <div class="col-sm-6 col-lg-4 form-children-select">
-            <div class="card img_facebook">
-              <div class="center">
-                <%= image_tag("FB.jpg", :alt => "facebook") %>
+          <div class="society">
+            <div class="col-sm-6 col-lg-4 form-children-select">
+              <div class="card img_facebook">
+                <div class="center">
+                  <%= image_tag("FB.jpg", :alt => "facebook") %>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-sm-6 col-lg-4 form-children-select">
-            <div class="card img_youtube">
-              <div class="center">
-                <%= image_tag("youtube.jpg", :alt => "youtube") %>
+            <div class="col-sm-6 col-lg-4 form-children-select">
+              <div class="card img_youtube">
+                <div class="center">
+                  <%= image_tag("youtube.jpg", :alt => "youtube") %>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-sm-6 col-lg-4 form-children-select">
-            <div class="card img_ig">
-              <div class="center">
-                <%= image_tag("Twitter.jpg", :alt => "facebook") %>
+            <div class="col-sm-6 col-lg-4 form-children-select">
+              <div class="card img_ig">
+                <div class="center">
+                  <%= image_tag("Twitter.jpg", :alt => "facebook") %>
+                </div>
               </div>
             </div>
           </div>
@@ -135,7 +144,9 @@
             <div class="card product_item">
               <div class="body">
                 <div class="cp_img">
-                  <%= image_tag tale.image if tale.image.attached? %> 
+                  <%= link_to preview_tale_path(tale.id) do %>
+                    <%= image_tag tale.image if tale.image.attached? %>
+                  <% end %>
                 </div>
                 <div class="product_details">
                   <h5 class="text-overflow"><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
@@ -151,7 +162,7 @@
     <div class="container">
       <div class="col-md-9 form-product">
         <div class="tab">
-          <button class="tablinktales" onclick="openTale(event, 'newest')" id="Open">Mới nhất</button>
+          <button class="tablinktales" onclick="openTale(event, 'newest')" id="Open">Truyện mới nhất</button>
           <button class="tablinktales" onclick="openTale(event, 'many_followers')">Yêu thích nhất</button>
           <button class="tablinktales" onclick="openTale(event, 'many_favourites')">Quan tâm nhất</button>
         </div>
@@ -208,7 +219,9 @@
               <div class="rating-item-img">
                 <div class="card">
                   <div class="cp_img">
-                    <%= image_tag tale.image if tale.image.attached? %>
+                    <%= link_to preview_tale_path(tale.id) do %>
+                      <%= image_tag tale.image if tale.image.attached? %>
+                    <% end %>
                   </div>
                 </div>
               </div>
@@ -225,7 +238,9 @@
               <div class="rating-item-img">
                 <div class="card">
                   <div class="cp_img">
-                    <%= image_tag tale.image if tale.image.attached? %>
+                    <%= link_to preview_tale_path(tale.id) do %>
+                      <%= image_tag tale.image if tale.image.attached? %>
+                    <% end %>
                   </div>
                 </div>
               </div>
@@ -242,7 +257,9 @@
               <div class="rating-item-img">
                 <div class="card">
                   <div class="cp_img">
-                    <%= image_tag tale.image if tale.image.attached? %>
+                    <%= link_to preview_tale_path(tale.id) do %>
+                      <%= image_tag tale.image if tale.image.attached? %>
+                    <% end %>
                   </div>
                 </div>
               </div>
@@ -325,7 +342,9 @@
                     <div class="body">
                       <div class="cp_img">
                         <div class="img-carousel">
-                          <%= image_tag tale.image if tale.image.attached? %>
+                          <%= link_to preview_tale_path(tale.id) do %>
+                            <%= image_tag tale.image if tale.image.attached? %>
+                          <% end %>
                         </div> 
                       </div>
                       <div class="product_details-2">
@@ -338,6 +357,24 @@
             </div>
           </div>
         </div> 
+      </div>
+    </div>
+  </div>
+  <div class="mobile-ipad">
+    <h1 class="login">Đăng nhập</h1>
+    <div class="row">
+      <div class="col-md-4 offset-md-4" style="margin:auto">
+        <%=form_for(:session,url: login_path)do|f|%>
+          <%=f.label:email%><%=f.email_field:email,class:'form-control'%>
+          <%=f.label:password%>
+          <%=f.password_field:password,class:'form-control'%>
+          <%=f.label :remember_me, class:"checkbox inline" do %>
+            <%=f.check_box :remember_me%>
+            <span>Lưu tài khoản</span>
+          <%end%>
+          <%=f.submit"Đăng nhập",class:"btn btn-primary"%>
+        <%end%>
+        <p>Bạn chưa có tài khoản?: <%=link_to "Đăng ký ngay!", signup_path%></p>
       </div>
     </div>
   </div>

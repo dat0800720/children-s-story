@@ -4,14 +4,14 @@ class User < ApplicationRecord
   scope :new_user_two_month_ago, -> { where("created_at >= ?", Time.now.beginning_of_month - 2.month)}
   scope :new_user_three_month_ago, -> { where("created_at >= ?", Time.now.beginning_of_month - 3.month)}
   has_one :request
+  has_many :tales, dependent: :destroy
   has_many :active_relationships, class_name: "Relationship",
     foreign_key: "follower_id", dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   
   has_many :reviewtales, class_name: "Reviewtale",
     foreign_key: "user_id", dependent: :destroy
-  has_many :tales, through: :reviewtales, source: :user_id
-
+    
   has_many :active_favourites, class_name: "Favourite",
     foreign_key: "favouriter_id", dependent: :destroy
   has_many :favouriting, through: :active_favourites, source: :favourited
