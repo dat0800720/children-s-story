@@ -29,6 +29,7 @@ gem 'image_processing'
 gem 'mini_magick'
 gem 'aws-sdk-s3'
 gem "cocoon"
+gem 'sqlite3', '~> 1.3.6'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
