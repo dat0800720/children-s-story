@@ -10,13 +10,13 @@ Rails.application.routes.draw do
     resources :reviewtales
     collection do
       get "show_archived", to: "tales#show_archived"
+      get "newest", to: "tales#newest"
+      get "many_follow", to: "tales#many_follow"
+      get "many_favourite", to: "tales#many_favourite"
     end
     member do
       put "update_status", to: "tales#update_status"
       get "preview", to: "tales#preview"
-      get "newest", to: "tales#newest"
-      get "many_follow", to: "tales#many_follow"
-      get "many_favourite", to: "tales#many_favourite"
       get :followers
       get :favouriters
     end

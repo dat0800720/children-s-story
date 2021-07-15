@@ -171,21 +171,21 @@
           <div class="row clearfix">
             <%= render @newest_tales %>
           </div>
-          <h3 class="newest"><%= link_to "xem thêm...", newest_tale_path(@tales.ids)%></h3>
+          <h3 class="newest"><%= link_to "xem thêm...", newest_tales_path %></h3>
         </div>
 
         <div id="many_followers" class="tabcontenttale">
           <div class="row clearfix">
             <%= render @many_followers %>
           </div>
-          <h3 class="newest"><%= link_to "xem thêm...", many_follow_tale_path(@tales.ids)%></h3>
+          <h3 class="newest"><%= link_to "xem thêm...", many_follow_tales_path %></h3>
         </div>
 
         <div id="many_favourites" class="tabcontenttale">
           <div class="row clearfix">
             <%= render @many_favourites %>
           </div>
-          <h3 class="newest"><%= link_to "xem thêm...", many_favourite_tale_path(@tales.ids)%></h3>
+          <h3 class="newest"><%= link_to "xem thêm...", many_favourite_tales_path %></h3>
         </div>
         <script>
           function openTale(evt, taleName) {
