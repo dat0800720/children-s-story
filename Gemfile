@@ -27,7 +27,7 @@ gem 'will_paginate-bootstrap4'
 gem 'active_storage_validations', '0.8.2'
 gem 'image_processing'
 gem 'mini_magick'
-gem 'aws-sdk-s3'
+gem 'aws-sdk-s3', require: false
 gem "cocoon"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
