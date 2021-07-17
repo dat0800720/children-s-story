@@ -26,7 +26,7 @@ class TalesController < ApplicationController
     if @tale.reviewtales.blank?
       @average_reviewtale = 0
     else
-      @average_reviewtale = @tale.reviewtales.average(:rating).round(2)
+      @average_reviewtale = @tale.reviewtales.average(:rating)
     end
   end
 
