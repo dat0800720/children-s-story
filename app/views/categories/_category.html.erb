@@ -2,8 +2,8 @@
   <td><%= link_to category.name, category,class: "dropdown-item" %></td>
   <td>
     <% if current_user.admin? %>
-      <button id="sendMessageButton" type="submit"><%= link_to "sửa", edit_category_path(category.id) %></button>
-      <button id="sendMessageButton" type="submit"><%= link_to "xóa", category, method: :delete,  data: { confirm: "bạn chắc chứ?" } %></button>
+      <button id="sendMessageButton" type="submit"><%= link_to '<i class="fa fa-pencil-square-o"></i>'.html_safe, edit_category_path(category.id) %></button>
+      <button id="sendMessageButton" type="submit"><%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, category, method: :delete,  data: { confirm: "bạn chắc chứ?" } %></button>
     <% end %>
   </td>
 </tr>

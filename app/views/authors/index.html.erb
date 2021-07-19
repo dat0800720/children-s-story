@@ -1,13 +1,15 @@
-<div class="btn btn-info navbar-btn">
-  <span>
-    <div class="form_search">
-      <%= form_tag authors_path, method: :get, class: "form-inline my-2 my-lg-0" do %>
-        <%= text_field_tag :term, params[:term], class: "form-control mr-sm-0", placeholder: "Tìm kiếm thể tác giả truyện..."  %>
-        <%= submit_tag "Tìm kiếm", style: "color: #6c757d;" %>
-      <% end %>
-    </div>
-  </span>
-</div>
+<% if current_user.admin? %>
+  <div class="btn btn-info navbar-btn">
+    <span>
+      <div class="form_search">
+        <%= form_tag authors_path, method: :get, class: "form-inline my-2 my-lg-0" do %>
+          <%= text_field_tag :term, params[:term], class: "form-control mr-sm-0", placeholder: "Tìm kiếm thể tác giả truyện..."  %>
+          <%= submit_tag "Tìm kiếm", style: "color: #6c757d;" %>
+        <% end %>
+      </div>
+    </span>
+  </div>
+<% end %>
 <% if current_user.admin? %>
 <h1>Tất cả Tác Giả</h1>
   <table>
@@ -18,6 +20,7 @@
     <%= render @authors%>
   </table>
 <% else %>
+  <h1 class="login">Tất cả Tác Giả</h1>
   <table>
     <%= render @authors%>
   </table>

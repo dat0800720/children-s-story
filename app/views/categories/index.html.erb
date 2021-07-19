@@ -1,14 +1,16 @@
 <% provide(:title, 'Tất cả thể loại') %>
-<div class="btn btn-info navbar-btn">
-  <span>
-    <div>
-      <%= form_tag categories_path, method: :get, class: "form-inline my-2 my-lg-0" do %>
-        <%= text_field_tag :term, params[:term], class: "form-control mr-sm-0", placeholder: "Tìm kiếm thể loại truyện..."  %>
-        <%= submit_tag "Tìm kiếm", style: "color: #6c757d;" %>
-      <% end %>
-    </div>
-  </span>
-</div>
+<% if current_user.admin? %>
+  <div class="btn btn-info navbar-btn">
+    <span>
+      <div>
+        <%= form_tag categories_path, method: :get, class: "form-inline my-2 my-lg-0" do %>
+          <%= text_field_tag :term, params[:term], class: "form-control mr-sm-0", placeholder: "Tìm kiếm thể loại truyện..."  %>
+          <%= submit_tag "Tìm kiếm", style: "color: #6c757d;" %>
+        <% end %>
+      </div>
+    </span>
+  </div>
+<% end %>
 <% if current_user.admin? %>
   <h1 class ="login">Tất cả thể loại</h1>
   <table>

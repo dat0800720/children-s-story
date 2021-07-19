@@ -7,7 +7,7 @@
         <%= @user.name %>
       </h1>
       <% if current_user.admin? %>
-      <button id="sendMessageButton" type="submit"><%= link_to "sửa", edit_user_path(@user) %></button>
+      <button id="sendMessageButton" type="submit"><%= link_to '<i class="fa fa-pencil-square-o"></i>'.html_safe, edit_user_path(@user) %></button>
     <% end %>
     </section>
   </div>

@@ -723,7 +723,6 @@ a[data-toggle="collapse"] {
 
 a[aria-expanded="false"]::before,
 a[aria-expanded="true"]::before {
-  content: '\e259';
   display: block;
   position: absolute;
   right: 20px;
@@ -731,9 +730,6 @@ a[aria-expanded="true"]::before {
   font-size: 0.6em;
 }
 
-a[aria-expanded="true"]::before {
-  content: '\e260';
-}
 
 ul ul a {
   font-size: 0.9em !important;
@@ -822,6 +818,14 @@ body{
   height: 80%;
   width: 100%;
   padding: 10px 5px 0px 5px;
+  transition: all 0.2s ease-in-out
+}
+.product_item-2 .cp_img {
+  position: absolute;
+  top: 0px;
+  left: 0%;
+  height: 100%;
+  width: 100%;
   transition: all 0.2s ease-in-out
 }
 
@@ -1054,6 +1058,7 @@ body{
   display: inline-block;
   margin-right: 10px
 }
+
 
 .card {
   transition: .5s;
@@ -1336,11 +1341,19 @@ label{
   padding-left: 20px;
   padding-top: 10px;
 }
+.text-overflow-2 {
+  padding-right: 20px;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  width: 145px;
+}
 
 //carousel
 
 // carousel product home not login
 .card-2 {
+  height: 100%;
   background: #fff;
   transition: .5s;
   border: 0;
@@ -1376,19 +1389,6 @@ label{
   text-decoration: none
 }
 
-.product_item .product_details-2 .product_price {
-  margin: 0
-}
-
-.product_item .product_details-2 .product_price li {
-  display: inline-block;
-  padding: 0 10px
-}
-
-.product_item .product_details-2 .product_price .new_price {
-  font-weight: 600;
-  color: #ff4136
-}
 
 .carousel-form{
   padding-right: 25px;
@@ -1708,13 +1708,14 @@ background-image: url(https://png.pngtree.com/illustration/20190226/ourlarge/png
 }
 
 .rating-item{
+  height: 60px;
   background: white;
   margin-bottom: 5px;
   display: flex;
 }
 .rating-item-img{
   width: 30%;
-  height: 30%;
+  height: 100%;
 }
 .rating-item-title{
   padding-left: 10px;
@@ -1855,7 +1856,14 @@ td, th {
 .manipulation{
   text-align: center;
 }
-//reponsive
+.delete{
+  position: absolute;
+  right: 5px;
+  bottom: 15px;
+}
+
+
+//**********************reponsive************************************
 .mobile-ipad{
   display: none;
 }
@@ -1943,12 +1951,27 @@ td, th {
 
 
   /* product*/
+  .delete{
+    position: inherit;
+    right: 5px;
+    bottom: 15px;
+  }
   .product_item .cp_img {
     position: inherit;
     padding: 10px 5px 0px 5px;
   }
+  .product_item-2 .cp_img {
+    position: inherit;
+  }
+  .rating-item{
+    height: 80px;
+  }
   .card .body{
-    padding: 0px 0px 5px 0px;
+    padding: 0px 0px 0px 0px;
+    height: 100%;
+  }
+  .text-overflow-2{
+    width: 210px;
   }
   .card{
     position: inherit;
@@ -1986,6 +2009,16 @@ td, th {
 @media only screen and (min-width: 46.25em) and (max-width: 64em ){
   .tomtat{
     display: none;
+  }
+  .rating-item{
+    height: 170px;
+  }
+  .text-overflow{
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .text-overflow-2{
+    width: 450px;
   }
   .wrapper-logout{
     display: none;
