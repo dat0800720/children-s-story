@@ -8,7 +8,9 @@
  * version: 3.0.0
  *
  */
+window.jQuery = window.$ = jQuery;
 
+$(document).on('turbolinks:load', function() {
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['jquery'], factory);
@@ -768,3 +770,4 @@
     return Raty;
   })();
 }));
+});
