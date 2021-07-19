@@ -217,16 +217,18 @@
           <% @views.each do |tale| %>
             <div class="rating-item">
               <div class="rating-item-img">
-                <div class="card">
-                  <div class="cp_img">
-                    <%= link_to preview_tale_path(tale.id) do %>
-                      <%= image_tag tale.image if tale.image.attached? %>
-                    <% end %>
+                <div class="card product_item-2">
+                  <div class="body">
+                    <div class="cp_img">
+                      <%= link_to preview_tale_path(tale.id) do %>
+                        <%= image_tag tale.image if tale.image.attached? %>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class=rating-item-title>
-                <h5><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
+              <div class="rating-item-title">
+                <h5 class="text-overflow-2"><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
               </div>
             </div>
           <% end %>
@@ -236,16 +238,18 @@
           <% @views.each do |tale| %>
             <div class="rating-item">
               <div class="rating-item-img">
-                <div class="card">
-                  <div class="cp_img">
-                    <%= link_to preview_tale_path(tale.id) do %>
-                      <%= image_tag tale.image if tale.image.attached? %>
-                    <% end %>
+                <div class="card product_item-2">
+                  <div class="body">
+                    <div class="cp_img">
+                      <%= link_to preview_tale_path(tale.id) do %>
+                        <%= image_tag tale.image if tale.image.attached? %>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class=rating-item-title>
-                <h5><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
+              <div class="rating-item-title">
+                <h5 class="text-overflow-2"><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
               </div>
             </div>
           <% end %>
@@ -255,16 +259,18 @@
           <% @views.each do |tale| %>
             <div class="rating-item">
               <div class="rating-item-img">
-                <div class="card">
-                  <div class="cp_img">
-                    <%= link_to preview_tale_path(tale.id) do %>
-                      <%= image_tag tale.image if tale.image.attached? %>
-                    <% end %>
+                <div class="card product_item-2">
+                  <div class="body">
+                    <div class="cp_img">
+                      <%= link_to preview_tale_path(tale.id) do %>
+                        <%= image_tag tale.image if tale.image.attached? %>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class=rating-item-title>
-                <h5><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
+              <div class="rating-item-title">
+                <h5 class="text-overflow-2"><%= link_to tale.title, preview_tale_path(tale.id) %></h5>
               </div>
             </div>
           <% end %>
@@ -310,7 +316,7 @@
                 <h1>ĐƯA BÉ CHẠM GIẤC MƠ</h1>        
                 <h3>Để bé có được nhưng giấc mơ đẹp</h3>
             </hgroup>
-            <button class="btn btn-hero btn-lg" role="button">Đọc Truyện</button>
+            <button class="btn btn-hero btn-lg" role="button"><%= link_to "Đọc Truyện", login_path%></button>
           </div>
         </div>
         <div class="item slides">
@@ -333,19 +339,17 @@
             <button class="btn btn-hero btn-lg" role="button">Đọc Truyện</button>
           </div>
         </div>
-        <div class="carousel-product">
-          <div class="carousel-form">
-            <div class="owl-carousel carousel-home owl-carousel-four owl-theme">
+        <div class="carousel-form">
+          <div class="carousel-product">
+            <div class="owl-carousel carousel-home owl-theme">
               <% @tales.each do |tale| %>
                 <div class="col-py-2">
                   <div class="card-2 product_item">
                     <div class="body">
                       <div class="cp_img">
-                        <div class="img-carousel">
-                          <%= link_to preview_tale_path(tale.id) do %>
-                            <%= image_tag tale.image if tale.image.attached? %>
-                          <% end %>
-                        </div> 
+                        <%= link_to preview_tale_path(tale.id) do %>
+                          <%= image_tag tale.image if tale.image.attached? %>
+                        <% end %>
                       </div>
                       <div class="product_details-2">
                         <h5 class="text-overflow"><%= link_to tale.title, preview_tale_path(tale.id) %></h5>

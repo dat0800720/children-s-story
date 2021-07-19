@@ -11,10 +11,14 @@
           <h5 class="text-overflow"><%= link_to tale.title, preview_tale_path(tale.id) %>
           <% if current_user.admin? %>
             <% if tale.archived? %>
+            <div class="delete-edit">
               <button id="sendMessageButton" type="submit"><%= link_to "Duyệt",   update_status_tale_path(tale), method: :put %></button>
               <button id="sendMessageButton" type="submit"><%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, tale, method: :delete, data: { confirm: "Bạn chắc chứ?" } %></button>
+            </div>
             <% else %>
-              <button id="sendMessageButton" type="submit"><%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, tale, method: :delete, data: { confirm: "Bạn chắc chứ?" } %></button>
+              <div class="delete">
+                <button id="sendMessageButton" type="submit"><%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, tale, method: :delete, data: { confirm: "Bạn chắc chứ?" } %></button>
+              </div>
             <% end %>
           <% end %>
         </ul>
