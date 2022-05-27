@@ -40,7 +40,7 @@ class AuthorsController < ApplicationController
   private
 
   def find_author
-    @author = Author.find_by(id: params[:id])
+    @author = Author.includes(:table).find_by(id: params[:id])
     unless @author
       redirect_to root_path
     end
