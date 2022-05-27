@@ -3,6 +3,7 @@
 class Ability
   include CanCan::Ability
 
+  # rubocop:disable Metrics/AbcSize , Metrics/MethodLength
   def initialize(user)
     if user.present?
       if user.admin?
@@ -12,9 +13,7 @@ class Ability
         can [:manage], Tale
         can [:manage], Request
         can [:manage], Reviewtale
-      end
-
-      if user.admin == false
+      elsif user.admin == false
         can [:manage], User, id: user.id
         can [:read], Author
         can [:read], Category
@@ -25,8 +24,9 @@ class Ability
       end
     else
       can [:show], Author
-      can [:show],   Category
+      can [:show], Category
       can [:preview], Tale
     end
   end
+  # rubocop:enable Metrics/AbcSize , Metrics/MethodLength
 end

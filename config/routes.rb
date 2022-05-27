@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   mount Ckeditor::Engine => '/ckeditor'
   root to: "static_pages#home"
-	get "/contact", to:"static_pages#contact"
-	get "/about", to:"static_pages#about"
+  get "/contact", to: "static_pages#contact"
+  get "/about", to: "static_pages#about"
   resources :tales do
     resources :reviewtales
     collection do

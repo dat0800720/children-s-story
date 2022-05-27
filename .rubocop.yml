@@ -6,3 +6,14 @@ require:
 
 AllCops:
   NewCops: enable
+  Exclude:
+  - db/schema.rb
+  - db/migrate/*
+  - config/application.rb
+  - "**/config.ru"
+  - bin/*
+  - vendor/bundle/**/*
+  - node_modules/**/*
+  - db/seeds.rb
+  - config/routes.rb
+  TargetRubyVersion: 3.0.0

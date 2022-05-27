@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  # rubocop:disable Metrics/AbcSize
   def home
     @tales = Tale.active.paginate(page: params[:page])
     @newest_tales = Tale.active.order_by_id.limit(8)
@@ -13,10 +14,9 @@ class StaticPagesController < ApplicationController
     @many_favourites_admin = Tale.includes(:favouriters).active.sort_by_favourite[0..5]
     @many_followers_admin = Tale.includes(:followers).active.sort_by_follow[0..5]
   end
+  # rubocop:enable Metrics/AbcSize
 
-  def about
-  end
+  def about; end
 
-  def contact
-  end
+  def contact; end
 end

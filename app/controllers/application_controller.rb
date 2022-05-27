@@ -11,12 +11,12 @@ class ApplicationController < ActionController::Base
 
   def cancan_access_denied
     if user_signed_in?
-      flash[:danger] = "Bạn không có quyền truy cập trang"
+      flash[:danger] = I18n.t('flash.no_right')
       redirect_to root_url
     else
-      flash[:danger] = "Vui lòng đăng nhập."
+      flash[:danger] = I18n.t('flash.please_log_in')
       redirect_to new_user_session_path
-    end 
+    end
   end
 
   def load_categories
