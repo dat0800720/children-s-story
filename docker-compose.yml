@@ -17,11 +17,13 @@ services:
       - .env
     depends_on:
       - db
+    stdin_open: true
+    tty: true
   db:
     container_name: children-s-story_db
     image: postgres
     ports:
-      - "5432:5432"
+      - "5832:5432"
     env_file:
       - .env
     volumes:

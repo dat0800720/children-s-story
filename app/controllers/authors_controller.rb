@@ -1,5 +1,6 @@
 class AuthorsController < ApplicationController
   before_action :find_author, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
   
   def new
     @author = Author.new
@@ -40,7 +41,7 @@ class AuthorsController < ApplicationController
   private
 
   def find_author
-    @author = Author.includes(:table).find_by(id: params[:id])
+    @author = Author.includes(:tales).find_by(id: params[:id])
     unless @author
       redirect_to root_path
     end

@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :find_category, only: [:show ,:edit, :update, :destroy]
   before_action :admin_user,only: [:new, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
     @categories = Category.search(params[:term])
@@ -9,15 +10,12 @@ class CategoriesController < ApplicationController
   def new
     @category = Category.new
   end
-  
-  def show
-  end
 
   def create
     @category = Category.new(category_params)
     if @category.save
       flash[:success] = "create ok!"
-      redirect_to @category
+      redirect_to categories_path
     else
         render 'new'
     end

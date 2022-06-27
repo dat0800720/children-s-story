@@ -1,5 +1,6 @@
 class RequestsController < ApplicationController
   before_action :find_request, only: [:show, :update_status, :destroy ]
+  load_and_authorize_resource
   
   def index
     @requests = Request.all
