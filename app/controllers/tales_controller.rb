@@ -1,5 +1,6 @@
 class TalesController < ApplicationController
   before_action :find_tale, only: [:show, :preview, :edit, :update, :followers, :favouriters, :update_status, :destroy]
+  load_and_authorize_resource
 
   def index
     @tales = Tale.search(params[:term])

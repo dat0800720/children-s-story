@@ -1,6 +1,7 @@
 class ReviewtalesController < ApplicationController
   before_action :find_tale
   before_action :find_reviewtale, only: [:edit, :update, :destroy]
+  load_and_authorize_resource
 
   def new
     @reviewtale = Reviewtale.new

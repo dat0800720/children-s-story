@@ -8,7 +8,7 @@
   <label>Tiêu đề:</label>
   <%= f.text_field :title, class: 'form-control' %>
   <label>Tóm tắt:</label>
-  <%= f.text_field :description, class: 'form-control' %>
+  <%= f.text_area(:description, rows: 5) %>
   <% if current_user.admin? %>
     <label>Tác giả:</label>
     <%= f.select(:author_id, Author.all.collect {|a| [ a.name, a.id ] }, 
