@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_13_073545) do
+ActiveRecord::Schema.define(version: 2022_07_15_044636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,19 +49,15 @@ ActiveRecord::Schema.define(version: 2021_07_13_073545) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.integer "tale_id"
-    t.integer "user_id"
-    t.string "content"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "favorites", force: :cascade do |t|
-    t.integer "tale_id"
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string "data_file_name", null: false
+    t.string "data_content_type"
+    t.integer "data_file_size"
+    t.string "data_fingerprint"
+    t.string "type", limit: 30
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type"], name: "index_ckeditor_assets_on_type"
   end
 
   create_table "favourites", force: :cascade do |t|
@@ -100,27 +96,11 @@ ActiveRecord::Schema.define(version: 2021_07_13_073545) do
     t.string "title"
   end
 
-  create_table "reviews", force: :cascade do |t|
-    t.integer "tale_id"
-    t.integer "user_id"
-    t.integer "vote_id"
-    t.integer "follow_id"
-    t.integer "author"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "reviewtales", force: :cascade do |t|
     t.integer "tale_id"
     t.integer "user_id"
     t.integer "rating"
     t.string "comment"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "speaks", force: :cascade do |t|
-    t.string "speak"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -140,7 +120,6 @@ ActiveRecord::Schema.define(version: 2021_07_13_073545) do
     t.integer "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "picture_id"
     t.integer "tale_content_id"
     t.integer "view"
     t.integer "status", default: 0
@@ -158,13 +137,6 @@ ActiveRecord::Schema.define(version: 2021_07_13_073545) do
     t.string "remember_digest"
     t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
-  end
-
-  create_table "votes", force: :cascade do |t|
-    t.integer "tale_id"
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

@@ -17,6 +17,8 @@ require("packs/jquery.raty")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+//= require ckeditor/init
+
 import "bootstrap"
 import "./img_js"
 window.jQuery = window.$ = jQuery;
