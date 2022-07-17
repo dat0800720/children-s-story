@@ -30,6 +30,8 @@ gem 'mini_magick'
 gem 'aws-sdk-s3', require: false
 gem "cocoon"
 gem "cancancan"
+gem 'ckeditor'
+gem "mini_magick"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
