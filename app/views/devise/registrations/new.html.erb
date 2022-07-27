@@ -1,0 +1,18 @@
+<h1 class="login">Đăng ký</h1>
+<div class="row">
+  <div class="col-md-4 offset-md-4" style="margin:auto">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <%= f.submit "Đăng Ký", class: "btn btn-primary" %>
+    <% end %>
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

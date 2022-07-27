@@ -7,8 +7,8 @@
             <%= image_tag @tale.image if @tale.image.attached? %>
           </div>
           <div class="interactive">
-            <%= render "users/follow_form" if logged_in? %>
-            <%= render "users/favourite_form" if logged_in? %>
+            <%= render "users/follow_form" if user_signed_in? %>
+            <%= render "users/favourite_form" if user_signed_in? %>
           </div>
         </div>
         <div class="col-md-6 col-sm-6">

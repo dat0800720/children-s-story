@@ -1,0 +1,19 @@
+<h1 class="login">Đăng nhập</h1>
+<div class="row">
+  <div class="col-md-4 offset-md-4" style="margin:auto">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= f.label :email %>
+      <%= f.email_field :email, class:'form-control' %>
+      <%= f.label :password %>
+      <%= f.password_field :password, class:'form-control' %>
+      <% if devise_mapping.rememberable? %>
+        <%= f.label :remember_me, class:"checkbox inline" do %>
+          <%= f.check_box :remember_me %>
+          <span>Lưu tài khoản</span>
+        <%end%>
+      <% end %>
+      <%= f.submit"Đăng nhập",class:"btn btn-primary" %>
+    <% end %>
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-<% if logged_in? %>
+<% if user_signed_in? %>
   <% if current_user.admin? %>
   <% else %>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark " >
@@ -40,7 +40,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to "Thêm truyện của tôi", new_tale_path, class: "dropdown-item"  %>
-              <%= link_to "Yêu cầu thêm truyện", show_archived_user_user_path(@current_user) , class: "dropdown-item" %>
+              <%= link_to "Yêu cầu thêm truyện", show_archived_user_user_path(current_user) , class: "dropdown-item" %>
               <%= link_to "Phản hồi ý kiến", new_request_path, class: "dropdown-item"  %>
             </div>
           </li>
@@ -95,7 +95,7 @@
             <li><%= link_to "Phản hồi ý kiến", new_request_path, class: "dropdown-item"  %></li>
           </ul>
         </li>
-        <li class="nav-item"><%= link_to '<i class="fa fa-sign-out"></i> Đăng xuất'.html_safe, logout_path, method: :delete, class: "dropdown-item" %></li>
+        <li class="nav-item"><%= link_to '<i class="fa fa-sign-out"></i> Đăng xuất'.html_safe, destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
       </ul>
     </nav>
     <div class="dropdown">
@@ -107,7 +107,7 @@
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <%= link_to "Trang cá nhân", current_user, class: "dropdown-item"  %>
         <%= link_to "Cài đặt", edit_user_path(current_user), class: "dropdown-item" %>
-        <%= link_to "Đăng xuất", logout_path, method: :delete, class: "dropdown-item"%>
+        <%= link_to "Đăng xuất", destroy_user_session_path, method: :delete, class: "dropdown-item"%>
       </div>
     </div>
   </nav>
@@ -124,7 +124,7 @@
         </li>
         <li class="nav-item"><%= link_to "CHÚNG TÔI", about_path, class: "nav-link" %></li>
         <li class="nav-item"><%= link_to "LIÊN HỆ", contact_path, class: "nav-link" %></li>
-        <li class="nav-item"><%= link_to "ĐĂNG NHẬP", login_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "ĐĂNG NHẬP", new_user_session_path, class: "nav-link" %></li>
       </ul>
     </div>
   </div>

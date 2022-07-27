@@ -1,17 +1,21 @@
 class ApplicationController < ActionController::Base
-  include SessionsHelper
   before_action :load_categories, :load_authors
+  before_action :configure_permitted_parameters, if: :devise_controller?
   rescue_from CanCan::AccessDenied, with: :cancan_access_denied
 
   private
 
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+  end
+
   def cancan_access_denied
-    if logged_in?
+    if user_signed_in?
       flash[:danger] = "Bạn không có quyền truy cập trang"
       redirect_to root_url
     else
       flash[:danger] = "Vui lòng đăng nhập."
-      redirect_to login_url
+      redirect_to new_user_session_path
     end 
   end
 

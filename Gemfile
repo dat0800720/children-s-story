@@ -32,6 +32,7 @@ gem "cocoon"
 gem "cancancan"
 gem 'ckeditor'
 gem "mini_magick"
+gem "devise"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
