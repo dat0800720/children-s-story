@@ -2,7 +2,7 @@ class User < ApplicationRecord
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :registerable,
-           :recoverable, :rememberable, :validatable
+           :recoverable, :rememberable, :validatable, :omniauthable
   scope :new_user_month_now, -> { where("created_at >= ?", Time.now.beginning_of_month)}
   scope :new_user_last_month, -> { where("created_at >= ?", Time.now.beginning_of_month - 1.month)}
   scope :new_user_two_month_ago, -> { where("created_at >= ?", Time.now.beginning_of_month - 2.month)}
