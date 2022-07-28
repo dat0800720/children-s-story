@@ -33,6 +33,10 @@ gem "cancancan"
 gem 'ckeditor'
 gem "mini_magick"
 gem "devise"
+gem "omniauth"
+gem "omniauth-facebook"
+gem "omniauth-twitter"
+gem "omniauth-github"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
