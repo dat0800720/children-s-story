@@ -18,8 +18,8 @@ class Ability
         can [:manage], User, id: user.id
         can [:read], Author
         can [:read], Category
-        can [:update, :destroy], Tale, id: user.id
-        can [:read, :create, :preview], Tale
+        can [:update, :destroy], Tale, user_id: user.id
+        can [:read, :create, :preview, :show_archived, :newest, :many_follow, :many_favourite], Tale
         can [:manage], Reviewtale, user_id: user.id
         can [:manage], Request, user_id: user.id
       end

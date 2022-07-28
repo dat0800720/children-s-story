@@ -1,5 +1,5 @@
 <% provide(:title, "Home") %>
-<% if logged_in? %>
+<% if user_signed_in? %>
   <% if current_user.admin? %>
     <div class="body">
       <div> 
@@ -316,7 +316,7 @@
                 <h1>ĐƯA BÉ CHẠM GIẤC MƠ</h1>        
                 <h3>Để bé có được nhưng giấc mơ đẹp</h3>
             </hgroup>
-            <button class="btn btn-hero btn-lg" role="button"><%= link_to "Đọc Truyện", login_path%></button>
+            <button class="btn btn-hero btn-lg" role="button"><%= link_to "Đọc Truyện", new_user_session_path%></button>
           </div>
         </div>
         <div class="item slides">
@@ -368,7 +368,7 @@
     <h1 class="login">Đăng nhập</h1>
     <div class="row">
       <div class="col-md-4 offset-md-4" style="margin:auto">
-        <%=form_for(:session,url: login_path)do|f|%>
+        <%=form_for(:session,url: new_user_session_path)do|f|%>
           <%=f.label:email%><%=f.email_field:email,class:'form-control'%>
           <%=f.label:password%>
           <%=f.password_field:password,class:'form-control'%>
@@ -378,7 +378,7 @@
           <%end%>
           <%=f.submit"Đăng nhập",class:"btn btn-primary"%>
         <%end%>
-        <p>Bạn chưa có tài khoản?: <%=link_to "Đăng ký ngay!", signup_path%></p>
+        <p>Bạn chưa có tài khoản?: <%=link_to "Đăng ký ngay!", new_user_registration_path%></p>
       </div>
     </div>
   </div>

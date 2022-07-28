@@ -1,5 +1,6 @@
 if User.none?
-  User.create!(name: "Đàm Đức Đạt", email: "damducdat0807@gmail.com", password: "123456", password_confirmation: "123456", admin: true)
+  bithday = Date.today - rand(-1..10000)
+  User.create!(name: "Đàm Đức Đạt", email: "damducdat0807@gmail.com", password: "123456", bithday: bithday, password_confirmation: "123456", admin: true)
   50.times do |i|
     bithday = Date.today - rand(-1..10000)
     User.create!(name: "User name #{i+1}", email: "user#{i+1}@gmail.com", password: "123456", password_confirmation: "123456", bithday: bithday, admin: false)
@@ -67,30 +68,38 @@ if Tale.none?
   tale6 = Tale.create(title: "Nàng Bạch Tuyết và bảy chú lùn", description: "Bạch Tuyết và bảy chú lùn là một trong những truyện cổ Grimm nổi tiếng khắp thế giới, kể về nàng công chúa xinh đẹp phải trốn chạy bà hoàng hậu ác độc.",
     category_id: 3, view: 121, author_id: 3, user_id: 1)
   tale6.image.attach(io: File.open(File.join(Rails.root, "app/assets/images/bach-tuye-va-bay-chu-lun0.jpg")), filename: "bach-tuye-va-bay-chu-lun0.jpg")
-  content = TaleContent.create(content_type: 0, tale_id: tale6.id, text: "<p>Khi Bạch Tuyết l&ecirc;n bảy tuổi, c&ocirc; b&eacute; bỗng trở n&ecirc;n tươi đẹp như &aacute;nh nắng m&ugrave;a xu&acirc;n v&agrave; đẹp hơn cả b&agrave;
+  TaleContent.create(content_type: 0, tale_id: tale6.id, text: "<p>Ng&agrave;y xưa, c&oacute; một b&agrave; ho&agrave;ng hậu&nbsp;<sup>[1]</sup>&nbsp;nhan sắc tuyệt trần ngồi kh&acirc;u b&ecirc;n khung cửa sổ bằng gỗ mun đen b&oacute;ng.
+    Ngo&agrave;i trời tuyết rơi lả tả. Đột nhi&ecirc;n kim đ&acirc;m v&agrave;o ng&oacute;n tay ho&agrave;ng hậu, một giọt m&aacute;u đỏ tươi rơi xuống nền tuyết trắng x&oacute;a. B&agrave; chợt ước &aacute;o c&oacute;
+    được một đứa con g&aacute;i cũng xinh đẹp như cảnh vật trước mắt.</p>
+    <p>Quả nhi&ecirc;n, &iacute;t l&acirc;u sau b&agrave; sinh được một c&ocirc; con g&aacute;i da trắng như tuyết, m&ocirc;i thắm như giọt m&aacute;u tươi v&agrave; t&oacute;c đen l&aacute;y như gỗ mun cửa sổ. B&agrave; đặt t&ecirc;n con l&agrave; Bạch Tuyết.</p>
+    <p>Chẳng bao l&acirc;u ho&agrave;ng hậu qua đời v&agrave; một thời gian sau nh&agrave; vua lấy một b&agrave; vợ kh&aacute;c. B&agrave; n&agrave;y cũng xinh đẹp kh&aacute;c thường, nhưng t&iacute;nh t&igrave;nh rất ki&ecirc;u căng, hợm hĩnh&nbsp;<sup>[2]</sup>. 
+    B&agrave; ta c&oacute; một tấm gương thần&nbsp;<sup>[3]</sup>. Mỗi lần ngồi trước gương b&agrave; thường hỏi:</p>
+    <p><em>&ndash; Gương kia ngự ở tr&ecirc;n tường,</em><br />
+    <em>Thế gian&nbsp;<sup>[4]</sup>&nbsp;ai đẹp được dường như ta?</em></p>
+    <p>Gương b&egrave;n trả lời:</p>
+    <p><em>&ndash; Ho&agrave;ng hậu đẹp nhất tr&ecirc;n đời,</em><br />
+    <em>Thế gian&nbsp;ai s&aacute;nh với Người được đ&acirc;u!</em></p>
+    ")
+  content = TaleContent.create(content_type: 2, tale_id: tale6.id)
+  content.image.attach(io: File.open(File.join(Rails.root, "app/assets/images/bach-tuye-va-bay-chu-lun1.jpg")), filename: "bach-tuye-va-bay-chu-lun1.jpg")
+  TaleContent.create(content_type: 0, tale_id: tale6.id, text: "<p>Khi Bạch Tuyết l&ecirc;n bảy tuổi, c&ocirc; b&eacute; bỗng trở n&ecirc;n tươi đẹp như &aacute;nh nắng m&ugrave;a xu&acirc;n v&agrave; đẹp hơn cả b&agrave;
     mẹ kế của n&agrave;ng nữa. Một h&ocirc;m, ngồi trước gương thần, b&agrave; ta lại hỏi:</p>
-    
     <p><em>&nbsp; &nbsp; &nbsp;&ndash; Gương kia ngự ở tr&ecirc;n tường,</em><br />
     <em>&nbsp; &nbsp; &nbsp;Thế gian ai đẹp được dường như ta?</em></p>
-    
     <p>Gương b&egrave;n trả lời:</p>
-    
     <p><em>&nbsp; &nbsp; &nbsp;&ndash; Xưa kia Người đẹp nhất trần,<br />
     &nbsp; &nbsp; &nbsp;Ng&agrave;y nay Bạch Tuyết mu&ocirc;n phần đẹp hơn.</em></p>
-    
     <p>Nghe gương trả lời như vậy, ho&agrave;ng hậu ghen tức lồng lộn l&ecirc;n. Bụng dạ ki&ecirc;u căng độc &aacute;c,
     mụ ta gọi một vi&ecirc;n quan hầu đến v&agrave; sai đem ngay Bạch Tuyết v&agrave;o rừng giết đi, sau đ&oacute; phải đem tr&aacute;i tim n&agrave;ng về cho mụ ăn sống để nhan sắc mụ c&agrave;ng xinh đẹp hơn.</p>
-    
     <p>Vi&ecirc;n quan hầu đem Bạch Tuyết v&agrave;o rừng. Nhưng phần th&igrave; nhớ đến l&ograve;ng nh&acirc;n từ của b&agrave; ho&agrave;ng hậu trước,
     phần th&igrave; x&oacute;t thương c&ocirc; b&eacute; xinh đẹp v&ocirc; tội, &ocirc;ng b&egrave;n kẻ mọi chuyện cho n&agrave;ng r&otilde; rồi bảo n&agrave;ng trốn biệt đi đừng trở về cung nữa.
     Ngay l&uacute;c đ&oacute; c&oacute; một ch&uacute; nai con ở đ&acirc;u chạy đến, vi&ecirc;n quan liền đ&oacute;n bắt lấy, mổ bụng con vật ra để lấy quả tim đem về cho mụ ho&agrave;ng hậu.</p>
-
     <p>Thế l&agrave; c&ocirc; b&eacute; tội nghiệp lang thang một m&igrave;nh trong rừng. Chim ch&oacute;c r&iacute;u r&iacute;t v&acirc;y quanh,
     mu&ocirc;ng th&uacute;&nbsp;<sup>[5]</sup>&nbsp;tung tăng chạy theo. M&atilde;i đến xế chiều, Bạch Tuyết mới tr&ocirc;ng thấy một căn nh&agrave; b&eacute; nhỏ liền gh&eacute; v&agrave;o định xin nghỉ nhờ. Trong nh&agrave; đồ đạc thứ g&igrave; cũng nhỏ x&iacute;u nhưng sạch sẽ, ngăn nắp.
     Giữa nh&agrave; c&oacute; một chiếc b&agrave;n trải khăn trắng tinh, b&ecirc;n tr&ecirc;n b&agrave;y sẵn bảy bộ đồ ăn xinh xắn: đĩa đựng thức ăn, th&igrave;a, dĩa, dao v&agrave; cả ly rượu đỏ. Hai b&ecirc;n tường k&ecirc; bảy chiếc giường nhỏ c&ugrave;ng trải khăn trắng tinh tươm.</p>
   ")
   content = TaleContent.create(content_type: 2, tale_id: tale6.id)
-  content.image.attach(io: File.open(File.join(Rails.root, "app/assets/images/bach-tuye-va-bay-chu-lun1.jpg")), filename: "bach-tuye-va-bay-chu-lun1.jpg")
+  content.image.attach(io: File.open(File.join(Rails.root, "app/assets/images/bach-tuye-va-bay-chu-lun2.jpg")), filename: "bach-tuye-va-bay-chu-lun1.jpg")
   content = TaleContent.create(content_type: 0, tale_id: tale6.id, text: "<p>Bạch Tuyết đ&oacute;i qu&aacute; b&egrave;n ăn ở mỗi đĩa một ch&uacute;t thức ăn v&agrave; uống ở mỗi ly một ch&uacute;t rượu, xong n&agrave;ng đặt m&igrave;nh l&ecirc;n một chiếc giường nhỏ, ngủ một giấc say sưa.</p>    
     <p>Đến xẩm tối, chủ nh&agrave; l&agrave; bảy ch&uacute; l&ugrave;n trở về căn nh&agrave; ấm c&uacute;ng sau một ng&agrave;y v&agrave;o trong n&uacute;i đ&agrave;o mỏ sắt kh&aacute; vất vả. Họ vừa bước v&agrave;o nh&agrave;, đến b&ecirc;n chiếc b&agrave;n ăn,
     bỗng ngạc nhi&ecirc;n c&ugrave;ng k&ecirc;u l&ecirc;n:</p>   
@@ -100,7 +109,7 @@ if Tale.none?
     <p>Thế l&agrave; họ để y&ecirc;n cho c&ocirc; b&eacute; ngủ. Ch&uacute; l&ugrave;n thứ bảy đ&agrave;nh ngủ chung giường với một ch&uacute; kh&aacute;c.</p>
   ")
   content = TaleContent.create(content_type: 2, tale_id: tale6.id)
-  content.image.attach(io: File.open(File.join(Rails.root, "app/assets/images/bach-tuye-va-bay-chu-lun2.jpg")), filename: "bach-tuye-va-bay-chu-lun2.jpg")
+  content.image.attach(io: File.open(File.join(Rails.root, "app/assets/images/bach-tuye-va-bay-chu-lun3.jpg")), filename: "bach-tuye-va-bay-chu-lun2.jpg")
   content = TaleContent.create(content_type: 0, tale_id: tale6.id, text: "<p>S&aacute;ng h&ocirc;m sau, Bạch Tuyết tỉnh dậy, kể lại cho mọi người nghe hết mọi chuyện. Bảy ch&uacute; l&ugrave;n b&egrave;n khuy&ecirc;n Bạch Tuyết n&ecirc;n ở lại đ&acirc;y với họ v&agrave; n&agrave;ng đừng sợ thiếu thốn g&igrave; cả. 
     Họ cũng kh&ocirc;ng qu&ecirc;n căn dặn n&agrave;ng phải lu&ocirc;n lu&ocirc;n ở trong nh&agrave;, đề ph&ograve;ng b&agrave; mẹ kế t&igrave;m đường đến h&atilde;m hại.</p>
     <p>Thế l&agrave; Bạch Tuyết ở lại trong căn nh&agrave; ấm &aacute;p đ&oacute;, h&agrave;ng ng&agrave;y tr&ocirc;ng nom nh&agrave; cửa rất chu đ&aacute;o. Tối tối, bảy ch&uacute; l&ugrave;n đi l&agrave;m về lại c&oacute; bữa ăn n&oacute;ng sốt sẵn s&agrave;ng.</p>
@@ -114,7 +123,7 @@ if Tale.none?
     Tại nh&agrave; của bảy ch&uacute; l&ugrave;n xa xa.</em></p>
   ")
   content = TaleContent.create(content_type: 2, tale_id: tale6.id)
-  content.image.attach(io: File.open(File.join(Rails.root, "app/assets/images/bach-tuye-va-bay-chu-lun3.jpg")), filename: "bach-tuye-va-bay-chu-lun3.jpg")
+  content.image.attach(io: File.open(File.join(Rails.root, "app/assets/images/bach-tuye-va-bay-chu-lun4.jpg")), filename: "bach-tuye-va-bay-chu-lun3.jpg")
   content = TaleContent.create(content_type: 0, tale_id: tale6.id, text: "<p>Mụ ta t&aacute;i m&eacute;t mặt lại. Suốt đ&ecirc;m mụ trằn trọc kh&ocirc;ng ngủ lo t&igrave;m mưa t&iacute;nh kế l&agrave;m hại n&agrave;ng. H&ocirc;m sau, mụ ta giả dạng&nbsp;<sup>[7]</sup>&nbsp;l&agrave;m một b&agrave; gi&agrave; đi b&aacute;n gương lược. 
     M&ugrave; m&ograve; đến nh&agrave; bảy ch&uacute; l&ugrave;n, g&otilde; cửa v&agrave; rao to:</p>
     <p><em>&ndash; Ai mua gương lược chải đầu,</em><br />
@@ -123,6 +132,9 @@ if Tale.none?
     <p>&ndash; Để b&agrave; chải đầu thử cho ch&aacute;u nh&eacute;! &Ocirc;i chao, t&oacute;c ch&aacute;u đen như gỗ min thế n&agrave;y cơ m&agrave;!</p>
     <p>Bạch Tuyết để y&ecirc;n cho mụ chải. Nhưng lược vừa chạm v&agrave;o m&aacute;i t&oacute;c xinh đẹp th&igrave; n&agrave;ng ng&atilde; lăn xuống trước cửa chết ngất đi. Th&igrave; ra chiếc lược c&oacute; tẩm sẵn thuốc độc. Mụ gi&agrave; độc &aacute;c liền g&aacute;nh h&agrave;ng bỏ đi ngay.</p>
   ")
+  content = TaleContent.create(content_type: 2, tale_id: tale6.id)
+  content.image.attach(io: File.open(File.join(Rails.root, "app/assets/images/bach-tuye-va-bay-chu-lun5.jpg")), filename: "bach-tuye-va-bay-chu-lun3.jpg")
+  TaleContent.create(content_type: 0, tale_id: tale6.id, text: "")
   tale7 = Tale.create(title: "Chị Hà Mã Tốt Bụng", description: "sorry các bạn trẻ nha mình chưa đọc nên mình cũng kb review thế nào đâu >.<",
     category_id: 3, view: 121, author_id: 2, user_id: 1)
   tale7.image.attach(io: File.open(File.join(Rails.root, "app/assets/images/chi-ha-ma-tot-bung-1.png")), filename: "chi-ha-ma-tot-bung-1.png")
@@ -140,4 +152,3 @@ if Tale.none?
   end
     
 end
-      
