@@ -17,7 +17,7 @@ RUN apt-get update && \
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
-    && curl -sL https://deb.nodesource.com/setup_12.x  | bash - \
+    && curl -sL https://deb.nodesource.com/setup_16.x  | bash - \
     && apt-get install -y nodejs \
     && apt-get update && apt-get install yarn --no-install-recommends -y
 
@@ -33,10 +33,7 @@ WORKDIR $APP_DIR
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
 RUN gem install bundler -v 2.1.4
-RUN gem install node-sass
 RUN bundle install --jobs 20 --retry 5
-
-RUN RailS_ENV=production bundle exec rake assets:precompile
 
 COPY package.json .
 COPY yarn.lock .
