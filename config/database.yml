@@ -40,6 +40,7 @@ test: &TEST
   host: db
 
 production:
+  url: <%= ENV['HEROKU_POSTGRESQL_PINK_URL'] %>
   adapter: postgresql
   encoding: unicode
   database: children_s_story_production
@@ -47,6 +48,7 @@ production:
   username: postgres
   password: 1
   host: db
+  secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
 
 cucumber:
   <<: *TEST
