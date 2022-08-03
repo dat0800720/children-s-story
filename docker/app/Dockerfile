@@ -36,6 +36,8 @@ RUN gem install bundler -v 2.1.4
 RUN gem install node-sass
 RUN bundle install --jobs 20 --retry 5
 
+RUN RailS_ENV=production bundle exec rake assets:precompile
+
 COPY package.json .
 COPY yarn.lock .
 RUN yarn install --check-files
