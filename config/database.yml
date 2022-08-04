@@ -40,7 +40,6 @@ test: &TEST
   host: postgres
 
 production:
-  url: <%= ENV['HEROKU_POSTGRESQL_PINK_URL'] %>
   adapter: postgresql
   encoding: unicode
   database: children_s_story_production
