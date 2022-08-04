@@ -1,30 +1,71 @@
-version: '3.7'
-volumes:
-  postgres_data: {}
+version: '3.9'
 
 services:
+  # redis:
+  #   image: redis:6
+  #   command: redis-server
+  #   container_name: redis
+  #   volumes:
+  #     - redis:/var/shared/redis
+  #   networks:
+  #     - docker-with-rails-webpacker-networks
+
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    volumes:
+      - data:/var/lib/postgresql/data
+    networks:
+      - docker-with-rails-webpacker-networks
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5732:5432
+      
   app:
-    container_name: children-s-story_app
-    command: sh ./docker/app/command.sh
     build:
       context: .
-      dockerfile: ./docker/app/Dockerfile
+      dockerfile: Dockerfile
+    container_name: app
     volumes:
       - .:/app
+      - gems:/usr/local/bundle/gems
+    networks:
+      - docker-with-rails-webpacker-networks
     ports:
       - 3000:3000
-    env_file:
-      - .env
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    environment:
+      RAILS_ENV: development
+      # WEBPACKER_DEV_SERVER_HOST: webpacker
     depends_on:
-      - db
+      - postgres
+      # - webpacker
     stdin_open: true
     tty: true
-  db:
-    container_name: children-s-story_db
-    image: postgres
-    ports:
-      - "5832:5432"
-    env_file:
-      - .env
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+
+  # webpacker:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: webpacker
+  #   environment:
+  #     NODE_ENV: development
+  #     RAILS_ENV: development
+  #     WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
+  #   command: ./bin/webpack-dev-server
+  #   volumes:
+  #     - .:/app
+  #   ports:
+  #     - '3035:3035'
+  #   networks:
+  #     - docker-with-rails-webpacker-networks
+
+networks:
+  docker-with-rails-webpacker-networks:
+    name: docker-with-rails-webpacker
+
+volumes:
+  data:
+  gems:
