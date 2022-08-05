@@ -48,7 +48,7 @@ class ReviewtalesController < ApplicationController
     end
     
     def find_reviewtale
-      @reviewtale = Reviewtale.find_by(id: params[:id])
+      @reviewtale = Reviewtale.includes(:user).find_by(id: params[:id])
       unless @reviewtale
         redirect_to root_path
       end
