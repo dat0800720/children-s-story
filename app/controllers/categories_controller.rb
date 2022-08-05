@@ -42,7 +42,7 @@ class CategoriesController < ApplicationController
   private
 
   def find_category
-    @category = Category.find_by(id:params[:id])
+    @category = Category.includes(:tales).find_by(id:params[:id])
     unless @category
       redirect_to root_path
     end
