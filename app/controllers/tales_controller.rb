@@ -103,7 +103,7 @@ class TalesController < ApplicationController
 
     def find_tale
       @tales = Tale.all
-      @tale = Tale.find_by(id:params[:id])
+      @tale = Tale.includes(tale_contents: [image_attachment: :blob]).find_by(id:params[:id])
       unless @tale
         redirect_to root_path
       end
