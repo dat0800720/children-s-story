@@ -3,10 +3,10 @@ class User < ApplicationRecord
     # :confirmable, :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :validatable
-  scope :new_user_month_now, -> { where("created_at >= ?", Time.now.beginning_of_month)}
-  scope :new_user_last_month, -> { where("created_at >= ?", Time.now.beginning_of_month - 1.month)}
-  scope :new_user_two_month_ago, -> { where("created_at >= ?", Time.now.beginning_of_month - 2.month)}
-  scope :new_user_three_month_ago, -> { where("created_at >= ?", Time.now.beginning_of_month - 3.month)}
+  scope :new_user_month_now, -> { where("DATE(created_at) >= ? AND DATE(created_at) < ?", Time.now.beginning_of_month, Time.now.beginning_of_month + 1.month) }
+  scope :new_user_last_month, -> { where("DATE(created_at) >= ? AND DATE(created_at) < ?", Time.now.beginning_of_month - 1.month, Time.now.beginning_of_month) }
+  scope :new_user_two_month_ago, -> { where("DATE(created_at) >= ? AND DATE(created_at) < ?", Time.now.beginning_of_month - 2.month, Time.now.beginning_of_month - 1.month) }
+  scope :new_user_three_month_ago, -> { where("DATE(created_at) >= ? AND DATE(created_at) < ?", Time.now.beginning_of_month - 3.month, Time.now.beginning_of_month- 2.month)}
   has_one :request
   has_many :tales, dependent: :destroy
   has_many :active_relationships, class_name: "Relationship",
