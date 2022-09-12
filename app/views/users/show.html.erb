@@ -1,14 +1,133 @@
-<% provide(:title, @user.name) %>
-<div class="row">
-  <div class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-      <% if current_user.admin? %>
-      <button id="sendMessageButton" type="submit"><%= link_to '<i class="fa fa-pencil-square-o"></i>'.html_safe, edit_user_path(@user) %></button>
-    <% end %>
-    </section>
+
+<section>
+  <div class="container py-5" style="background-color: #eee; padding-top: 100px">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3">John Smith</h5>
+            <p class="text-muted mb-1">Full Stack Developer</p>
+            <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+            <div class="d-flex justify-content-center mb-2">
+              <button type="button" class="btn btn-primary">Follow</button>
+              <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Full Name</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">Johnatan Smith</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">example@example.com</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Phone</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">(097) 234-5678</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Mobile</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">(098) 765-4321</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Address</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</section>
+<div class="profile-env">
+    <header class="row">
+        <div class="col-sm-4">
+            <div class="profile-picture">
+              <div class="img-responsive">
+                <div>
+                  <% if @user.avatar.attached? %>
+                    <%= image_tag @user.avatar, class:"size-image" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% if current_user.admin? %>
+            <div style="display: flex">
+              <%= link_to "edit", edit_user_path(@user), class: "btn btn-dark btn-sm width50" %>
+              <%= link_to "member.delete", @user, method: :delete, data: { confirm: "bạn chắc chứ?" }, class:"btn btn-dark btn-sm width50" %>
+            </div>
+          <% elsif @user.id == current_user.id %>
+            <%= link_to "member.edit_member", edit_user_path(@user), class: "btn btn-dark btn-sm w-100" %>
+          <% else %> 
+          <% end %>
+        </div>
+        <div class="col-sm-7">
+            <div class="profile-info-sections">
+                <div>
+                    <div class="profile-name">
+                        <strong>
+                            <h1>Marting flowtlhrow</h1>
+                        </strong>
+                        <span>
+                            <h3>Co-Founder at Google</h3>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <section class="profile-info-tabs">
+      <div class="row" style="margin-top:40px">
+        <div class="col-sm-offset-2 col-sm-8">
+          <table class="table border-table">
+            <tbody>
+              <tr>
+                <td class="col-md-3 padding-table">John</td>
+                <td class="padding-table">Doe</td>
+              </tr>
+              <tr>
+                <td class="col-md-3 padding-table">Mary</td>
+                <td class="padding-table">Moe</td>
+              </tr>
+              <tr>
+                <td class="col-md-3 padding-table">July</td>
+                <td class="padding-table">Dooley</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
 </div>
