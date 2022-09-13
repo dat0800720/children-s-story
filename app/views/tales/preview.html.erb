@@ -45,23 +45,3 @@
     <%= render @tale.reviewtales %>
   </div>
 </div>
-
-<script>
-   $('.review-rating').raty({
-   readOnly: true,
-   score: function(){
-     return $(this).attr('data-score');
-   },
-   path: '/images/ratyrate'
-   });
-</script>
-
-<script>
-  $(".average-review-rating").raty({
-    readOnly: true,
-    path: '/images/ratyrate',
-    score: function(){
-      return $(this).attr("data-score")
-    }
-  }); 
-</script>

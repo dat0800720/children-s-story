@@ -23,14 +23,28 @@ import "bootstrap"
 import "./img_js"
 window.jQuery = window.$ = jQuery;
 
-$(document).on('turbolinks:load', function() {
+$(document).one('turbolinks:load', function() {
+  $('.review-rating').raty({
+    readOnly: true,
+    score: function(){
+      return $(this).attr('data-score');
+    },
+    path: '/images/ratyrate'
+  });
+
+  $(".average-review-rating").raty({
+    readOnly: true,
+    path: '/images/ratyrate',
+    score: function(){
+      return $(this).attr("data-score")
+    }
+  });
+
   $("#sidebarCollapse").on("click", function() {
     $("#sidebar").toggleClass("active");
     $(this).toggleClass("active");
   });
-})
 
-$(document).on('turbolinks:load', function() {
   $('.carousel-home').owlCarousel({
     loop:true,
     nav:true,
@@ -48,8 +62,7 @@ $(document).on('turbolinks:load', function() {
         }
     }
   })
-})
-$(document).on('turbolinks:load', function() {
+
   $('.owl-carousel').owlCarousel({
     loop:true,
     nav:true,
