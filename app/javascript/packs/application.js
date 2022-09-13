@@ -23,7 +23,7 @@ import "bootstrap"
 import "./img_js"
 window.jQuery = window.$ = jQuery;
 
-$(document).one('turbolinks:load', function() {
+$(document).on('turbolinks:load', function() {
   $('.review-rating').raty({
     readOnly: true,
     score: function(){

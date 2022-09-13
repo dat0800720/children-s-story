@@ -1,7 +1,7 @@
 class AuthorsController < ApplicationController
   before_action :find_author, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
-  
+
   def new
     @author = Author.new
   end
@@ -9,9 +9,11 @@ class AuthorsController < ApplicationController
   def create
     @author = Author.new(author_params)
     if @author.save
+      flash[:success] = I18n.t('flash.successful_new_creation')
       redirect_to @author
     else
-      render "new"
+      flash[:success] = I18n.t('flash.new_creation_failed')
+      render 'new'
     end
   end
 
@@ -19,22 +21,23 @@ class AuthorsController < ApplicationController
     @authors = Author.search(params[:term])
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @author.update(author_params)
+      flash[:success] = I18n.t('flash.update_successful')
       redirect_to author_path(@author)
     else
-      render "edit"
-    end  
+      flash[:success] = I18n.t('flash.update_failed')
+      render 'edit'
+    end
   end
 
   def destroy
     @author.destroy
+    flash[:success] = I18n.t('flash.successful_delete')
     redirect_to author_url
   end
 
@@ -42,9 +45,7 @@ class AuthorsController < ApplicationController
 
   def find_author
     @author = Author.includes(:tales).find_by(id: params[:id])
-    unless @author
-      redirect_to root_path
-    end
+    redirect_to root_path unless @author
   end
 
   def author_params
