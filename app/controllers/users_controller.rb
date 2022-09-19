@@ -61,7 +61,7 @@ class UsersController < ApplicationController
   end
 
   def find_user
-    @user = User.includes(:table).find_by(id: params[:id])
+    @user = User.includes(:tales).find_by(id: params[:id])
     redirect_to root_path unless @user
   end
 end

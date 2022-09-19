@@ -1,4 +1,5 @@
 <%= form_for @tale do |f| %>
+  <%= render "devise/shared/error_messages", resource: @tale %>
   <%= f.select(:category_id, Category.all.collect {|p| [ p.name, p.id ] }, 
     {include_blank: " Chọn thể loại truyện"})%>
   <label>Ảnh bìa:</label>

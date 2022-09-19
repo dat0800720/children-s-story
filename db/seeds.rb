@@ -66,7 +66,7 @@ if Tale.none?
   end
 
   tale6 = Tale.create(title: 'Nàng Bạch Tuyết và bảy chú lùn', description: 'Bạch Tuyết và bảy chú lùn là một trong những truyện cổ Grimm nổi tiếng khắp thế giới, kể về nàng công chúa xinh đẹp phải trốn chạy bà hoàng hậu ác độc.',
-                      category_id: 3, view: 121, author_id: 3, user_id: 1)
+                      category_id: 3, view: 1121, author_id: 3, user_id: 1)
   tale6.image.attach(io: File.open(File.join(Rails.root, 'app/assets/images/bach-tuye-va-bay-chu-lun0.jpg')), filename: 'bach-tuye-va-bay-chu-lun0.jpg')
   TaleContent.create(content_type: 0, tale_id: tale6.id, text: "<p>Ng&agrave;y xưa, c&oacute; một b&agrave; ho&agrave;ng hậu&nbsp;<sup>[1]</sup>&nbsp;nhan sắc tuyệt trần ngồi kh&acirc;u b&ecirc;n khung cửa sổ bằng gỗ mun đen b&oacute;ng.
     Ngo&agrave;i trời tuyết rơi lả tả. Đột nhi&ecirc;n kim đ&acirc;m v&agrave;o ng&oacute;n tay ho&agrave;ng hậu, một giọt m&aacute;u đỏ tươi rơi xuống nền tuyết trắng x&oacute;a. B&agrave; chợt ước &aacute;o c&oacute;
