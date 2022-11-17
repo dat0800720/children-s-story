@@ -9,10 +9,10 @@ en:
     failure:
       already_authenticated: "You are already signed in."
       inactive: "Your account is not activated yet."
-      invalid: "Invalid %{authentication_keys} or password."
+      invalid: "Sai thông tin %{authentication_keys} hoặc password."
       locked: "Your account is locked."
       last_attempt: "You have one more attempt before your account is locked."
-      not_found_in_database: "Invalid %{authentication_keys} or password."
+      not_found_in_database: "Sai thông tin %{authentication_keys} hoặc password."
       timeout: "Your session expired. Please sign in again to continue."
       unauthenticated: "You need to sign in or sign up before continuing."
       unconfirmed: "You have to confirm your email address before continuing."
@@ -46,9 +46,9 @@ en:
       updated: "Your account has been updated successfully."
       updated_but_not_signed_in: "Your account has been updated successfully, but since your password was changed, you need to sign in again."
     sessions:
-      signed_in: "Signed in successfully."
-      signed_out: "Signed out successfully."
-      already_signed_out: "Signed out successfully."
+      signed_in: "Chào mừng bạn đến với Chuyện Thiếu Nhi"
+      signed_out: "Đăng xuất thành công."
+      already_signed_out: "Đăng xuất thành công."
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
@@ -63,3 +63,25 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
+  activerecord:
+    errors:
+      models:
+        tale:
+          attributes:
+            image:
+              blank: 'Ảnh bìa không thể để trống.'
+              format: '%{message}'
+            title:
+              blank: 'Tiêu đề không thể để trống.'
+              too_long: "Tiêu đề chỉ có thể dài tối đa 50 ký tự"
+              format: '%{message}'
+            description:
+              blank: 'Tóm tắt không thể để trống.'
+              format: '%{message}'
+            category:
+              required: 'Thể loại không thể để trống.'
+              format: '%{message}'
+            author_user:
+              blank: 'Tên tác giả không thể để trống.'
+              too_long: "Tên tác giả chỉ có thể dài tối đa 30 ký tự"
+              format: '%{message}'

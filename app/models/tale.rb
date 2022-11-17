@@ -22,6 +22,7 @@ class Tale < ApplicationRecord
 
   enum status: { active: 0, archived: 1 }
 
+  # comment khi chay seed
   validates :image, presence: true
   validates :image, content_type: { in: %w[image/jpeg image/gif image/png],
                                     message: I18n.t('errors.must_be_a_valid_image_format') },
@@ -32,7 +33,7 @@ class Tale < ApplicationRecord
 
   def self.search(term)
     if term
-      where('title LIKE ?', "%#{term}%")
+      active.where('title ILIKE ?', "%#{term}%")
     else
       active
     end

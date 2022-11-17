@@ -3,13 +3,13 @@
   <div class="col-md-4 offset-md-4" style="margin:auto">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
-      <%= f.label :name %>
+      <label>Họ và tên</label>
       <%= f.text_field :name, class: 'form-control' %>
-      <%= f.label :email %>
+      <label>email</label>
       <%= f.email_field :email, class: 'form-control' %>
-      <%= f.label :password %>
+      <label>Mật khẩu</label>
       <%= f.password_field :password, class: 'form-control' %>
-      <%= f.label :password_confirmation, "Confirmation" %>
+      <label>Xác nhận lại mật khẩu</label>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
       <%= f.submit "Đăng Ký", class: "btn btn-primary" %>
     <% end %>

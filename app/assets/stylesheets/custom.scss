@@ -1771,6 +1771,7 @@ td, th {
   font-size: 18px;
   font-family:optima;
   padding: 5px 30px 5px 30px;
+  word-wrap: break-word;
 }
 .time{
   float:right;
@@ -2055,4 +2056,11 @@ td, th {
   to{
     opacity: 1;
   }
+}
+.break_word{
+  word-wrap: break-word;
+}
+
+.form-control.parsley-error{
+  border-color: red;
 }
