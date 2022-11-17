@@ -16,7 +16,7 @@
             <h2>Tên: <%= @tale.title %></h2>
           </h4>
           <p>
-            <h2 class="tomtat">Tóm Tắt: <%= @tale.description %></h2>
+            <span class="tomtat"><strong>Tóm Tắt: </strong> <%= @tale.description %></span>
           </p>
           <div class="product_meta">
             <span class="posted_in"> <strong>Thể Loại: </strong> <%= link_to @tale.category.name, category_path(@tale.category.id) %></span>
@@ -39,9 +39,23 @@
       </div>
     </section>
   </div>
-  <div class="container review">
-    <h1 class="login">ĐÁNH GIÁ TRUYỆN</h1>
-    <button class="btn btn-primary" type="button" ><h5><%= link_to "Đánh giá", new_tale_reviewtale_path(@tale)%></h5></button>
-    <%= render @tale.reviewtales %>
-  </div>
+  <% if @tale.approved? %>
+    <div class="container review">
+      <h1 class="login">ĐÁNH GIÁ TRUYỆN</h1>
+      <button class="btn btn-primary" type="button" ><h5><%= link_to "Đánh giá", new_tale_reviewtale_path(@tale)%></h5></button>
+      <%= render @tale.reviewtales %>
+    </div>
+  <% elsif @tale.refused? %>
+    <div class="container">
+      <div class="contact">
+        <div class="title_request">
+          <p><strong>Phản hồi từ Adim</strong></p>
+        </div>
+        <div class="title_request">
+          <p style="word-wrap: break-word;">Nội dung: <%= @tale.reason_reject %></p>
+        </div>
+      </div>
+    </div>
+  <% else %>
+  <% end %>
 </div>

@@ -1,5 +1,5 @@
 <tr>
   <td><%= link_to request.user.name, update_status_request_path(request), method: :put %></td>
   <td><%= link_to request.title, update_status_request_path(request), method: :put %></td>
-  <td><%= link_to request.created_at, update_status_request_path(request), method: :put %></td>
+  <td><%= link_to request.created_at&.strftime("%H : %M Ngày %d/%m/%Y"), update_status_request_path(request), method: :put %></td>
 </tr>

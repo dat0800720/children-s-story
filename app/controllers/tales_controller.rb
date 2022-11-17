@@ -1,5 +1,7 @@
 class TalesController < ApplicationController
-  before_action :find_tale, only: [:show, :preview, :edit, :update, :followers, :favouriters, :update_status, :destroy]
+  before_action :find_tale,
+                only: [:show, :preview, :edit, :update, :followers, :favouriters, :update_status,
+                       :update_status_refused, :destroy]
   before_action :add_to_create, only: :create
   load_and_authorize_resource
 
@@ -7,21 +9,21 @@ class TalesController < ApplicationController
     @tales = Tale.search(params[:term])
   end
 
-  def show_archived
-    @tales = Tale.archived.paginate(page: params[:page])
-    @show_archiveds = Tale.archived.paginate(page: params[:page])
+  def show_waiting_censorship
+    @tales = Tale.waiting_censorship.paginate(page: params[:page])
+    @show_waiting_censorships = Tale.waiting_censorship.paginate(page: params[:page])
   end
 
   def newest
-    @newests = Tale.active.paginate(page: params[:page]).order_by_id
+    @newests = Tale.approved.paginate(page: params[:page]).order_by_id
   end
 
   def many_follow
-    @many_followers = Tale.active.paginate(page: params[:page]).sort_by_follow
+    @many_followers = Tale.approved.paginate(page: params[:page]).sort_by_follow
   end
 
   def many_favourite
-    @many_favourites = Tale.active.paginate(page: params[:page]).sort_by_favourite
+    @many_favourites = Tale.approved.paginate(page: params[:page]).sort_by_favourite
   end
 
   def preview
@@ -53,17 +55,27 @@ class TalesController < ApplicationController
   def edit; end
 
   def update_status
-    if @tale.active!
+    if @tale.approved!
       flash[:success] = I18n.t('flash.update_successful')
     else
       flash[:danger] = I18n.t('flash.update_failed')
     end
-    redirect_to show_archived_tales_path
+    redirect_to show_waiting_censorship_tales_path
+  end
+
+  def update_status_refused
+    if @tale.refused!
+      flash[:success] = I18n.t('flash.update_successful')
+      redirect_to edit_tale_path
+    else
+      flash[:danger] = I18n.t('flash.update_failed')
+      redirect_to show_waiting_censorship_tales_path
+    end
   end
 
   def update
     if @tale.update(tale_params)
-      redirect_to tale_path(@tale)
+      redirect_to preview_tale_path(@tale)
       flash[:success] = I18n.t('flash.update_successful')
     else
       flash[:success] = I18n.t('flash.update_failed')
@@ -107,7 +119,7 @@ class TalesController < ApplicationController
   def add_to_create
     @tale = Tale.new(tale_params)
     @tale.image.attach(params[:tale][:image])
-    @tale.status = current_user.admin? ? 'active' : 'archived'
+    @tale.status = current_user.admin? ? 'approved' : 'waiting_censorship'
     @tale.user_id = current_user.id
   end
 end

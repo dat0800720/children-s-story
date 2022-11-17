@@ -40,7 +40,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to "Thêm truyện của tôi", new_tale_path, class: "dropdown-item"  %>
-              <%= link_to "Yêu cầu thêm truyện", show_archived_user_user_path(current_user) , class: "dropdown-item" %>
+              <%= link_to "Yêu cầu thêm truyện", show_waiting_censorship_user_user_path(current_user) , class: "dropdown-item" %>
               <%= link_to "Phản hồi ý kiến", new_request_path, class: "dropdown-item"  %>
             </div>
           </li>
@@ -91,7 +91,7 @@
           <a href="#request_mobile" class="dropdown-item dropdown-toggle" data-toggle="collapse" aria-expanded="false"><i class='fa fa-envelope-o'>  Phản hồi </i></a>
           <ul class="collapse list-unstyled" id="request_mobile">
             <li><%= link_to "Thêm truyện của tôi", new_tale_path, class: "dropdown-item"  %></li>
-            <li><%= link_to "Yêu cầu thêm truyện", show_archived_tales_path , class: "dropdown-item" %></li>
+            <li><%= link_to "Yêu cầu thêm truyện", show_waiting_censorship_tales_path , class: "dropdown-item" %></li>
             <li><%= link_to "Phản hồi ý kiến", new_request_path, class: "dropdown-item"  %></li>
           </ul>
         </li>

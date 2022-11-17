@@ -19,16 +19,10 @@
             <% end %>
           <div>
         <% end %>
-        <% if current_user.admin? %>
-          <button id="sendMessageButton" type="submit"><%= link_to '<i class="fa fa-pencil-square-o"></i>'.html_safe, edit_tale_path(@tale) %></button>
-          <button id="sendMessageButton" type="submit"><%= link_to '<i class="fa fa-trash-o"></i>'.html_safe,tale_path(@tale), method: :delete %></button>
-        <% end %>
-        <% if @tale.archived? %>
           <div class="manipulation">
             <button id="sendMessageButton" type="submit"><%= link_to '<i class="fa fa-pencil-square-o"></i>'.html_safe, edit_tale_path(@tale) %></button>
-            <button id="sendMessageButton" type="submit"><%= link_to'<i class="fa fa-trash-o"></i>'.html_safe,tale_path(@tale), method: :delete %></button>
+            <button id="sendMessageButton" type="submit"><%= link_to'<i class="fa fa-trash-o"></i>'.html_safe, tale_path(@tale), method: :delete %></button>
           </div>
-        <% end %>
       </section>
     </div>
   </div>
