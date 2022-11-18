@@ -189,3 +189,6 @@ Layout/LineLength:
 
 Naming/VariableNumber:
   Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false

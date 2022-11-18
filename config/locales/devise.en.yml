@@ -61,8 +61,8 @@ en:
       not_found: "not found"
       not_locked: "was not locked"
       not_saved:
-        one: "1 error prohibited this %{resource} from being saved:"
-        other: "%{count} errors prohibited this %{resource} from being saved:"
+        one: "Phát hiện 1 lỗi trong quá trình lưu:"
+        other: "Phát hiện %{count} lỗi trong quá trình lưu:"
   activerecord:
     errors:
       models:

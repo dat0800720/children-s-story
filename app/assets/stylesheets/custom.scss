@@ -635,6 +635,7 @@ input {
   text-align:center;
   padding-top: 30px;
   padding-bottom: 20px;
+  font-family: optima;
 }
 .nav-item{
   text-align: center !important;
@@ -1683,7 +1684,6 @@ background-image: url(https://png.pngtree.com/illustration/20190226/ourlarge/png
 
 /* Create an active/current tablink class */
 .tab button.active {
-  font-weight:bold;
   font-family: optima;
   background-color: #ffea9d;
 }
@@ -2063,4 +2063,8 @@ td, th {
 
 .form-control.parsley-error{
   border-color: red;
+}
+.search_text{
+  color: #6c757d;
+  font-family: optima;
 }

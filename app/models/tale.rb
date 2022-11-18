@@ -20,7 +20,7 @@ class Tale < ApplicationRecord
                                 foreign_key: 'favourited_id', dependent: :destroy
   has_many :favouriters, through: :passive_favourites, source: :favouriter
 
-  enum status: { active: 0, archived: 1 }
+  enum status: { approved: 0, waiting_censorship: 1, refused: 2 }
 
   # comment khi chay seed
   validates :image, presence: true
@@ -33,9 +33,9 @@ class Tale < ApplicationRecord
 
   def self.search(term)
     if term
-      active.where('title ILIKE ?', "%#{term}%")
+      approved.where('title ILIKE ?', "%#{term}%")
     else
-      active
+      approved
     end
   end
 end

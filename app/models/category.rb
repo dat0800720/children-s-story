@@ -3,7 +3,7 @@ class Category < ApplicationRecord
   validates :name, presence: true, length: { maximum: 100 }
   def self.search(term)
     if term
-      where('name LIKE ?', "%#{term}%")
+      where('name ILIKE ?', "%#{term}%")
     else
       all
     end

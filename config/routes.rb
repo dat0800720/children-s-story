@@ -7,13 +7,14 @@ Rails.application.routes.draw do
   resources :tales do
     resources :reviewtales
     collection do
-      get "show_archived", to: "tales#show_archived"
+      get "show_waiting_censorship", to: "tales#show_waiting_censorship"
       get "newest", to: "tales#newest"
       get "many_follow", to: "tales#many_follow"
       get "many_favourite", to: "tales#many_favourite"
     end
     member do
       put "update_status", to: "tales#update_status"
+      put "update_status_refused", to: "tales#update_status_refused"
       get "preview", to: "tales#preview"
       get :followers
       get :favouriters
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
       get :favouriting
     end
     member do
-      get "show_archived_user", to: "users#show_archived_user"
+      get "show_waiting_censorship_user", to: "users#show_waiting_censorship_user"
     end
   end
   resources :requests do

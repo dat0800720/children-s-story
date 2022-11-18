@@ -1,8 +1,51 @@
 <% provide(:title, "Edit tales") %>
 <% provide(:button_text, 'Save changes') %>
-<h1 class="login">Cập nhật Truyện</h1>
+<% if @tale.refused? && current_user.admin? %>
+  <h1 class="login">Phản hồi lý do</h1>
+<% else %>
+  <h1 class="login">Cập nhật Truyện</h1>
+<% end %>
 <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-        <%= render 'form' %>
-    </div>
+  <div class="col-md-4 col-md-offset-4">
+    <%= form_for @tale do |f| %>
+      <%= render "devise/shared/error_messages", resource: @tale %>
+      <% if @tale.refused? && current_user.admin? %>
+        <label>Lý do từ chối:</label>
+        <%= f.text_area(:reason_reject, rows: 5) %>
+      <% else %>
+        <%= f.select(:category_id, Category.all.collect {|p| [ p.name, p.id ] }, 
+          {include_blank: " Chọn thể loại truyện"})%>
+        <label>Ảnh bìa:</label>
+        <span class="image">
+          <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
+        </span>
+        <label>Tiêu đề:</label>
+        <%= f.text_field :title, class: 'form-control' %>
+        <label>Tóm tắt:</label>
+        <%= f.text_area(:description, rows: 5) %>
+        <% if current_user.admin? %>
+          <label>Tác giả:</label>
+          <%= f.select(:author_id, Author.all.collect {|a| [ a.name, a.id ] }, 
+          {include_blank: " Chọn tác giả truyện"})%>
+        <% else %>
+          <label>Tác giả:</label>
+          <%= f.text_field :author_user, class: 'form-control' %>
+        <% end %>
+        <h2 class="login">Nội dung truyện</h2>
+        <h4>Ví dụ:</h4>
+        <div class="vidu">
+          <%= image_tag("vidu.jpg", :alt => "Ví dụ") %>
+        </div>
+        <div class="form-nested" id="tale-contents">
+          <%= f.fields_for :tale_contents do |tale_content| %>
+          <%= render "tale_content_fields", f: tale_content%>
+          <% end %>
+          <div class="links">
+          <%= link_to_add_association "+ Thêm nội dung truyện", f, :tale_contents %>
+          </div>
+        </div>
+      <% end %>
+      <%= f.submit "Tạo truyện tranh", class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>

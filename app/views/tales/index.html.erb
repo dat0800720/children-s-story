@@ -1,11 +1,11 @@
 <% provide(:title, 'Tất cả cuốn truyện') %>
 <% if current_user.admin? %>
-  <div class="btn btn-info navbar-btn">
+  <div class="btn">
     <span>
       <div>
         <%= form_tag tales_path, method: :get, class: "form-inline my-2 my-lg-0" do %>
           <%= text_field_tag :term, params[:term], class: "form-control mr-sm-0", placeholder: "Tìm kiếm truyện..."  %>
-          <%= submit_tag "Tìm kiếm", style: "color: #6c757d;" %>
+          <%= submit_tag "Tìm kiếm", class: "search_text" %>
         <% end %>
       </div>
     </span>

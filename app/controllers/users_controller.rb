@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show, :edit, :show_archived_user, :update, :destroy]
+  before_action :find_user, only: [:show, :edit, :show_waiting_censorship_user, :update, :destroy]
   load_and_authorize_resource
 
   def index
@@ -8,7 +8,9 @@ class UsersController < ApplicationController
 
   def show; end
 
-  def show_archived_user; end
+  def show_waiting_censorship_user
+    @my_story = current_user.tales.where(status: [1, 2])
+  end
 
   def new
     @user = User.new
