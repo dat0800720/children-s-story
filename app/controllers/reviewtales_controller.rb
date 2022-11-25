@@ -3,18 +3,12 @@ class ReviewtalesController < ApplicationController
   before_action :find_reviewtale, only: [:edit, :update, :destroy]
   load_and_authorize_resource
 
-  def new
-    @reviewtale = Reviewtale.new
-  end
-
   def create
-    @reviewtale = Reviewtale.new(reviewtale_params)
-    @reviewtale.tale_id = @tale.id
-    @reviewtale.user_id = current_user.id
-    if @reviewtale.save
-      redirect_to preview_tale_path(@tale)
-    else
-      render 'new'
+    @reviewtale = @tale.reviewtales.new(reviewtale_params)
+    respond_to do |format|
+      @reviewtale.save
+      format.html { redirect_to preview_tale_path(@tale) }
+      format.js
     end
   end
 
@@ -29,14 +23,17 @@ class ReviewtalesController < ApplicationController
   end
 
   def destroy
-    @reviewtale.destroy
-    redirect_to preview_tale_path(@tale)
+    respond_to do |format|
+      @reviewtale.destroy
+      format.html { redirect_to preview_tale_path(@tale) }
+      format.js
+    end
   end
 
   private
 
   def reviewtale_params
-    params.require(:reviewtale).permit(:rating, :comment)
+    params.require(:reviewtale).permit(:rating, :comment).merge({ user_id: current_user.id })
   end
 
   def find_tale
