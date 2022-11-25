@@ -65,7 +65,6 @@ class TalesController < ApplicationController
 
   def update_status_refused
     if @tale.refused!
-      flash[:success] = I18n.t('flash.update_successful')
       redirect_to edit_tale_path
     else
       flash[:danger] = I18n.t('flash.update_failed')
@@ -106,7 +105,7 @@ class TalesController < ApplicationController
   private
 
   def tale_params
-    params.require(:tale).permit(:title, :description, :author_user, :category_id, :image, :author_id, :user_id,
+    params.require(:tale).permit(:title, :description, :author_user, :category_id, :image, :author_id, :user_id, :reason_reject,
                                  tale_contents_attributes: [:id, :image, :audio, :text, :content_type, :_destroy])
   end
 
