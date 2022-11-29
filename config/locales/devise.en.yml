@@ -85,3 +85,8 @@ en:
               blank: 'Tên tác giả không thể để trống.'
               too_long: "Tên tác giả chỉ có thể dài tối đa 30 ký tự"
               format: '%{message}'
+        reviewtale:
+          attributes:
+            rating:
+              blank: 'Vui lòng chọn số sao đánh giá.'
+              format: '%{message}'

@@ -10,6 +10,7 @@ module Project1
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
+    config.time_zone = 'Hanoi'
     config.active_model.i18n_customize_full_message = true
 
     # Settings in config/environments/* take precedence over those specified here.

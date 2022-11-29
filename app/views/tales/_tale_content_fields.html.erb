@@ -6,18 +6,18 @@
     <div class="image hidden">
       <label>Ảnh:</label>
       <%= f.file_field :image %>
-      <%= link_to_remove_association "+ Xóa nội dung trên", f %>
+      <%= link_to_remove_association "- Xóa nội dung trên", f %>
       <p class="end">Hết trang</p>
     </div>
     <div class="text">
       <label>Chữ:</label>
       <%= f.cktext_area :text, class: 'form-control' %>
-      <%= link_to_remove_association "+ Xóa nội dung trên", f %>
+      <%= link_to_remove_association "- Xóa nội dung trên", f %>
     </div>
     <div class="audio hidden">
       <label>Ghi âm:</label>
       <%= f.file_field :audio %>
-      <%= link_to_remove_association "+ Xóa nội dung trên", f %>
+      <%= link_to_remove_association "- Xóa nội dung trên", f %>
     </div>
   </div>
 </div>

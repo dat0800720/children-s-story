@@ -13,26 +13,26 @@
         </div>
         <div class="col-md-6 col-sm-6">
           <h4 class="pro-d-title">
-            <h2>Tên: <%= @tale.title %></h2>
+            <h1 class="optima"><%= @tale.title %></h1>
           </h4>
           <p>
-            <span class="tomtat"><strong>Tóm Tắt: </strong> <%= @tale.description %></span>
+            <span class="tomtat optima"><strong>Tóm Tắt: </strong> <%= @tale.description %></span>
           </p>
           <div class="product_meta">
-            <span class="posted_in"> <strong>Thể Loại: </strong> <%= link_to @tale.category.name, category_path(@tale.category.id) %></span>
+            <span class="posted_in optima"> <strong >Thể Loại: </strong> <%= link_to @tale.category.name, category_path(@tale.category.id) %></span>
             <% if @tale.author %>
-              <span class="posted_in"><strong>Tác Giả: </strong><%= link_to @tale.author.name, author_path(@tale.author.id) %></span>
+              <span class="posted_in optima"><strong class="optima">Tác Giả: </strong><%= link_to @tale.author.name, author_path(@tale.author.id) %></span>
             <% else %>
-              <span class="posted_in"><strong>Tác Giả: </strong><%= @tale.author_user%></span>
+              <span class="posted_in optima"><strong class="optima">Tác Giả: </strong><%= @tale.author_user%></span>
             <% end %>
           </div>
           <section class="stats">
             <%= render "shared/stats" %>
           </section>
-            <div class="average-review-rating" data-score=<%= @average_reviewtale %>></div>
-            <span><strong><%= @tale.reviewtales.count %> lượt đánh giá</strong></span>
+            <div class="average-review-rating " data-score=<%= @average_reviewtale %>></div>
+            <span><strong class="optima"><%= @tale.reviewtales.count %> lượt đánh giá</strong></span>
           <p>
-            <button class="btn btn-primary" type="button" ><h5><%= link_to "Đọc Truyện", tale_path(@tale.id) %></h5></button>
+            <button class="btn btn-primary" type="button" ><h5 class="optima"><%= link_to "Đọc Truyện", tale_path(@tale.id) %></h5></button>
           </p>
           </div>
         </div>
@@ -42,17 +42,21 @@
   <% if @tale.approved? %>
     <div class="container review">
       <h1 class="login">ĐÁNH GIÁ TRUYỆN</h1>
-      <button class="btn btn-primary" type="button" ><h5><%= link_to "Đánh giá", new_tale_reviewtale_path(@tale)%></h5></button>
-      <%= render @tale.reviewtales %>
+      <div class="test">
+        <%= render "reviewtales/form" %>
+      </div>
+      <div id="reviewtales">
+        <%= render @tale.reviewtales.order("id DESC") %>
+      </div>
     </div>
   <% elsif @tale.refused? %>
     <div class="container">
       <div class="contact">
         <div class="title_request">
-          <p><strong>Phản hồi từ Admin</strong></p>
+          <p><strong class="optima">Phản hồi từ Admin</strong></p>
         </div>
         <div class="title_request">
-          <p style="word-wrap: break-word;">Nội dung: <%= @tale.reason_reject %></p>
+          <p style="word-wrap: break-word;" class="optima">Nội dung: <%= @tale.reason_reject %></p>
         </div>
       </div>
     </div>

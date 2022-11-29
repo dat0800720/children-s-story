@@ -24,14 +24,6 @@ import "./img_js"
 window.jQuery = window.$ = jQuery;
 
 $(document).on('turbolinks:load', function() {
-  $('.review-rating').raty({
-    readOnly: true,
-    score: function(){
-      return $(this).attr('data-score');
-    },
-    path: '/images/ratyrate'
-  });
-
   $(".average-review-rating").raty({
     readOnly: true,
     path: '/images/ratyrate',

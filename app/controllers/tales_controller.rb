@@ -32,6 +32,7 @@ class TalesController < ApplicationController
                           else
                             @tale.reviewtales.average(:rating)
                           end
+    @reviewtale = Reviewtale.new
   end
 
   def show
