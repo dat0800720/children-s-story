@@ -1,14 +1,89 @@
 <% provide(:title, @user.name) %>
-<div class="row">
-  <div class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-      <% if current_user.admin? %>
-      <button id="sendMessageButton" type="submit"><%= link_to '<i class="fa fa-pencil-square-o"></i>'.html_safe, edit_user_path(@user) %></button>
-    <% end %>
-    </section>
+<div class="container">
+  <div class="row">
+    <div class="twPc-div">
+      <%= form_for(@user) do |f| %>
+        <% if @user.image.present? %>
+          <div id="change_cover_image">
+            <%= image_tag(@user.cover_image, alt: "ảnh bìa", class: 'twPc-bg twPc-block') if @user.cover_image.attached? %>
+          </div>
+        <% end %>
+        <div class="twPc-button">
+          <button class="btn button-submit-cover-image form_edit_review" type="submit" ><h5 class="optima">Thay ảnh</h5></button>
+          <%= f.file_field :cover_image, style: "display: none"%>
+          <%= f.label :cover_image, '<i class="fa fa-camera" aria-hidden="true"> Chỉnh sửa ảnh bìa</i>'.html_safe, class: "btn button-cover-image optima" %>
+        </div>
+      <% end %>
+
+      <%= form_for(@user) do |f| %>
+        <div class="twPc-avatarLink">
+          <% if @user.image.present? %>
+            <div id="change_image">
+              <%= image_tag(f.object.image, alt: "ảnh đại diện", class: 'twPc-avatarImg') if f.object.image.attached? %>
+            </div>
+          <% end %>
+          <%= f.file_field :image, style: "display: none"%>
+          <%= f.label :image, '<i class="fa fa-camera mr-top" aria-hidden="true"></i>'.html_safe, class: "btn button-change-image" %>
+          <button class="btn button-submit-image" type="submit" ><h5 class="optima">Thay</h5></button>
+        </div>
+      <% end %>
+
+      <div class="twPc-divUser">
+        <div class="twPc-divName">
+          <strong class="optima"><%= @user.name %></strong>
+        </div>
+        <span>
+          <p class="optima"><%= @user.email %></p>
+        </span>
+      </div>
+
+      <div class="twPc-divStats">
+        <ul class="twPc-Arrange">
+          <li class="twPc-ArrangeSizeFit">
+            <span class="twPc-StatLabel twPc-block">Ngày sử dụng</span>
+            <span class="twPc-StatValue optima"><%= ((Time.now - @user.created_at).to_i / 1.day).abs %> Ngày</span>
+          </li>
+          <li class="twPc-ArrangeSizeFit">
+            <span class="twPc-StatLabel twPc-block">Truyện đã thích</span>
+            <span class="twPc-StatValue optima"><%= @user.favouriting.size %> Cuốn</span>
+          </li>
+          <li class="twPc-ArrangeSizeFit">
+            <span class="twPc-StatLabel twPc-block">Truyện đang theo dõi</span>
+            <span class="twPc-StatValue optima"><%= @user.following.size %> Cuốn</span>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
+<script>
+  $(function() {
+    $("#user_image").on("change", function(event) {
+      var files = event.target.files;
+      var image = files[0]
+      var reader = new FileReader();
+      reader.onload = function(file) {
+        var img = new Image();
+        img.src = file.target.result;
+        $("#change_image").html(img).children().addClass("twPc-avatarImg");
+        $(".button-submit-image").css("display", "block");
+      }
+      reader.readAsDataURL(image);
+    });
+  });
+
+  $(function() {
+    $("#user_cover_image").on("change", function(event) {
+      var files = event.target.files;
+      var image = files[0]
+      var reader = new FileReader();
+      reader.onload = function(file) {
+        var img = new Image();
+        img.src = file.target.result;
+        $("#change_cover_image").html(img).children().addClass("twPc-bg twPc-block");
+        $(".button-submit-cover-image").removeClass('form_edit_review');
+      }
+      reader.readAsDataURL(image);
+    });
+  });
+</script>

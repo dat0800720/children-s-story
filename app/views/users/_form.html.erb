@@ -1,12 +1,20 @@
 <%= form_for(@user) do |f| %>
-  <%= render 'shared/error_messages' %>
-  <label>Họ và tên</label>
-  <%= f.text_field :name, class: 'form-control' %>
-  <label>Email</label>
-  <%= f.email_field :email, class: 'form-control' %>
-  <label>Mật khẩu</label>
-  <%= f.password_field :password, class: 'form-control' %>
- <label>Xác nhận lại mật khẩu</label>
-  <%= f.password_field :password_confirmation, class: 'form-control' %>
-  <%= f.submit "Đăng Ký", class: "btn btn-primary" %>
+  <%= render "devise/shared/error_messages", resource: @user %>
+  <% if params[:action_detail] == "change password" %>
+    <label>Mật khẩu mới</label>
+    <%= f.password_field :password, class: 'form-control' %>
+    <label>Xác nhận lại mật khẩu mới</label>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+    <%= f.submit "Đăng Ký", class: "btn btn-primary" %>
+  <% else %>
+    <label>Họ và tên</label>
+    <%= f.text_field :name, class: 'form-control' %>
+    <label>Email</label>
+    <%= f.email_field :email, class: 'form-control' %>
+    <label>Mật khẩu</label>
+    <%= f.password_field :password, class: 'form-control' %>
+    <label>Xác nhận lại mật khẩu</label>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+    <%= f.submit "Đăng Ký", class: "btn btn-primary" %>
+  <% end %>
 <% end %>

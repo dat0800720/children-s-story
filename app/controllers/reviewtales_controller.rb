@@ -15,10 +15,10 @@ class ReviewtalesController < ApplicationController
   def edit; end
 
   def update
-    if @reviewtale.update(reviewtale_params)
-      redirect_to preview_tale_path(@tale)
-    else
-      render 'edit'
+    respond_to do |format|
+      @reviewtale.update(reviewtale_params)
+      format.html { redirect_to preview_tale_path(@tale) }
+      format.js
     end
   end
 

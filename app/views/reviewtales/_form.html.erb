@@ -2,16 +2,17 @@
   <div id="rating-form">
     <label>Đánh giá sao:</label>
   </div>
-  <div class="row">
+  <div class="row position_relative">
     <div class="image_user_comment">
-      <%= gravatar_for current_user %>
+      <%= image_tag(@current_user.image, alt: "ảnh đại diện", class: 'image_comment') if @current_user.image.attached? %>
     </div>
-    <div class="view_comment">
-      <%= f.text_field :comment, class: 'form-control comment' %>
+    <div class="input_comment">
+      <%= f.text_field :comment, class: 'form-control comment', placeholder: "Nhận xét của bản..." %>
     </div>
+    <%= button_tag( class: "button_review") do %>
+      <i class="fa fa-paper-plane" aria-hidden="true"></i>
+    <% end %>
   </div>
-  <% name_action = action_name == "edit" ? "Sửa đánh giá" : "Tạo đánh giá" %>
-  <%= f.submit name_action, class: "btn btn-primary" %>
 <% end %>
 
 <script>
