@@ -42,9 +42,11 @@
   <% if @tale.approved? %>
     <div class="container review">
       <h1 class="login">ĐÁNH GIÁ TRUYỆN</h1>
-      <div class="form_review">
-        <%= render "reviewtales/form" %>
-      </div>
+      <% if user_signed_in? %>
+        <div class="form_review">
+          <%= render "reviewtales/form" %>
+        </div>
+      <% end %>
       <div id="reviewtales">
         <%= render @tale.reviewtales.order("updated_at DESC") %>
       </div>

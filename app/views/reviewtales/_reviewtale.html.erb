@@ -1,7 +1,7 @@
 <div id="review-<%= reviewtale.id %>" class="preview_comment">
   <div class="row">
     <div class="image_user_comment">
-      <%= image_tag(current_user.image, alt: "ảnh đại diện", class: 'image_comment') if current_user.image.attached? %>
+      <%= image_tag(reviewtale.user.image, alt: "ảnh đại diện", class: 'image_comment') if reviewtale.user.image.attached? %>
     </div>
     <div class="view_comment">
       <h2 class="optima"><%= reviewtale.user.name %></h2>
@@ -22,28 +22,30 @@
   </div>
 </div>
 
-<div class="form_edit_review">
-  <%= form_for [@tale, reviewtale], remote: true do |f| %>
-    <div class="row">
-      <div class="image_user_comment">
-        <%= image_tag(@current_user.image, alt: "ảnh đại diện", class: 'image_comment') if @current_user.image.attached? %>
-      </div>
-      <div class="view_comment">
-        <div id="rating-form-<%= reviewtale.id %>" data-score=<%= reviewtale.rating %>>
-          <label>Đánh giá sao:</label>
+<% if user_signed_in? %>
+  <div class="form_edit_review">
+    <%= form_for [@tale, reviewtale], remote: true do |f| %>
+      <div class="row">
+        <div class="image_user_comment">
+          <%= image_tag(reviewtale.user.image, alt: "ảnh đại diện", class: 'image_comment') if reviewtale.user.image.attached? %>
         </div>
-        <div class="row position_relative">
-          <div class="input_comment">
-            <%= f.text_field :comment, value: reviewtale.comment, class: 'form-control comment', placeholder: "Nhận xét của bản..." %>
+        <div class="view_comment">
+          <div id="rating-form-<%= reviewtale.id %>" data-score=<%= reviewtale.rating %>>
+            <label>Đánh giá sao:</label>
           </div>
-          <%= button_tag( class: "button_review") do %>
-            <i class="fa fa-paper-plane" aria-hidden="true"></i>
-          <% end %>
+          <div class="row position_relative">
+            <div class="input_comment">
+              <%= f.text_field :comment, value: reviewtale.comment, class: 'form-control comment', placeholder: "Nhận xét của bản..." %>
+            </div>
+            <%= button_tag( class: "button_review") do %>
+              <i class="fa fa-paper-plane" aria-hidden="true"></i>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+<% end %>
 <script>
   $('#review-rating-<%= reviewtale.id %>').raty({
     readOnly: true,
