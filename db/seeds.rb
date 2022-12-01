@@ -3,7 +3,9 @@ if User.none?
   User.create!(name: 'Đàm Đức Đạt', email: 'damducdat0807@gmail.com', password: '123456', bithday: bithday, password_confirmation: '123456', admin: true)
   50.times do |i|
     bithday = Date.today - rand(-1..10_000)
-    User.create!(name: "User name #{i + 1}", email: "user#{i + 1}@gmail.com", password: '123456', password_confirmation: '123456', bithday: bithday, admin: false)
+    user = User.create!(name: "User name #{i + 1}", email: "user#{i + 1}@gmail.com", password: '123456', password_confirmation: '123456', bithday: bithday, admin: false)
+    user.image.attach(io: File.open(File.join(Rails.root, "app/assets/images/avatar-#{ rand(1..5) }.jpg")), filename: 'avatar.jpg')
+    user.cover_image.attach(io: File.open(File.join(Rails.root, "app/assets/images/cover-image.jpg")), filename: 'image.jpg')
   end
 end
 

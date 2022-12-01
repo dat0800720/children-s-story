@@ -1,0 +1,16 @@
+<% if @reviewtale.errors.any? %>
+  document.querySelector('#error_explanation') ? document.querySelector('#error_explanation').remove() : null ;
+  document.querySelector('#new_reviewtale').insertAdjacentHTML('afterbegin', '<%= escape_javascript(render "devise/shared/error_messages", resource: @reviewtale) %>');
+<% else %>
+  document.querySelector('#error_explanation') ? document.querySelector('#error_explanation').remove() : null ;
+  document.querySelector('#reviewtales').insertAdjacentHTML('afterbegin', '<%= escape_javascript(render @reviewtale) %>');
+  $('#review-rating-<%= @reviewtale.id %>').raty({
+    readOnly: true,
+    score: function(){
+      return $(this).attr('data-score');
+    },
+    path: '/images/ratyrate'
+  });
+  document.querySelector('#new_reviewtale').reset();
+  $('.form_edit_review').css("display", "none");
+<% end %>

@@ -42,11 +42,11 @@
   <% if @tale.approved? %>
     <div class="container review">
       <h1 class="login">ĐÁNH GIÁ TRUYỆN</h1>
-      <div class="test">
+      <div class="form_review">
         <%= render "reviewtales/form" %>
       </div>
       <div id="reviewtales">
-        <%= render @tale.reviewtales.order("id DESC") %>
+        <%= render @tale.reviewtales.order("updated_at DESC") %>
       </div>
     </div>
   <% elsif @tale.refused? %>

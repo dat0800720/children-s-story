@@ -1,13 +1,47 @@
-<div id="review-<%= reviewtale.id %>">
-  <h2 class="optima"><%= reviewtale.user.name %></h2>
-  <div id="review-rating-<%= reviewtale.id %>" data-score=<%= reviewtale.rating %>></div>
-  <p clsss="optima"><%= reviewtale.comment%></p>
-  <% if user_signed_in? %>
-    <% if reviewtale.user_id == current_user.id%>
-      <button id="edit-<%= reviewtale.id %>" type="submit"><%= link_to '<i class="fa fa-pencil-square-o"></i>'.html_safe,  edit_tale_reviewtale_path(tale_id: @tale.id,id: reviewtale.id) %></button>
-      <button id="destory-<%= reviewtale.id %>" type="submit"><%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, tale_reviewtale_path(tale_id: @tale.id,id: reviewtale.id), remote: true, method: :delete %></button>
-      <p><%= reviewtale.created_at&.strftime("%H:%M Ngày %d/%m/%Y") %></p>
-    <% end %>
+<div id="review-<%= reviewtale.id %>" class="preview_comment">
+  <div class="row">
+    <div class="image_user_comment">
+      <%= image_tag(current_user.image, alt: "ảnh đại diện", class: 'image_comment') if current_user.image.attached? %>
+    </div>
+    <div class="view_comment">
+      <h2 class="optima"><%= reviewtale.user.name %></h2>
+      <div id="review-rating-<%= reviewtale.id %>" data-score=<%= reviewtale.rating %>></div>
+      <p clsss="optima"><%= reviewtale.comment%></p>
+    </div>
+    <div class="image_user_comment">
+    </div>
+    <div class="row">
+      <% if user_signed_in? %>
+        <% if reviewtale.user_id == current_user.id%>
+          <button class="button_edit_comment" type="submit">Chỉnh sửa</button>
+          <button class="button_comment" type="submit"><%= link_to 'Xóa', tale_reviewtale_path(tale_id: @tale.id,id: reviewtale.id), remote: true, method: :delete %></button>
+        <% end %>
+      <% end %>
+      <p class="time_comment"><%= reviewtale.updated_at&.strftime("%H:%M Ngày %d/%m/%Y") %></p>
+    </div>
+  </div>
+</div>
+
+<div class="form_edit_review">
+  <%= form_for [@tale, reviewtale], remote: true do |f| %>
+    <div class="row">
+      <div class="image_user_comment">
+        <%= image_tag(@current_user.image, alt: "ảnh đại diện", class: 'image_comment') if @current_user.image.attached? %>
+      </div>
+      <div class="view_comment">
+        <div id="rating-form-<%= reviewtale.id %>" data-score=<%= reviewtale.rating %>>
+          <label>Đánh giá sao:</label>
+        </div>
+        <div class="row position_relative">
+          <div class="input_comment">
+            <%= f.text_field :comment, value: reviewtale.comment, class: 'form-control comment', placeholder: "Nhận xét của bản..." %>
+          </div>
+          <%= button_tag( class: "button_review") do %>
+            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>
 <script>
@@ -18,4 +52,14 @@
     },
     path: '/images/ratyrate'
   });
+
+  $("#rating-form-<%= reviewtale.id %>").raty({
+    path: '/images/ratyrate',
+    scoreName: "reviewtale[rating]"
+  });
+  
+  $('.button_edit_comment').on('click', function(){
+    $(this).closest('.preview_comment').css("display", "none");
+    $(this).closest('.preview_comment').next('.form_edit_review').css("display", "block");
+  })
 </script>

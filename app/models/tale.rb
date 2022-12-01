@@ -23,7 +23,7 @@ class Tale < ApplicationRecord
   enum status: { approved: 0, waiting_censorship: 1, refused: 2 }
 
   # comment khi chay seed
-  validates :image, presence: true
+  # validates :image, presence: true
   validates :image, content_type: { in: %w[image/jpeg image/gif image/png],
                                     message: I18n.t('errors.must_be_a_valid_image_format') },
                     size: { less_than: 5.megabytes, message: I18n.t('errors.should_be_less_than_5MB') }

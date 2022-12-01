@@ -8,6 +8,8 @@ class User < ApplicationRecord
   scope :new_user_two_month_ago, -> { where('DATE(created_at) >= ? AND DATE(created_at) < ?', Time.current.beginning_of_month - 2.months, Time.current.beginning_of_month - 1.month) }
   scope :new_user_three_month_ago, -> { where('DATE(created_at) >= ? AND DATE(created_at) < ?', Time.current.beginning_of_month - 3.months, Time.current.beginning_of_month - 2.months) }
   has_one :request, dependent: :destroy
+  has_one_attached :cover_image, dependent: :destroy
+  has_one_attached :image, dependent: :destroy
   has_many :tales, dependent: :destroy
   has_many :active_relationships, class_name: 'Relationship', inverse_of: :follower,
                                   foreign_key: 'follower_id', dependent: :destroy
@@ -26,8 +28,16 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX }, uniqueness: true
-  # has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+
+  # comment khi seed
+  # validates :cover_image, :image, presence: true
+  validates :cover_image, content_type: { in: %w[image/jpeg image/gif image/png],
+                                          message: I18n.t('errors.must_be_a_valid_image_format') },
+                          size: { less_than: 5.megabytes, message: I18n.t('errors.should_be_less_than_5MB') }
+  validates :image, content_type: { in: %w[image/jpeg image/gif image/png],
+                                    message: I18n.t('errors.must_be_a_valid_image_format') },
+                    size: { less_than: 5.megabytes, message: I18n.t('errors.should_be_less_than_5MB') }
 
   def self.search(term)
     if term
