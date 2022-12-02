@@ -1,19 +1,24 @@
 <% @user ||= current_user %>
 <div class="stats">
   <span class="posted_in">
-    <strong>Lượt theo dõi:</strong> 
+    <strong class="optima">Lượt theo dõi:</strong>
     <strong id="followers" class="stat"><%= @tale.followers.count %></strong>
   </span>
 </div>
 <div class="stats">
   <span class="posted_in">
-    <strong>Lượt yêu thích:</strong> 
+    <strong class="optima">Lượt yêu thích:</strong>
     <strong id="favouriters" class="stat"><%= @tale.favouriters.count %></strong>
   </span>
 </div>
 <div class="stats">
   <span class="posted_in">
-    <strong>Lượt xem:</strong> 
+    <strong class="optima">Lượt xem:</strong>
     <strong id="view" class="stat"><%= @tale.view %></strong>
   </span>
 </div>
+<% if @tale.status != "approved" %>
+  <div class="stats">
+    <span><strong class="optima">Trạng thái truyện: <%= t("enum.tale.status.#{@tale.status}") %></strong></span>
+  </div>
+<% end %>

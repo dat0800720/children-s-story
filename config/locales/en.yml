@@ -44,3 +44,9 @@ en:
   errors:
     must_be_a_valid_image_format: Phải là một định dạng hình ảnh hợp lệ
     should_be_less_than_5MB: phải nhỏ hơn 5MB
+  enum:
+    tale:
+      status:
+        approved: Đã được duyệt 
+        waiting_censorship: Đang kiểm duyệt
+        refused: Từ chối

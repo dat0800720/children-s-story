@@ -1,29 +1,31 @@
 <% if user_signed_in?%>
-  <div class="row">
-    <div class="col-md-8 col-sm-12 form_all">
-      <section class="user_info">
-        <% @tale.tale_contents.each do |tale_content| %>
-          <div class="tale-content">
-            <% if tale_content.image.attached? %>
-              <div class="img-picture">
-                <%= image_tag url_for(tale_content.image) %>
-              </div>
-            <% elsif tale_content.audio.attached? %>
-              <div class="audio-content">
-                <audio src="<%= audio_path rails_blob_url tale_content.audio %>" type="audio/mpeg" controls></audio>
-              </div>
-            <% else %>
-              <div class="text-content">
-                <%= raw tale_content.text %>
-              </div>
-            <% end %>
-          <div>
-        <% end %>
-          <div class="manipulation">
-            <button id="sendMessageButton" type="submit"><%= link_to '<i class="fa fa-pencil-square-o"></i>'.html_safe, edit_tale_path(@tale) %></button>
-            <button id="sendMessageButton" type="submit"><%= link_to'<i class="fa fa-trash-o"></i>'.html_safe, tale_path(@tale), method: :delete %></button>
-          </div>
-      </section>
+  <div style="padding-top: 50px;">
+    <div class="row">
+      <div class="col-md-8 col-sm-12 form_all position_relative">
+        <div class="action_tale">
+          <button id="sendMessageButton" class="optima" type="submit"><%= link_to '<i class="fa fa-pencil-square-o"></i> Chỉnh sửa'.html_safe, edit_tale_path(@tale) %></button>
+          <button id="sendMessageButton" class="optima" type="submit"><%= link_to'<i class="fa fa-trash-o"></i> Xóa'.html_safe, tale_path(@tale), method: :delete %></button>
+        </div>
+        <section class="user_info">
+          <% @tale.tale_contents.each do |tale_content| %>
+            <div class="tale-content">
+              <% if tale_content.image.attached? %>
+                <div class="img-picture">
+                  <%= image_tag url_for(tale_content.image) %>
+                </div>
+              <% elsif tale_content.audio.attached? %>
+                <div class="audio-content">
+                  <audio src="<%= audio_path rails_blob_url tale_content.audio %>" type="audio/mpeg" controls></audio>
+                </div>
+              <% else %>
+                <div class="text-content">
+                  <%= raw tale_content.text %>
+                </div>
+              <% end %>
+            <div>
+          <% end %>
+        </section>
+      </div>
     </div>
   </div>
 <% else %>

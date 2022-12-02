@@ -1,5 +1,5 @@
 <tr>
-  <td><%= gravatar_for user, size: 50 %>
+  <td><%= image_tag(user.image, class: "avatar_index") %>
   <%= link_to user.name, user %></td>
   <td>
     <% if current_user.admin? %>

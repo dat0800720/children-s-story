@@ -322,6 +322,7 @@ h6, .h6 {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
+  border-radius: 0px;
 }
 
 .navbar-nav {
@@ -2271,4 +2272,25 @@ ul.twPc-Arrange {
 .button-submit-cover-image{
   background: white;
   margin: -50px 30px 0px 0px;
+}
+.avatar_index{
+  width: 50px;
+  height: 50px;
+}
+
+.action_tale {
+  position: absolute;
+  right: 0;
+  top: -15px;
+}
+#sendMessageButton {
+  margin-left: 10px;
+  padding: 5 10px;
+  background-color: #00C6E8;
+  border-color: #00C6E8;
+  box-shadow: none;
+  border-radius: 5px;
+}
+#sendMessageButton a {
+  color: white;
 }
