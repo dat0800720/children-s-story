@@ -51,8 +51,4 @@ class AuthorsController < ApplicationController
   def author_params
     params.require(:author).permit(:name, :profile, :image)
   end
-
-  def admin_user
-    redirect_to(root_url) unless current_user.admin?
-  end
 end

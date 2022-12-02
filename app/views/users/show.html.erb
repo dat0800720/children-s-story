@@ -11,7 +11,9 @@
         <div class="twPc-button">
           <button class="btn button-submit-cover-image form_edit_review" type="submit" ><h5 class="optima">Thay ảnh</h5></button>
           <%= f.file_field :cover_image, style: "display: none"%>
-          <%= f.label :cover_image, '<i class="fa fa-camera" aria-hidden="true"> Chỉnh sửa ảnh bìa</i>'.html_safe, class: "btn button-cover-image optima" %>
+          <% if @user == current_user %>
+            <%= f.label :cover_image, '<i class="fa fa-camera" aria-hidden="true"> Chỉnh sửa ảnh bìa</i>'.html_safe, class: "btn button-cover-image optima" %>
+          <% end %>
         </div>
       <% end %>
 
@@ -23,7 +25,9 @@
             </div>
           <% end %>
           <%= f.file_field :image, style: "display: none"%>
-          <%= f.label :image, '<i class="fa fa-camera mr-top" aria-hidden="true"></i>'.html_safe, class: "btn button-change-image" %>
+          <% if @user == current_user %>
+            <%= f.label :image, '<i class="fa fa-camera mr-top" aria-hidden="true"></i>'.html_safe, class: "btn button-change-image" %>
+          <% end %>
           <button class="btn button-submit-image" type="submit" ><h5 class="optima">Thay</h5></button>
         </div>
       <% end %>

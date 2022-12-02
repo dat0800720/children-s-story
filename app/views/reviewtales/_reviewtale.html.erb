@@ -1,7 +1,9 @@
 <div id="review-<%= reviewtale.id %>" class="preview_comment">
   <div class="row">
     <div class="image_user_comment">
-      <%= image_tag(reviewtale.user.image, alt: "ảnh đại diện", class: 'image_comment') if reviewtale.user.image.attached? %>
+      <%= link_to user_path(reviewtale.user) do %>
+        <%= image_tag(reviewtale.user.image, alt: "ảnh đại diện", class: 'image_comment') if reviewtale.user.image.attached? %>
+      <% end %>
     </div>
     <div class="view_comment">
       <h2 class="optima"><%= reviewtale.user.name %></h2>

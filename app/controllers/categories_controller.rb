@@ -1,6 +1,5 @@
 class CategoriesController < ApplicationController
   before_action :find_category, only: [:edit, :update, :destroy]
-  before_action :admin_user, only: [:new, :edit, :update, :destroy]
   load_and_authorize_resource
 
   def index
@@ -37,7 +36,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy
     flash[:success] = I18n.t('flash.successful_delete')
-    redirect_to category_url
+    redirect_to categories_path
   end
 
   private

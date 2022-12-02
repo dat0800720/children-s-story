@@ -15,6 +15,7 @@ class Ability
         can [:manage], Reviewtale
       elsif user.admin == false
         can [:manage], User, id: user.id
+        can [:read], User
         can [:read], Author
         can [:read], Category
         can [:update, :destroy], Tale, user_id: user.id
