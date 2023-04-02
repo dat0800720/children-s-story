@@ -28,6 +28,7 @@ gem 'cancancan'
 gem 'ckeditor'
 gem 'cocoon'
 gem 'devise'
+gem 'faker'
 gem 'image_processing'
 gem 'mini_magick'
 

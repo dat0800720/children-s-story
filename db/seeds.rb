@@ -1,9 +1,19 @@
+HO = %w(Nguyễn Trần Lê Phạm Đặng)
+TEN_DEM = %w(Thị Văn Xuân Minh Hoàng)
+TEN = %w(Hồng Nam Hoa Linh Mai Anh)
+
+def random_name
+  "#{HO.sample} #{TEN_DEM.sample} #{TEN.sample}"
+end
+
 if User.none?
-  bithday = Date.today - rand(-1..10_000)
-  User.create!(name: 'Đàm Đức Đạt', email: 'damducdat0807@gmail.com', password: '123456', bithday: bithday, password_confirmation: '123456', admin: true)
+  bithday = Faker::Date.birthday(min_age: 5, max_age: 65)
+  admin = User.create!(name: 'Đàm Đức Đạt', email: 'damducdat0807@gmail.com', password: 'Aa@123456', bithday: bithday, password_confirmation: 'Aa@123456', admin: true)
+  admin.image.attach(io: File.open(File.join(Rails.root, 'app/assets/images/me.jpg')), filename: 'me.jpg')
+  admin.cover_image.attach(io: File.open(File.join(Rails.root, "app/assets/images/cover-image.jpg")), filename: 'image.jpg')
   50.times do |i|
-    bithday = Date.today - rand(-1..10_000)
-    user = User.create!(name: "User name #{i + 1}", email: "user#{i + 1}@gmail.com", password: '123456', password_confirmation: '123456', bithday: bithday, admin: false)
+    bithday = Faker::Date.birthday(min_age: 5, max_age: 65)
+    user = User.create!(name: "#{random_name}", email: "#{Faker::Internet.unique.email(domain: 'gmail.com')}", password: 'Aa@123456', password_confirmation: 'Aa@123456', bithday: bithday, admin: false, created_at: Date.today - rand(0..110))
     user.image.attach(io: File.open(File.join(Rails.root, "app/assets/images/avatar-#{ rand(1..5) }.jpg")), filename: 'avatar.jpg')
     user.cover_image.attach(io: File.open(File.join(Rails.root, "app/assets/images/cover-image.jpg")), filename: 'image.jpg')
   end
@@ -152,5 +162,72 @@ if Tale.none?
     content = TaleContent.create(content_type: 2, tale_id: tale8.id)
     content.image.attach(io: File.open(File.join(Rails.root, "app/assets/images/truyentranhthieunhi-banlonluoitam-#{i + 2}.jpg")), filename: "truyentranhthieunhi-banlonluoitam-#{i + 2}.jpg")
   end
+  tale9 = Tale.create(title: 'Truyền thuyết Con Rồng cháu Tiên', description: 'Truyền thuyết Con Rồng cháu Tiên hay còn gọi sự tích Trăm trứng nở trăm con nhằm giải thích về nguồn gốc dân tộc cũng như đề cao lòng tự hào và tinh thần đoàn kết của dân tộc Việt Nam.',
+    category_id: 1, view: 3000, author_id: 3, user_id: 1)
+  tale9.image.attach(io: File.open(File.join(Rails.root, 'app/assets/images/con-rong-chau-tien.jpg')), filename: 'con-rong-chau-tien.jpg')
+  tale9.tale_contents.create!(content_type: 0, text: "<p>Ng&agrave;y xưa, ở miền đất Lạc Việt, cứ như b&acirc;y giờ l&agrave; Bắc Bộ nước ta, c&oacute; một vị thần thuộc n&ograve;i rồng, con trai thần Long nữ, t&ecirc;n l&agrave; Lạc Long Qu&acirc;n.
+    Thần m&igrave;nh rồng, thường ở dưới nước, thỉnh thoảng l&ecirc;n sống tr&ecirc;n cạn, sức khỏe v&ocirc; địch, c&oacute; nhiều ph&eacute;p lạ.</p>")
+  content = tale9.tale_contents.create(content_type: 2)
+  content.image.attach(io: File.open(File.join(Rails.root, 'app/assets/images/con-rong-chau-tien1.jpg')), filename: '1')
+  tale9.tale_contents.create!(content_type: 0, text: "<p>Thần gi&uacute;p nh&acirc;n d&acirc;n diệt trừ Ngư tinh, Hồ tinh, Mộc tinh l&agrave; những lo&agrave;i y&ecirc;u qu&aacute;i bấy l&acirc;u l&agrave;m hại d&acirc;n l&agrave;nh.
+    Thần dạy d&acirc;n c&aacute;ch trồng trọt, chăn nu&ocirc;i v&agrave; c&aacute;ch ăn ở. Xong việc, thần thường về thủy cung&nbsp;<sup>[1]</sup>&nbsp;với mẹ, khi c&oacute; việc cần, thần mới hiện l&ecirc;n.</p>")
+  content = tale9.tale_contents.create(content_type: 2)
+  content.image.attach(io: File.open(File.join(Rails.root, 'app/assets/images/con-rong-chau-tien2.jpg')), filename: '2')
+  tale9.tale_contents.create!(content_type: 0, text: "<p>Bấy giờ, ở v&ugrave;ng n&uacute;i cao phương Bắc, c&oacute; n&agrave;ng &Acirc;u Cơ thuộc d&ograve;ng họ Thần N&ocirc;ng, xinh đẹp tuyệt trần, nghe tiếng v&ugrave;ng đất Lạc c&oacute; nhiều hoa thơm cỏ lạ, b&egrave;n t&igrave;m đến thăm.
+    &Acirc;u Cơ v&agrave; Lạc Long Qu&acirc;n gặp nhau, đ&egrave;m l&ograve;ng y&ecirc;u thương, rồi trở th&agrave;nh vợ chồng, c&ugrave;ng nhau chung sống tr&ecirc;n cạn ở điện Long Tr&aacute;ng.</p>")
+  content = tale9.tale_contents.create(content_type: 2)
+  content.image.attach(io: File.open(File.join(Rails.root, 'app/assets/images/con-rong-chau-tien3.jpg')), filename: '3')
+  tale9.tale_contents.create!(content_type: 0, text: "<p>&Iacute;t l&acirc;u sau, &Acirc;u Cơ c&oacute; mang đến k&igrave; sinh nở. Chuyện thật lạ, n&agrave;ng sinh ra một c&aacute;i bọc trăm trứng nở ra một trăm con trai, con n&agrave;o con ấy hồng h&agrave;o, đẹp đẽ lạ thường.
+    Đ&agrave;n con kh&ocirc;ng cần b&uacute; mớm m&agrave; tự lớn l&ecirc;n như thổi, mặt mũi kh&ocirc;i ng&ocirc;&nbsp;<sup>[2]</sup>, khỏe mạnh như thần.</p>")
+  content = tale9.tale_contents.create(content_type: 2)
+  content.image.attach(io: File.open(File.join(Rails.root, 'app/assets/images/con-rong-chau-tien4.jpg')), filename: '4')
+  tale9.tale_contents.create!(content_type: 0, text: "<p>Thế rồi một h&ocirc;m, Lạc Long Qu&acirc;n vốn quen ở nước, cảm thấy m&igrave;nh kh&ocirc;ng thể sống m&atilde;i tr&ecirc;n cạn được, đ&agrave;nh từ biệt &Acirc;u Cơ v&agrave; đ&agrave;n con để trở về thủy cung với mẹ.
+    &Acirc;u Cơ ở lại một m&igrave;nh nu&ocirc;i đ&agrave;n con, th&aacute;ng ng&agrave;y chờ mong, buồn tủi. Cuối c&ugrave;ng n&agrave;ng gọi chồng l&ecirc;n v&agrave; than thở.
+    &ndash; Sao ch&agrave;ng bỏ thiếp [3] m&agrave; đi, kh&ocirc;ng c&ugrave;ng thiếp nu&ocirc;i đ&agrave;n con nhỏ? Lạc Long Qu&acirc;n n&oacute;i: &ndash; Ta vốn n&ograve;i rồng ở miền nước thẳm, n&agrave;ng l&agrave; gi&ograve;ng ti&ecirc;n ở chốn non cao.
+    Kẻ ở cạn, người ở nước, t&iacute;nh t&igrave;nh tập qu&aacute;n [4] kh&aacute;c nhau, kh&oacute; m&agrave; ăn ở c&ugrave;ng nhau một nơi l&acirc;u d&agrave;i được. Nay ta đưa năm mươi con xuống biển, n&agrave;ng đưa năm mươi con l&ecirc;n n&uacute;i, chia nhau cai quản c&aacute;c phương.
+    Kẻ miền n&uacute;i, người miền biển, khi c&oacute; việc g&igrave; th&igrave; gi&uacute;p đỡ lẫn nhau, đừng qu&ecirc;n lời hẹn.</p>")
+  content = tale9.tale_contents.create(content_type: 2)
+  content.image.attach(io: File.open(File.join(Rails.root, 'app/assets/images/con-rong-chau-tien5.jpg')), filename: '5')
+  tale9.tale_contents.create!(content_type: 0, text: "<p>&Acirc;u Cơ v&agrave; trăm con nghe theo, rồi c&ugrave;ng nhau chia tay nhau l&ecirc;n đường.</p>
+    <p>Người con trưởng được t&ocirc;n l&ecirc;n l&agrave;m vua, lấy hiệu l&agrave; H&ugrave;ng Vương, đ&oacute;ng đ&ocirc;&nbsp;<sup>[5]</sup>&nbsp;ở đất Phong Ch&acirc;u, đặt t&ecirc;n nước l&agrave; Văn Lang. Triều đ&igrave;nh c&oacute; tướng văn, tướng v&otilde;,
+    con trai vua gọi l&agrave; quan lang, con g&aacute;i vua gọi l&agrave; mị nương, khi cha chết th&igrave; được truyền ng&ocirc;i cho con trưởng, mười mấy đời truyền nối ng&ocirc;i vua đều lấy danh hiệu H&ugrave;ng Vương, kh&ocirc;ng hề thay đổi.</p>
+    <p>Cũng bởi sự t&iacute;ch n&agrave;y m&agrave; về sau, người Việt Nam ta con ch&aacute;u vua H&ugrave;ng, thường nhắc đến nguồn gốc của m&igrave;nh l&agrave;&nbsp; con Rồng ch&aacute;u Ti&ecirc;n.</p>")
+  content = tale9.tale_contents.create(content_type: 2)
+  content.image.attach(io: File.open(File.join(Rails.root, 'app/assets/images/con-rong-chau-tien6.jpg')), filename: '6')
+end
 
+if Relationship.none?
+  6.times do |i|
+    numbers = (1..9).to_a.shuffle
+    User.all.each do |u|
+      Relationship.find_or_create_by(follower_id: u.id, followed_id: numbers.pop)
+    end
+  end
+end
+
+if Favourite.none?
+  6.times do |i|
+    numbers = (1..9).to_a.shuffle
+    User.all.each do |u|
+      Favourite.find_or_create_by(favouriter_id: u.id, favourited_id: numbers.pop)
+    end
+  end
+end
+
+if Reviewtale.none?
+  6.times do |i|
+    numbers = (1..9).to_a.shuffle
+    User.all.each do |u|
+      u.reviewtales.create(tale_id: numbers.pop, rating: rand(4..5), comment: ["Hay", "10 Điểm", "Tuyệt vời", "Ý nghĩa"].sample)
+    end
+  end
+end
+
+if Request.none?
+  10.times do |i|
+    numbers = (1..9).to_a.shuffle
+    User.all.each do |u|
+      u.requests.create(title: "#{u.name} gửi request test hệ thống #{i}", status: 1, content: "Người dùng #{u.name} gửi request test hệ thống #{i} vui lòng check request được gửi.")
+    end
+  end
 end

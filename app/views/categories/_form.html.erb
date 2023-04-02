@@ -1,6 +1,7 @@
+<% button_submit =  params[:action] == "edit" ? "Cập nhật" : "Tạo mới" %>
 <%= form_for(@category) do |f| %>
   <label>Tên thể loại</label>
   <%= f.text_field :name, class: 'form-control' %>
 
-  <%= f.submit "Tạo mới thể loại", class: "btn btn-primary" %>
+  <%= f.submit button_submit, class: "btn btn-primary" %>
 <% end %>
