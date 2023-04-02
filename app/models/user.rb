@@ -7,7 +7,7 @@ class User < ApplicationRecord
   scope :new_user_last_month, -> { where('DATE(created_at) >= ? AND DATE(created_at) < ?', Time.current.beginning_of_month - 1.month, Time.current.beginning_of_month) }
   scope :new_user_two_month_ago, -> { where('DATE(created_at) >= ? AND DATE(created_at) < ?', Time.current.beginning_of_month - 2.months, Time.current.beginning_of_month - 1.month) }
   scope :new_user_three_month_ago, -> { where('DATE(created_at) >= ? AND DATE(created_at) < ?', Time.current.beginning_of_month - 3.months, Time.current.beginning_of_month - 2.months) }
-  has_one :request, dependent: :destroy
+  has_many :requests, dependent: :destroy
   has_one_attached :cover_image, dependent: :destroy
   has_one_attached :image, dependent: :destroy
   has_many :tales, dependent: :destroy
@@ -20,8 +20,6 @@ class User < ApplicationRecord
   has_many :active_favourites, class_name: 'Favourite', inverse_of: :favouriter,
                                foreign_key: 'favouriter_id', dependent: :destroy
   has_many :favouriting, through: :active_favourites, source: :favourited
-
-  attr_accessor :remember_token
 
   before_save { self.email = email.downcase }
   validates :name, presence: true, length: { maximum: 50 }
