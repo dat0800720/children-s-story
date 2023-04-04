@@ -3,11 +3,13 @@
   <div class="row">
     <div class="twPc-div">
       <%= form_for(@user) do |f| %>
-        <% if @user.image.present? %>
-          <div id="change_cover_image">
-            <%= image_tag(@user.cover_image, alt: "ảnh bìa", class: 'twPc-bg twPc-block') if @user.cover_image.attached? %>
-          </div>
-        <% end %>
+        <div id="change_cover_image">
+          <% if @user.cover_image.attached? %>
+            <%= image_tag(@user.cover_image, alt: "ảnh bìa", class: 'twPc-bg twPc-block') %>
+          <% else %>
+            <img alt="ảnh bìa" class="twPc-bg twPc-block" src="https://i.pinimg.com/736x/c1/f9/47/c1f94730a71def6ae34ff2221051d523.jpg">
+          <% end %>
+        </div>
         <div class="twPc-button">
           <button class="btn button-submit-cover-image form_edit_review" type="submit" ><h5 class="optima">Thay ảnh</h5></button>
           <%= f.file_field :cover_image, style: "display: none"%>
@@ -19,11 +21,13 @@
 
       <%= form_for(@user) do |f| %>
         <div class="twPc-avatarLink">
-          <% if @user.image.present? %>
-            <div id="change_image">
-              <%= image_tag(f.object.image, alt: "ảnh đại diện", class: 'twPc-avatarImg') if f.object.image.attached? %>
-            </div>
-          <% end %>
+          <div id="change_image">
+            <% if f.object.image.attached? %>
+              <%= image_tag(f.object.image, alt: "ảnh đại diện", class: 'twPc-avatarImg') %>
+            <% else %>
+              <img alt="ảnh đại diện" class="twPc-avatarImg" src="https://png.pngtree.com/png-clipart/20190904/original/pngtree-hand-drawn-flat-wind-user-avatar-icon-png-image_4492039.jpg">
+            <% end %>
+          </div>
           <%= f.file_field :image, style: "display: none"%>
           <% if @user == current_user %>
             <%= f.label :image, '<i class="fa fa-camera mr-top" aria-hidden="true"></i>'.html_safe, class: "btn button-change-image" %>
